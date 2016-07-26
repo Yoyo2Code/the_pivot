@@ -1,5 +1,5 @@
 <% @items.each do |item| %>
-  <%= item.title %><br>
+  <%= item.title %>: <%= @cart.contents[item.id.to_s] %><br>
   <%= item.description %><br>
   <%= number_to_currency(item.price) %><br>
   <img src=" <%= item.image_path %> " style="width:304px;height:228px;"/><br>
