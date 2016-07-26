@@ -1,6 +1,10 @@
-<%= @item.title %>
-<%= @item.description %>
-<%= @item.price %>
-<img src=" <%= @item.image_path %> " style="width:304px;height:228px;"/>
-<%= @cart.contents[@item.id] %>
-<%= @cart.total %>
+<% @items.each do |item| %>
+  <%= item.title %><br>
+  <%= item.description %><br>
+  <%= number_to_currency(item.price) %><br>
+  <img src=" <%= item.image_path %> " style="width:304px;height:228px;"/><br>
+  <%= @cart.contents[item.id] %><br><br>
+
+<% end %>
+
+Total: <%= number_to_currency(@cart.total_price) %>
