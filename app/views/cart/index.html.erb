@@ -1,0 +1,6 @@
+<%= @item.title %>
+<%= @item.description %>
+<%= @item.price %>
+<img src=" <%= @item.image_path %> " style="width:304px;height:228px;"/>
+<%= @cart.contents[@item.id] %>
+<%= @cart.total %>

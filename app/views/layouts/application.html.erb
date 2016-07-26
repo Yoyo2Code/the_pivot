@@ -9,6 +9,7 @@
   </head>
 
   <body>
+    <p> <%= link_to "Cart Items", cart_index_path %>: <%= @cart.total %></p>
     <%= yield %>
   </body>
 </html>
