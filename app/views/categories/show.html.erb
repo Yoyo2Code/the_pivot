@@ -1,6 +1,6 @@
 <% @category.items.each do |item| %>
   <%= item.title %><br>
   <%= item.description %><br>
-  Price: <%= item.price %><br>
+  Price: $<%= item.price %><br>
   <img src=" <%= item.image_path %> " style="width:304px;height:228px;" />
 <% end %>
