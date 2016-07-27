@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
   root 'items#index'
   resources :items, only: :index
-  resources :categories, only: :show
   resources :cart_items, only: [:create]
   resources :cart, only: [:index]
+  resources :users, only: [:new, :create, :show]
 
   delete "/cart_items", to: 'cart_items#destroy'
   get "/cart_items", to: 'cart_items#create'
+  post "/login", to: 'sessions#create'
+  get "/login", to: 'sessions#new'
+  get '/logout', to: 'sessions#destroy'
+
+  get '/dashboard', to: 'users#show'
+
+  get "/:category_title", to: 'categories#show'
 end
