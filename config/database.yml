@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: little-shop_production
-  username: little-shop
-  password: <%= ENV['LITTLE-SHOP_DATABASE_PASSWORD'] %>
