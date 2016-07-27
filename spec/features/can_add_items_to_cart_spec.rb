@@ -34,7 +34,7 @@ RSpec.feature "User sees items" do
     expect(page).to have_content("Cart Items: 0")
 
     first(:button, "Add to Cart").click
-
+    
     expect(page).to have_content("Cart Items: 1")
 
     all(:button, "Add to Cart")[1].click
