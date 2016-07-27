@@ -10,6 +10,9 @@
 
   <body>
     <p> <%= link_to "Cart Items", cart_index_path %>: <%= @cart.total %></p>
+    <% flash.each do |type, message| %>
+    <%= content_tag :div, sanitize(message), class: "flash#{type}" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
