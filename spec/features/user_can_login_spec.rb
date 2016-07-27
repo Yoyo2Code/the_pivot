@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "user can login" do
-  scenario "user can login" do
+  scenario "user can see login page" do
 
     # As a visitor
     # When I visit "/"
@@ -13,12 +13,35 @@ RSpec.feature "user can login" do
     # And I should be on the "/login" page
     expect(current_path).to eq(login_path)
     # I should see a place to insert my credentials to login
-    save_and_open_page
-      # find_field("Username").should have_content("Username")
-      #expect(page).should have_content("Password")
-      expect(page).to have_button("Create Account")
+    # save_and_open_page
+    expect(page.find("#session_username")).to be_truthy
+    expect(page.find("#session_password")).to be_truthy
+    expect(page).to have_link("Create Account")
 
     # And I should see a link to "Create Account"
 
+  end
+
+  scenario "user can login" do
+    # As a visitor
+    # When I visit "/login
+    visit login_path
+    # And when I click link "Create Account"
+    click_on("Create Account")
+    # And I fill in my desired credentials
+    fill_in "Username", with: "Penelope"
+    fill_in "Password", with: "password"
+    # And I submit my information
+    click_on("Create Account")
+    # Then my current page should be "/dashboard"
+    expect(current_path).to eq("/dashboard")
+    # And I should see a message in the navbar that says "Logged in as SOME_USER"
+    expect(page).to have_content("Logged in as Penelope")
+    # And I should see my profile information
+    expect(page).to have_content("Username: Penelope")
+    # And I should not see a link for "Login"
+    expect(page).to_not have_content("Login")
+    # And I should see a link for "Logout"
+    expect(page).to have_content("Logout")
   end
 end

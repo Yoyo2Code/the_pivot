@@ -14,7 +14,11 @@
     <%= content_tag :div, sanitize(message), style: "color: green",
         class: "flash#{type}" %>
     <% end %>
-    <%= link_to "Login", login_path %>
+    <% if current_user %>
+      <%= link_to "Logout", logout_path %><br><br>
+    <% else %>
+      <%= link_to "Login", login_path %><br><br>
+    <% end %>
     <%= yield %>
   </body>
 </html>
