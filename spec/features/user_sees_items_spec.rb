@@ -8,7 +8,7 @@ RSpec.feature "User sees items" do
 
     expect(page).to have_content(item.title)
     expect(page).to have_content(item.description)
-    expect(page).to have_content("$109,343,982.00")
+    expect(page).to have_content("$10,000.00")
     expect(page).to have_css("img[src*='http://img09.deviantart.net']")
   end
 end
