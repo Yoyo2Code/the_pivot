@@ -18,4 +18,17 @@ class Cart
     contents.values.sum
   end
 
+  def find_items
+    contents.keys.map do |id|
+      Item.find(id)
+    end
+  end
+
+  def total_price
+    price = contents.map do |id, quantity|
+      item = Item.find(id)
+      item.price * quantity
+    end.sum.to_f
+  end
+
 end
