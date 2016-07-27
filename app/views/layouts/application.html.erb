@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LittleShop</title>
+    <title>Cyborgism: This aint your daddy's ism</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -11,8 +11,10 @@
   <body>
     <p> <%= link_to "Cart Items", cart_index_path %>: <%= @cart.total %></p>
     <% flash.each do |type, message| %>
-    <%= content_tag :div, sanitize(message), style: "color: green", class: "flash#{type}" %>
+    <%= content_tag :div, sanitize(message), style: "color: green",
+        class: "flash#{type}" %>
     <% end %>
+    <%= link_to "Login", login_path %>
     <%= yield %>
   </body>
 </html>
