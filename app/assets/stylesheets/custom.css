@@ -1,6 +1,7 @@
 body {
   background-image: url("https://images4.alphacoders.com/119/11906.jpg");
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .well{
