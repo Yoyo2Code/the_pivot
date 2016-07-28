@@ -1,6 +1,9 @@
+<h1><%= @category.title.capitalize %></h1><br><br>
 <% @category.items.each do |item| %>
+<div class="well col-md-3">
   <%= item.title %><br>
   <%= item.description %><br>
   Price: $<%= item.price %><br><br>
-  <img src=" <%= item.image_path %> " style="width:304px;height:228px;" /><br><br>
+  <img src=" <%= item.image_path %> " style="width:220px;height:228px;" /><br><br>
+</div>
 <% end %>
