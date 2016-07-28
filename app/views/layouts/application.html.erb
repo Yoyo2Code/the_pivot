@@ -6,6 +6,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   </head>
 
   <body>
@@ -18,12 +21,20 @@
     <% else %>
       <%= link_to "Login", login_path %><br><br>
     <% end %>
-    Categories<br>
-    <select name="category_title">
-      <% Category.all.each do |category| %>
-        <option value="<%= category.title %>"><%= category.title.capitalize %></option>
-      <% end %>
-    </select>
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Action <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <% Category.all.each do |category| %>
+          <li><%=link_to category.title, "/#{category.title}"%></li>
+          <% end %>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+
   </nav>
   <% flash.each do |type, message| %>
   <%= content_tag :div, sanitize(message), style: "color: green",
