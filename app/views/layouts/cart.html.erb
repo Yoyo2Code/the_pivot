@@ -6,6 +6,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   </head>
 
   <body>
@@ -20,14 +23,14 @@
             <% if current_user %>
               <button type="button" class="btn btn-default"><%= link_to "Logout", logout_path %></button>
               <button type="button" class="btn btn-default"><%= link_to "My Account", '/dashboard' %></button>
-            <% end %>  
+            <% end %>
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Categories <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
             <% Category.all.each do |category| %>
               <li><%=link_to category.title.capitalize, "/#{category.title}"%></li>
-              <% end %>
+            <% end %>
           </ul>
         </div>
       </div>
