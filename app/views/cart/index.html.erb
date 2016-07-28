@@ -3,7 +3,7 @@
     <%= item.title %>: <%= @cart.contents[item.id.to_s] %><br>
     <%= item.description %><br>
     <%= number_to_currency(item.price) %><br>
-    <img src=" <%= item.image_path %> " style="width:340px;height:175px;"/><br><br>
+    <img src=" <%= item.image_path %> " style="width:220px;height:175px;"/><br><br>
     <button class="btn btn-default"><%= link_to "Remove", cart_items_path({item_id: item.id}), method: :delete %></button><br>
   </div>
   <% end %>
