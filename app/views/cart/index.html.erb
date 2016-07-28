@@ -8,7 +8,7 @@
 <% end %>
 
   <% if current_user  %>
-    <%= link_to "Checkout"  %>
+    <%= link_to "Checkout", orders_path, method: :post  %>
   <% else %>
     <p> Login or <%= link_to "Create Account", new_user_path %> to Checkout </p>
   <% end %>

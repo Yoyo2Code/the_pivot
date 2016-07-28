@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:create]
   resources :cart, only: [:index]
   resources :users, only: [:new, :create, :show]
+  resources :orders, only: [:create, :index]
 
   delete "/cart_items", to: 'cart_items#destroy'
   get "/cart_items", to: 'cart_items#create'
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   get '/dashboard', to: 'users#show'
+
 
   get "/:category_title", to: 'categories#show'
 end
