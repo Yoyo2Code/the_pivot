@@ -1,10 +1,10 @@
 
 <% @items.each do |item| %>
-<div class="well col-md-3">
-  <%= item.title %><br>
-  <%= item.description %><br>
-  Price: <%= number_to_currency(item.price) %><br>
-  <img src=" <%= item.image_path %> " style="width:220px;height:228px;"  /><br><br>
-  <%= button_to "Add to Cart", cart_items_path({item_id: item.id}) %>
-</div>
+  <div class="well col-md-3">
+    <%= item.title %><br>
+    <%= item.description %><br>
+    Price: <%= number_to_currency(item.price) %><br>
+    <img src=" <%= item.image_path %> " style="width:340px;height:228px;"  /><br><br>
+    <%= button_to "Add to Cart", cart_items_path({item_id: item.id}) %>
+  </div>
 <% end %>
