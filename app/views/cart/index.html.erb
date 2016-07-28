@@ -3,7 +3,7 @@
   <%= item.title %>: <%= @cart.contents[item.id.to_s] %><br>
   <%= item.description %><br>
   <%= number_to_currency(item.price) %><br>
-  <img src=" <%= item.image_path %> " style="width:220px;height:228px;"/><br>
+  <img src=" <%= item.image_path %> " style="width:220px;height:175px;"/><br>
   <%= link_to "Remove", cart_items_path({item_id: item.id}), method: :delete %><br>
 </div>
 <% end %>
@@ -12,7 +12,7 @@
   <% if current_user  %>
     <%= link_to "Checkout", orders_path, method: :post  %>
   <% else %>
-    <p> Login or <%= link_to "Create Account", new_user_path %> to Checkout </p>
+    <p> <%= link_to "Login", login_path %> or <%= link_to "Create Account", new_user_path %> to Checkout </p>
   <% end %>
 
   Total: <%= number_to_currency(@cart.total_price) %>

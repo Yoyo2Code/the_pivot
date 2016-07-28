@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cyborgism: This aint your daddy's ism</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <p> <%= link_to "Cart Items", cart_index_path %>: <%= @cart.total %></p>
+  <nav class="navbar navbar-default">
+    <%= link_to "Home", root_path %>
+
+    <% if current_user %>
+      <%= link_to "Logout", logout_path %> <%= link_to "My Account", '/dashboard' %><br><br>
+    <% end %>
+    
+    Categories<br>
+    <select name="category_title">
+      <% Category.all.each do |category| %>
+        <option value="<%= category.title %>"><%= category.title.capitalize %></option>
+      <% end %>
+    </select>
+  </nav>
+  <% flash.each do |type, message| %>
+  <%= content_tag :div, sanitize(message), style: "color: green",
+  class: "flash#{type}" %>
+  <% end %>
+    <%= yield %>
+
+  </body>
+</html>
