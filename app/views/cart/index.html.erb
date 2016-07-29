@@ -1,10 +1,9 @@
 <% @items.each do |item| %>
   <div class="well col-md-3">
-    <%= item.title %>: <%= @cart.contents[item.id.to_s] %><br>
+    <%= item.title %>: <%= @cart.contents[item.id.to_s] %><%= button_to "Add", cart_items_path({item_id: item.id}) %><%= button_to "Remove", cart_items_path({item_id: item.id}), method: :delete %><br>
     <%= item.description %><br>
     <%= number_to_currency(item.price) %><br>
-    <img src=" <%= item.image_path %> " style="width:275px;height:175px;"/><br><br>
-    <button class="btn btn-default"><%= link_to "Remove", cart_items_path({item_id: item.id}), method: :delete %></button><br>
+    <img src=" <%= item.image_path %> " style="width:220px;height:175px;"/><br><br>
   </div>
   <% end %>
 
