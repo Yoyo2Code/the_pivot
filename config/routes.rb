@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :items, only: :index
   resources :cart_items, only: [:create]
-  resources :cart, only: [:index]
+  resources :cart, only: [:index, :update]
+  # post '/update/:id', to: "cart#update_quantity_by"
   resources :users, only: [:new, :create, :show]
   resources :orders, only: [:create, :index]
 
@@ -14,6 +15,6 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'users#show'
 
-
   get "/:category_title", to: 'categories#show'
+
 end

@@ -5,5 +5,8 @@ class CartController < ApplicationController
     render layout: "cart"
   end
 
+  def update
+  end
+
 
 end
