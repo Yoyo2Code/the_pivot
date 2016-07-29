@@ -8,7 +8,7 @@ class Cart
 
   def add_item(item_id)
     contents[item_id.to_s] ||= 0
-    contents[item_id.to_s] = session[:quantity]
+    contents[item_id.to_s] += 1
   end
 
   def count_of(item_id)
