@@ -18,6 +18,6 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'users#show'
 
-
   get "/:category_title", to: 'categories#show'
+
 end

@@ -7,12 +7,12 @@
   </div>
   <% end %>
 
-  <div style="position:fixed; width:100%; height:70px; padding:5px; bottom:0px; ">
-    <% if current_user  %>
-      <%= link_to "Checkout", orders_path, method: :post  %>
-    <% else %>
-      <p> <%= link_to "Login", login_path %> or <%= link_to "Create Account", new_user_path %> to Checkout </p>
-    <% end %>
+<div style="position:fixed; width:100%; height:70px; padding:5px; bottom:0px; ">
+  <% if current_user  %>
+  <%= link_to "Checkout", orders_path, method: :post  %>
+  <% else %>
+  <p> <%= link_to "Login", login_path %> or <%= link_to "Create Account", new_user_path %> to Checkout </p>
+  <% end %>
 
-    Total: <%= number_to_currency(@cart.total_price) %>
-  </div>
+  Total: <%= number_to_currency(@cart.total_price) %>
+</div>
