@@ -3,6 +3,7 @@ class CartItemsController < ApplicationController
   def create
     item = Item.find(params[:item_id])
     cart_item = CartItem.new(item.id, 1)
+    session[:quantity] = cart_item.quantity
     @cart.add_item(item.id)
     session[:cart] = @cart.contents
     referer_path = request.env['HTTP_REFERER']

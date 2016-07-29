@@ -1,5 +1,6 @@
 class Cart
   attr_reader :contents
+  attr_accessor :update
 
   def initialize(contents)
     @contents = contents || {}
@@ -7,7 +8,7 @@ class Cart
 
   def add_item(item_id)
     contents[item_id.to_s] ||= 0
-    contents[item_id.to_s] += 1
+    contents[item_id.to_s] = session[:quantity]
   end
 
   def count_of(item_id)
@@ -34,6 +35,10 @@ class Cart
   def delete_item(item_id)
     contents[item_id.to_s] -= 1
     contents.delete_if { |id, quantity| quantity == 0 }
+  end
+
+  def increment_quantity_by
+    content[item_id.to_s] += update
   end
 
 end

@@ -4,6 +4,4 @@ class CartController < ApplicationController
     @items = @cart.find_items
     render layout: "cart"
   end
-
-
 end
