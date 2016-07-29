@@ -9,7 +9,7 @@ RSpec.feature "user can login" do
     # Then I should see a link for "Login"
     expect(page).to have_content("Login")
     # And when I click "Login"
-    click_on "Login"
+    first(:link, "Login").click
     # And I should be on the "/login" page
     expect(current_path).to eq(login_path)
     # I should see a place to insert my credentials to login
@@ -27,7 +27,7 @@ RSpec.feature "user can login" do
     # When I visit "/login
     visit login_path
     # And when I click link "Create Account"
-    click_on("Create Account")
+    first(:link, "Create Account").click
     # And I fill in my desired credentials
     fill_in "Username", with: "Penelope"
     fill_in "Password", with: "password"

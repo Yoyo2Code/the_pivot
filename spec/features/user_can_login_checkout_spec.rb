@@ -22,7 +22,7 @@ RSpec.feature "user can login and checkout" do
     expect(page).to have_link("Checkout")
     # When I click "Logout"
 
-    click_on("Logout")
+    first(:link, "Logout").click
     # Then I should see see "Login"
     expect(page).to have_link("Login")
     # And I should not see "Logout"

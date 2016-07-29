@@ -9,7 +9,7 @@ RSpec.feature 'user can delete items from cart' do
 
     visit cart_index_path
 
-    click_on "Remove"
+    first(:link, "Remove").click
 
     expect(current_path).to eq '/cart'
 
