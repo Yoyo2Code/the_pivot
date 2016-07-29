@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show]
   resources :orders, only: [:create, :index]
 
+  namespace :admin do
+    get '/dashboard', to: 'users#show'
+  end
+
   delete "/cart_items", to: 'cart_items#destroy'
   get "/cart_items", to: 'cart_items#create'
   post "/login", to: 'sessions#create'
