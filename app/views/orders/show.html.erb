@@ -1,8 +1,7 @@
 
 <h1> Order <%= @order_number %> </h1>
-<% @orders.each do |order| %>
+  <% @order.items.each do |item| %>
 
-  <% order.items.each do |item| %>
   <table class="table table-bordered">
   <thead>
     <tr>
@@ -23,4 +22,3 @@
 </table>
 </div>
   <% end %>
-<% end %>

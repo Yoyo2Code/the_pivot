@@ -13,7 +13,10 @@ class OrdersController < ApplicationController
 
   def show
     @order_number = @_request.env["REQUEST_PATH"].split("/").last
-    @orders = current_user.orders
+    @order = current_user.orders.find(@order_number)
+  end
+
+  def get_quantity
   end
 
 end
