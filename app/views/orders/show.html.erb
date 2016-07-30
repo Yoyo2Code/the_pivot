@@ -1,7 +1,6 @@
 
 <h1> Order <%= @order_number %> </h1>
-  <% @order.items.each do |item| %>
-
+  <% @order.order_items.each do |order_item| %>
   <table class="table table-bordered">
   <thead>
     <tr>
@@ -13,10 +12,10 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row"> <%=item.id%></th>
-      <td><%= item.title %></td>
-      <td><%= item.description %></td>
-      <td><%= item.price %></td>
+      <th scope="row"> <%= order_item.item_id%></th>
+      <td><%= order_item.title %></td>
+      <td><%= order_item.quantity %></td>
+      <td><%= order_item.price %></td>
     </tr>
   </tbody>
 </table>
