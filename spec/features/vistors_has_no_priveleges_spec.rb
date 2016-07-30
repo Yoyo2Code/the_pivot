@@ -1,0 +1,23 @@
+require 'rails_helper'
+
+RSpec.feature "VisitorPrivelegesTest" do
+  scenario "visitor cannot view other users data" do
+
+    visit items_path
+
+    first(:button, "Add to Cart").click
+    expect(page).to have_content("Cart Items: 1")
+
+    visit cart_index_path
+    expect(page).to have_content "Login or Create Account"
+  end
+
+  scenario "visitor cannot view admin pages" do
+
+    visit admin_dashboard_path
+
+    expect(page).to have_content "The page you were looking for doesn't exist."
+
+  end
+
+end
