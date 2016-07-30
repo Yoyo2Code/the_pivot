@@ -32,7 +32,7 @@ RSpec.feature "user can login" do
     fill_in "Username", with: "Penelope"
     fill_in "Password", with: "password"
     # And I submit my information
-    click_on("Create Account")
+    first(:button, "Create Account").click
     # Then my current page should be "/dashboard"
     expect(current_path).to eq("/dashboard")
     # And I should see a message in the navbar that says "Logged in as SOME_USER"
