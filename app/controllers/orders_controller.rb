@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   def create
     new_order = current_user.orders.create
     new_order.items << @cart.find_items
+    @cart.contents.clear
     redirect_to orders_path
   end
 

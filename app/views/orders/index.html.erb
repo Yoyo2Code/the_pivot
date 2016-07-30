@@ -1,7 +1,4 @@
 <h1>Order History</h1>
-
 <% @orders.each do |order| %>
-  <% order.items.each do |item| %>
-  <%= item.title %>
-  <% end %>
+  <li>Order # <%=link_to order.id, "/#{order.id}"%></li>
 <% end %>
