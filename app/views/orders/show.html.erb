@@ -1,0 +1,25 @@
+<h1> Order </h1>
+
+<% @orders.each do |order| %>
+  <% order.items.each do |item| %>
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Order #</th>
+      <th>Item Name</th>
+      <th>Item Quantity</th>
+      <th>Item Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td><%= item.title %></td>
+      <td><%= item.description %></td>
+      <td><%= item.price %></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+  <% end %>
+<% end %>

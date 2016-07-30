@@ -7,7 +7,12 @@ class OrdersController < ApplicationController
     new_order = current_user.orders.create
     new_order.items << @cart.find_items
     @cart.contents.clear
+    flash[:notice] = "Order Successfully Placed!"
     redirect_to orders_path
+  end
+
+  def show
+    @orders = current_user.orders
   end
 
 end
