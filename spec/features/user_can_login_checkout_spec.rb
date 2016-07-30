@@ -11,11 +11,11 @@ RSpec.feature "user can login and checkout" do
     # I should see an option to "Login or Create Account to Checkout"
     expect(page).to have_content("Login or Create Account to Checkout")
     # After I create an account
-    click_on("Create Account")
+    first(:link, "Create Account").click
     # And I fill in my desired credentials
     fill_in "Username", with: "Penelope"
     fill_in "Password", with: "password"
-    click_on("Create Account")
+    first(:button, "Create Account").click
     # And I visit "/cart
     visit cart_index_path
     # Then I should see all of the data that was there when I was not logged in

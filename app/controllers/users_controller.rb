@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
+  skip_before_action :require_user, except: [:show]
 
   def create
-    user = User.create(user_params)
-    if user.save
-      session[:user_id] = user.id
-      redirect_to '/dashboard'
+    @user = User.create(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to dashboard_path
     else
-      flash[:notice] = "Invalid Username or Password"
+      flash.now[:notice] = "Invalid Username or Password"
       render :new
     end
   end

@@ -1,7 +1,4 @@
 class OrdersController < ApplicationController
-  attr_accessor :quantity
-
-
   def index
     @orders = current_user.orders
   end

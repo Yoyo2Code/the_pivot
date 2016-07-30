@@ -7,14 +7,14 @@ RSpec.feature "user can view past orders" do
     cart = Cart.new(nil)
     first(:button, "Add to Cart").click
     visit cart_index_path
-    click_on("Create Account")
+    first(:link, "Create Account").click
     fill_in "Username", with: "Penelope"
     fill_in "Password", with: "password"
-    click_on("Create Account")
+    first(:button, "Create Account").click
     visit cart_index_path
 
     # When I visit "/orders"
-    click_on("Checkout")
+    first(:link, "Checkout").click
     expect(page).to have_content("Order #")
     #  And I should see a link to view that order
     click_on "#{Order.first.id}"
