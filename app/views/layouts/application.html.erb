@@ -20,9 +20,12 @@
 
         <div class="btn-group">
           <button type="button" class="btn btn-default"><%= link_to "Home", root_path %></button>
-            <% if current_user %>
+            <% if current_user && current_admin? == false %>
               <button type="button" class="btn btn-default"><%= link_to "Logout", logout_path %></button>
-                <button type="button" class="btn btn-default"><%= link_to "My Account", '/dashboard' %></button>
+              <button type="button" class="btn btn-default"><%= link_to "My Account", dashboard_path %></button>
+            <% elsif current_admin? %>
+            <button type="button" class="btn btn-default"><%= link_to "Logout", logout_path %></button>
+            <button type="button" class="btn btn-default"><%= link_to "My Account", admin_dashboard_path %></button>
             <% else %>
               <button type="button" class="btn btn-default"><%= link_to "Login", login_path %></button>
             <% end %>
