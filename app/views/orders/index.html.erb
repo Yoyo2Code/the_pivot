@@ -2,6 +2,9 @@
 
 <% @orders.each do |order| %>
   <% order.items.each do |item| %>
-  <%= item.title %>
+  <div class="row col-md-12 top-row">
+  <%= link_to order.id, order_path(order) %>
+  <%=  %>
+</div>
   <% end %>
 <% end %>
