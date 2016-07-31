@@ -3,13 +3,17 @@ require 'rails_helper'
 RSpec.feature 'user can delete items from cart' do
   scenario 'delete item from a cart with 1 item' do
 
+    category = create(:category) do |category|
+      category.items.create(attributes_for(:item))
+    end
+
     visit items_path
-    first(:button, "Add to Cart").click
+    click_on("Add to Cart")
     expect(page).to have_content("Cart Items: 1")
 
     visit cart_index_path
 
-    first(:button, "Remove").click
+    click_on("Remove")
 
     expect(current_path).to eq '/cart'
 
@@ -19,11 +23,14 @@ RSpec.feature 'user can delete items from cart' do
   end
 
     scenario 'user can delete multiple items from cart'do
+    category = create(:category) do |category|
+      category.items.create(attributes_for(:item))
+    end
 
     visit items_path
-    first(:button, "Add to Cart").click
-    first(:button, "Add to Cart").click
-    first(:button, "Add to Cart").click
+    click_on("Add to Cart")
+    click_on("Add to Cart")
+    click_on("Add to Cart")
 
     expect(page).to have_content("Cart Items: 3")
   end

@@ -2,10 +2,14 @@ require 'rails_helper'
 
 RSpec.feature "VisitorPrivelegesTest" do
   scenario "visitor cannot view other users data" do
+    create(:category) do |category|
+      category.items.create(attributes_for(:item))
+    end
+
 
     visit items_path
 
-    first(:button, "Add to Cart").click
+    click_on("Add to Cart")
     expect(page).to have_content("Cart Items: 1")
 
     visit cart_index_path
