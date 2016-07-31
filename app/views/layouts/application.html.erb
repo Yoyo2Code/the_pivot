@@ -30,7 +30,9 @@
             <% if current_user && current_admin? == false %>
               <button type="button" class="btn btn-default"><%= link_to "Logout", logout_path %></button>
               <button type="button" class="btn btn-default"><%= link_to "My Account", dashboard_path %></button>
-              <button type="button" class="btn btn-default"><%= link_to "Past Orders", orders_path unless current_user.orders.empty? %></button>
+              <% unless current_user.orders.empty? %>
+                <button type="button" class="btn btn-default"><%= link_to "Past Orders", orders_path unless current_user.orders.empty? %></button>
+              <% end %>
             <% elsif current_admin? %>
             <button type="button" class="btn btn-default"><%= link_to "Logout", logout_path %></button>
             <button type="button" class="btn btn-default"><%= link_to "My Account", admin_dashboard_path %></button>
