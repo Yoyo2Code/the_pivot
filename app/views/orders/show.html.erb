@@ -1,21 +1,20 @@
 
-<h1> Order <%= @order_number %> </h1>
+<h1 style="color: white"> Order <%= @order_number %> </h1>
   <% @order.order_items.each do |order_item| %>
   <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Item #</th>
       <th>Item Name</th>
       <th>Item Quantity</th>
       <th>Item Price</th>
+      <th>Item Status</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row"> <%= order_item.item_id%></th>
-      <td><%= order_item.title %></td>
+      <th scope="row"> <%= link_to order_item.title, item_path(order_item) %></th>
       <td><%= order_item.quantity %></td>
-      <td><%= order_item.price %></td>
+      <td><%= number_to_currency(order_item.price) %></td>
     </tr>
   </tbody>
 </table>
