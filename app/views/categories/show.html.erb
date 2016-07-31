@@ -2,7 +2,6 @@
   <h1 style="color: white"><%= @category.title.capitalize %></h1><br><br>
 </div>
 <% @category.items.each do |item| %>
-<%= binding.pry %>
 <div class="well col-md-3">
   <%= item.title %><br>
   <%= item.description %><br>
