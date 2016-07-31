@@ -39,6 +39,7 @@ group :development, :test do
   gem 'capybara'
   gem 'shoulda'
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
+  gem 'database_cleaner'
 end
 
 group :development do

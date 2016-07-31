@@ -7,7 +7,9 @@
       <th>Item Name</th>
       <th>Item Quantity</th>
       <th>Item Price</th>
-      <th>Item Status</th>
+      <th>Time Order Was Submitted</th>
+      <th>Order Status</th>
+      <th>Time Completed or Canceled</th>
     </tr>
   </thead>
   <tbody>
@@ -15,8 +17,17 @@
       <th scope="row"> <%= link_to order_item.title, item_path(order_item) %></th>
       <td><%= order_item.quantity %></td>
       <td><%= number_to_currency(order_item.price) %></td>
+      <td><%= order_item.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
+      <td><%= @order_status %></td>
+      <td><%= order_item.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
     </tr>
   </tbody>
 </table>
 </div>
+
   <% end %>
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="btn-group">
+      <span> Order Total:<%= number_to_currency(@order_total) %></span>
+    </div>
+  </nav>

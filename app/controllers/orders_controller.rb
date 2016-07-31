@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_user  
+  skip_before_action :require_user
   def index
     @orders = current_user.orders
   end
@@ -11,13 +11,28 @@ class OrdersController < ApplicationController
     end
     @cart.contents.clear
     flash[:notice] = "Order Successfully Placed!"
+    @order_status = "Complete"
     redirect_to orders_path
   end
 
   def show
     @order_number = @_request.env["PATH_INFO"].split("/").last
-    current_user.orders.find(@order_number)
     @order = current_user.orders.find(@order_number)
+    @order_total = order_total(@order)
+    @order_status = "Complete"
+  end
+
+  def order_total(order)
+    price = order.order_items[0].price
+    quantity = order.order_items[0].quantity
+
+    price * quantity
+  end
+
+  def destroy
+    order.order_item.destroy
+    @order_status = "Canceled"
+    redirect_to order_path
   end
 
 
