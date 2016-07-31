@@ -6,4 +6,8 @@
     <h3><%= @item.description %></h3><br>
     <h4><%= number_to_currency(@item.price) %></h4><br>
   </div>
+  <% if @item.status == "retired" %>
+    <p>Item Retired</p>
+  <% else %>
     <%= button_to "Add to Cart", cart_items_path({item_id: @item.id}) %>
+  <% end %>
