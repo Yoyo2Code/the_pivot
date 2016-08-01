@@ -10,6 +10,7 @@
       <th>Time Order Was Submitted</th>
       <th>Order Status</th>
       <th>Time Completed or Canceled</th>
+      <th>Problem?</th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +21,7 @@
       <td><%= order_item.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
       <td><%= @order_status %></td>
       <td><%= order_item.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
+      <td><%= link_to "Cancel Item", order_path(@order), method: :delete %></td>
     </tr>
   </tbody>
 </table>

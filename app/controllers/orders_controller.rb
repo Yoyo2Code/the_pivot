@@ -30,7 +30,8 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    order.order_item.destroy
+    # require "pry"; binding.pry
+    @order = current_user.orders[0].order_items
     @order_status = "Canceled"
     redirect_to order_path
   end
