@@ -7,12 +7,6 @@ RSpec.feature "user can view past orders" do
       category.items.create(attributes_for(:item))
     end
 
-    # As a authenticated user
-
-    cat1 = Category.create!(title: "arms")
-    cat1.items.create!(title: "Robot Arm", description: "Cool ass arm",
-    price: 10000.0, image_path: 'http://img09.deviantart.net/588b/i/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
-
 
     visit items_path
     cart = Cart.new(nil)
@@ -28,7 +22,7 @@ RSpec.feature "user can view past orders" do
     first(:link, "Checkout").click
     expect(page).to have_content("Order #")
     #  And I should see a link to view that order
-      click_on "#{Order.first.id}"
+    click_on "1"
     expect(page).to have_content("Quantity")
     expect(page).to have_content("Price")
     expect(page).to have_content("Name")

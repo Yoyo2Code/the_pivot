@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'users#show'
   end
 
-  delete "/orders", to: 'orders#destroy'
+  # delete "/orders", to: 'orders#destroy'
   delete "/cart_items", to: 'cart_items#destroy'
   get "/cart_items", to: 'cart_items#create'
   post "/login", to: 'sessions#create'

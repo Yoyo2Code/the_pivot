@@ -19,7 +19,7 @@
       <td><%= order_item.quantity %></td>
       <td><%= number_to_currency(order_item.price) %></td>
       <td><%= order_item.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
-      <td><%= @order_status %></td>
+      <td><%= @order.status %></td>
       <td><%= order_item.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
       <td><%= link_to "Cancel Item", order_path(@order), method: :delete %></td>
     </tr>

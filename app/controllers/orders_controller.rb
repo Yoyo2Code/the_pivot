@@ -11,7 +11,6 @@ class OrdersController < ApplicationController
     end
     @cart.contents.clear
     flash[:notice] = "Order Successfully Placed!"
-    @order_status = "Complete"
     redirect_to orders_path
   end
 
@@ -19,7 +18,6 @@ class OrdersController < ApplicationController
     @order_number = @_request.env["PATH_INFO"].split("/").last
     @order = current_user.orders.find(@order_number)
     @order_total = order_total(@order)
-    @order_status = "Complete"
   end
 
   def order_total(order)
@@ -30,9 +28,8 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    # require "pry"; binding.pry
-    @order = current_user.orders[0].order_items
-    @order_status = "Canceled"
+    @order = current_user.orders.find(params[:id])
+    @order.update(status: "cancelled")
     redirect_to order_path
   end
 
