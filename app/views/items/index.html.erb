@@ -1,7 +1,7 @@
 
 <% @items.each do |item| %>
   <div class="well col-md-3">
-    <%= item.title %><br>
+    <%= link_to item.title, item_path(item) %><br>
     <%= item.description %><br>
     Price: <%= number_to_currency(item.price) %><br>
     <img src=" <%= item.image_path %> " style="width:220px;height:228px;"  /><br><br>

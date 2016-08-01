@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature "user can login" do
   scenario "user can see login page" do
 
+
     # As a visitor
     # When I visit "/"
     visit root_path
