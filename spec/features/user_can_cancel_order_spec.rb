@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "UserCancelTest" do
-  scenario "user can cancel item in order" do
+  scenario "user can cancel order" do
     cat1 = Category.create!(title: "arms")
     cat1.items.create!(title: "Robot Arm", description: "Cool ass arm",
     price: 10000.0, image_path: 'http://img09.deviantart.net/588b/i/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
@@ -24,9 +24,9 @@ RSpec.feature "UserCancelTest" do
     expect(page).to have_content("Order #")
 
     click_on "1"
-    expect(page).to have_content("Cancel Item")
+    expect(page).to have_content("Cancel Order")
 
-    click_on "Cancel"
+    first(:button, "Cancel Order").click
 
     expect(page).to have_content("Order Status")
     expect(page).to have_content("Canceled")
