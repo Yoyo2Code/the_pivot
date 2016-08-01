@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "user can login and checkout" do
   scenario "user can see checkout and items" do
+
     # As a visitor when I have items in my cart
     # And when I visit "/cart"
     visit cart_index_path

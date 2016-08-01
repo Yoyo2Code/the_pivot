@@ -1,11 +1,16 @@
 require 'rails_helper'
 
 RSpec.feature "user can view past orders" do
+
   scenario "user can see past orders" do
+    category = create(:category) do |category|
+      category.items.create(attributes_for(:item))
+    end
+
     # As a authenticated user
     visit items_path
     cart = Cart.new(nil)
-    first(:button, "Add to Cart").click
+    click_on("Add to Cart")
     visit cart_index_path
     first(:link, "Create Account").click
     fill_in "Username", with: "Penelope"

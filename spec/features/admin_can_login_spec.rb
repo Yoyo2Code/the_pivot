@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "user can login" do
   scenario "admin can login" do
-    admin = User.create(username: "Caleb",
-                        password: "password",
-                        role: 1)
+
+
+    admin = create(:user, role: 1)
     # As an Admin
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
     # When I log in
