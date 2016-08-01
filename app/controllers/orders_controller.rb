@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_user  
+  skip_before_action :require_user
   def index
     @orders = current_user.orders
   end
@@ -15,10 +15,22 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order_number = @_request.env["REQUEST_PATH"].split("/").last
-    current_user.orders.find(@order_number)
+    @order_number = @_request.env["PATH_INFO"].split("/").last
     @order = current_user.orders.find(@order_number)
+    @order_total = order_total(@order)
+  end
 
+  def order_total(order)
+    price = order.order_items[0].price
+    quantity = order.order_items[0].quantity
+
+    price * quantity
+  end
+
+  def destroy
+    @order = current_user.orders.find(params[:id])
+    @order.update(status: "cancelled")
+    redirect_to order_path
   end
 
 

@@ -14,7 +14,7 @@ RSpec.feature "user can see all items in category" do
     category2.items.create(attributes_for(:item, title: "Robot Foot", description: "Cool ass foot", price: 5000.0, image_path: 'http://img09.deviantart.net/beb5/i/2014/144/2/4/foot_prosthetic__concept_by_drzoidberg96-d7jlpoo.jpg'))
 
     visit '/arms'
-
+    
     expect(page).to have_content("Robot Arm")
     expect(page).to have_content("Robot Hand")
 
