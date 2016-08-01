@@ -1,5 +1,9 @@
 
-<h1 style="color: white"> Order <%= @order_number %> </h1>
+<h1 style="color: white"> Order <%= @order_number %> </h1><br>
+<% unless @order.status == "cancelled" %>
+  <button class"btn btn-default"><%= link_to "Cancel Order", order_path(@order), method: :delete %></button><br>
+<% end %>
+
   <% @order.order_items.each do |order_item| %>
   <table class="table table-bordered">
   <thead>
@@ -10,7 +14,7 @@
       <th>Time Order Was Submitted</th>
       <th>Order Status</th>
       <th>Time Completed or Canceled</th>
-      <th>Problem?</th>
+      <!-- <th>Problem?</th> -->
     </tr>
   </thead>
   <tbody>
@@ -21,7 +25,6 @@
       <td><%= order_item.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
       <td><%= @order.status %></td>
       <td><%= order_item.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
-      <td><%= link_to "Cancel Item", order_path(@order), method: :delete %></td>
     </tr>
   </tbody>
 </table>
