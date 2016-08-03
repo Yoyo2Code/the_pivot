@@ -11,3 +11,6 @@
   <% else %>
     <%= button_to "Add to Cart", cart_items_path({item_id: @item.id}) %>
   <% end %>
+  <% if current_admin? %>
+    <button type="button" class="btn btn-default"><%= link_to "Edit", edit_item_path(@item) %></button>
+  <% end %>
