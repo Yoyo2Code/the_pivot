@@ -1,9 +1,13 @@
 <%= form_for(@item, html: {multipart: true}) do |f| %>
-  <%= f.text_field :title%><br><br>
-  <%= f.text_area :description %><br><br>
-  <%= f.number_field :price %><br><br>
-  <%= f.text_field :category, value: @item.category.title.capitalize %><br>
-  <%= f.label :image, "Attach an Image" %><br>
+  <p style="color: white"><%= f.label :title, "Title" %></p>
+  <%= f.text_field :title, placeholder: "Title" %><br><br>
+  <p style="color: white"><%= f.label :description, "Description" %></p>
+  <%= f.text_area :description, placeholder: "Description" %><br><br>
+  <p style="color: white"><%= f.label :price, "Price" %></p>
+  <%= f.number_field :price, placeholder: "Price" %><br><br>
+  <p style="color: white"><%= f.label :category, "Category" %></p>
+  <%= f.text_field :category, value: @item.category.title.capitalize, placeholder: "Category" %><br><br>
+  <p style="color: white"><%= f.label :image, "Attach an Image" %></p>
   <%= f.file_field :image %><br>
   <%= f.submit "Edit Item" %>
 <% end %>
