@@ -17,7 +17,6 @@ RSpec.feature "admin can create an item" do
     fill_in "Category", with: "Head"
     # And click 'Create Item'
     click_on "Create Item"
-    save_and_open_page
     # I should see the item on the item show page
     expect(page).to have_content("Robot Head")
     expect(page).to have_content("Big Robot Head")
