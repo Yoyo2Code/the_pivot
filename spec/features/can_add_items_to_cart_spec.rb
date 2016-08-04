@@ -2,21 +2,25 @@ require 'rails_helper'
 
 RSpec.feature "User sees items" do
   scenario "a visitor can add an item to their cart" do
+
     # As a visitor
     # When I visit any page with an item on it
     cart = Cart.new(nil)
+    category = create(:category) do |category|
+      category.items.create(attributes_for(:item))
+    end
+    item = category.items.first
     visit items_path
     expect(page).to have_content("Cart Items: 0")
     # I should see a link or button for "Add to Cart"
     # When I click "Add to cart" for that item
-    first(:button, "Add to Cart").click
+    click_on("Add to Cart")
     expect(page).to have_content("Cart Items: 1")
     # And I click a link or button to view cart
     click_link("Cart Items")
     # And my current path should be "/cart"
     expect(current_path).to eq('/cart')
     # And I should see a small image, title, description and price for the item I just added
-    item = Item.find(1)
     expect(page).to have_content(item.title)
     expect(page).to have_content(item.description)
     expect(page).to have_content("$10,000.00")
@@ -28,6 +32,12 @@ RSpec.feature "User sees items" do
 
   scenario "a visitor can add multiple items to their cart" do
     cart = Cart.new(nil)
+    category = create(:category) do |category|
+      category.items.create(attributes_for(:item))
+    end
+
+    item1 = category.items.first
+    item2 = category.items.create(attributes_for(:item, title: "Robot Hand", description: "Cool ass hand", price: 3000.0, image_path: 'http://www.bulldozer-vfx.com/wp-content/uploads/2013/07/yyyyyyyyuu.jpg') )
 
     visit items_path
 
@@ -40,9 +50,6 @@ RSpec.feature "User sees items" do
     all(:button, "Add to Cart")[1].click
 
     expect(page).to have_content("Cart Items: ")
-
-    item1 = Item.find(1)
-    item2 = Item.find(2)
 
     click_link("Cart Items")
 

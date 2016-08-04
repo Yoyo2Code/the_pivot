@@ -1,6 +1,6 @@
 <h1>Order History</h1>
 <% @orders.each do |order| %>
-<div class="row col-md-12 top-row">
+<div id="link" class="row col-md-12 top-row">
   <li>Order # <%=link_to @orders.find_index(order)+1, order_path(order)%></li>
   <% order.items.each do |item| %>
 </div>
