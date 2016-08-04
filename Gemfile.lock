@@ -250,9 +250,9 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.2)
-  figaro
   database_cleaner
   factory_girl_rails
+  figaro
   jbuilder (~> 2.5)
   jquery-rails
   launchy
