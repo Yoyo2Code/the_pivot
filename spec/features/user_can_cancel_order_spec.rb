@@ -14,13 +14,17 @@ RSpec.feature "UserCancelTest" do
     first(:button, "Add to Cart").click
     visit cart_index_path
     first(:link, "Create Account").click
+    fill_in "First Name", with: "Penelope"
+    fill_in "Last Name", with: "Jones"
     fill_in "Username", with: "Penelope"
     fill_in "Password", with: "password"
+    fill_in "Email Address", with: "penelope@gmail.com"
     first(:button, "Create Account").click
     visit cart_index_path
 
     # When I visit "/orders"
-    first(:link, "Checkout").click
+    within(".stripe-button")
+    first(:link, "Pay with Card").click
     expect(page).to have_content("Order #")
 
     click_on "1"
