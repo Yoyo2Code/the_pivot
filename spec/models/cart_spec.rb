@@ -31,7 +31,42 @@ RSpec.describe "Cart" do
     cart = Cart.new({"1" => 3})
     cart.add_item(1)
     cart.add_item(2)
-    
+
     expect(cart.total).to eq(5)
   end
+
+  it "should be able to find items" do
+    cat1 = Category.create!(title: "arms")
+    item = cat1.items.create!(title: "Robot Arm", description: "Cool ass arm", price: 10000.0, image_path: 'http://img09.deviantart.net/588b/i/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
+
+
+    cart = Cart.new({ item.id => 3})
+
+    expect(cart.find_items.first).to eq(Item.first)
+  end
+
+  it "should be able to compute total price" do
+    cat1 = Category.create!(title: "arms")
+    item = cat1.items.create!(title: "Robot Arm", description: "Cool ass arm", price: 10000.0, image_path: 'http://img09.deviantart.net/588b/i/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
+
+
+    cart = Cart.new({ item.id => 3})
+
+    expect(cart.total_price).to eq(30000.0)
+  end
+
+  it "delete an item" do
+    cat1 = Category.create!(title: "arms")
+    item = cat1.items.create!(title: "Robot Arm", description: "Cool ass arm", price: 10000.0, image_path: 'http://img09.deviantart.net/588b/i/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
+
+
+    cart = Cart.new({ "#{item.id}" => 3})
+
+    cart.delete_item(item.id)
+
+    expect(cart.contents[item.id.to_s]).to eq(2)
+
+
+  end
+
 end
