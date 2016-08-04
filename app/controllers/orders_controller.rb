@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_user
+  skip_before_action :require_admin
 
   def index
     @orders = current_user.orders

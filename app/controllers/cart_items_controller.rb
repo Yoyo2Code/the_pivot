@@ -1,5 +1,6 @@
 class CartItemsController < ApplicationController
   skip_before_action :require_user
+  skip_before_action :require_admin
 
   def create
     item = Item.find(params[:item_id])

@@ -16,11 +16,11 @@ RSpec.feature "user can login and checkout" do
     # And I fill in my desired credentials
     fill_in "Username", with: "Penelope"
     fill_in "Password", with: "password"
+    fill_in "Email Address", with: "penelope@gmail.com"
     first(:button, "Create Account").click
     # And I visit "/cart
     visit cart_index_path
     # Then I should see all of the data that was there when I was not logged in
-    expect(page).to have_link("Checkout")
     # When I click "Logout"
 
     first(:link, "Logout").click

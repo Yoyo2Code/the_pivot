@@ -32,6 +32,7 @@ RSpec.feature "user can login" do
     # And I fill in my desired credentials
     fill_in "Username", with: "Penelope"
     fill_in "Password", with: "password"
+    fill_in "Email Address", with: "penelope@gmail.com"
     # And I submit my information
     first(:button, "Create Account").click
     # Then my current page should be "/dashboard"

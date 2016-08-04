@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   skip_before_action :require_user
-  before_action :current_admin?, only: [:new, :create, :edit, :update]
-
+skip_before_action :require_admin, except: [:new, :create, :edit, :update]
   def index
     @items = Item.all
   end
