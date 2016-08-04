@@ -23,10 +23,12 @@ class OrdersController < ApplicationController
   end
 
   def order_total(order)
-    price = order.order_items[0].price
-    quantity = order.order_items[0].quantity
+    prices = order.order_items.pluck(:price)
+    quantities = order.order_items.pluck(:quantity)
 
-    price * quantity
+    prices.map do |price|
+      quantities[prices.index(price)] * price
+    end.sum.to_f
   end
 
   def destroy
