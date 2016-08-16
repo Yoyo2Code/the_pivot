@@ -10,27 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803203039) do
+ActiveRecord::Schema.define(version: 20160816234027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "items", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.decimal  "price"
     t.string   "image_path",         default: "http://vignette4.wikia.nocookie.net/lego/images/6/63/New52Cyborg_Happy!.png/revision/latest?cb=20141224001316"
-    t.integer  "category_id"
     t.datetime "created_at",                                                                                                                                   null: false
     t.datetime "updated_at",                                                                                                                                   null: false
     t.integer  "status",             default: 0
     t.string   "image_content_type"
+    t.integer  "location_id"
+    t.index ["location_id"], name: "index_items_on_location_id", using: :btree
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160803203039) do
     t.string  "email"
   end
 
+  add_foreign_key "items", "locations"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
