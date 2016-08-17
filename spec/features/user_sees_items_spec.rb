@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.feature "User sees items" do
   scenario "user views items when not logged in" do
-    category = create(:category) do |category|
-      category.items.create(attributes_for(:item))
+    location = create(:location) do |location|
+      location.items.create(attributes_for(:item))
     end
-    item = category.items.first
+    item = location.items.first
 
 
     visit items_path

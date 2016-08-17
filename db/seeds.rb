@@ -5,10 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Category.destroy_all
+Location.destroy_all
 
-cat1 = Category.create!(title: "arms")
-cat2 = Category.create!(title: "legs")
+cat1 = Location.create!(title: "arms")
+cat2 = Location.create!(title: "legs")
 
 cat1.items.create!(title: "Robot Arm", description: "Cool ass arm", price: 10000.0, image_path: 'http://img09.deviantart.net/588b/i/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
 cat1.items.create!(title: "Robot Hand", description: "Cool ass hand", price: 3000.0, image_path: 'http://www.bulldozer-vfx.com/wp-content/uploads/2013/07/yyyyyyyyuu.jpg')
