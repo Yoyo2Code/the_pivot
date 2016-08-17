@@ -5,11 +5,11 @@ RSpec.feature "user can view item show page and see if item is retired" do
     user = create(:user)
 
 
-    category = create(:category) do |category|
-      category.items.create(attributes_for(:item, status: 1))
+    location = create(:location) do |location|
+      location.items.create(attributes_for(:item, status: 1))
     end
 
-    item = category.items.first
+    item = location.items.first
 
 
 

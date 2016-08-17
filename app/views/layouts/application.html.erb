@@ -61,11 +61,11 @@
               <button type="button" class="btn btn-default"><%= link_to "Login", login_path %></button>
             <% end %>
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categories <span class="caret"></span>
+            Locations <span class="caret"></span>
           </button>
           <ul class="dropdown-menu dropdown-menu-right">
-            <% Category.all.each do |category| %>
-              <li><%=link_to category.title.capitalize, "/#{category.title}"%></li>
+            <% Location.all.each do |location| %>
+              <li><%=link_to location.title.capitalize, "/#{location.title}"%></li>
             <% end %>
           </ul>
         </div>

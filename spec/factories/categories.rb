@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :category do
+  factory :location do
     title 'arms'
   end
 end

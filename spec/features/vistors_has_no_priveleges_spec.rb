@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "VisitorPrivelegesTest" do
   scenario "visitor cannot view other users data" do
-    create(:category) do |category|
-      category.items.create(attributes_for(:item))
+    create(:location) do |location|
+      location.items.create(attributes_for(:item))
     end
 
 

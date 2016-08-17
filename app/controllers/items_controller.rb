@@ -19,8 +19,8 @@ skip_before_action :require_admin, except: [:new, :create, :edit, :update]
   end
 
   def create
-    category = Category.find_or_create_by(title: params[:item][:category].downcase)
-    item = category.items.create(item_params)
+    location = Location.find_or_create_by(title: params[:item][:location].downcase)
+    item = location.items.create(item_params)
     if item.save
       redirect_to item_path(item)
     else

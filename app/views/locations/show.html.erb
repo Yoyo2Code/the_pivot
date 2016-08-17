@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <h1 style="color: white"><%= @category.title.capitalize %></h1><br><br>
+  <h1 style="color: white"><%= @location.title.capitalize %></h1><br><br>
 </div>
-<% @category.items.each do |item| %>
+<% @location.items.each do |item| %>
 <div class="well col-md-3">
   <%= item.title %><br>
   <%= item.description %><br>

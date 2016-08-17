@@ -4,9 +4,9 @@ RSpec.feature "admin can edit an item" do
   scenario "admin edits an item" do
 
     admin = create(:user, role: 1)
-    category = create(:category)
+    location = create(:location)
 
-    item = category.items.create(attributes_for :item)
+    item = location.items.create(attributes_for :item)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
@@ -21,7 +21,7 @@ RSpec.feature "admin can edit an item" do
     fill_in "Title", with: "Robot Shoulder"
     fill_in "Description", with: "Rotary Shoulder"
     fill_in "Price", with: 10000
-    fill_in "Category", with: "Arms"
+    fill_in "Location", with: "Arms"
     click_on "Edit Item"
     # I should be on the item show page
     expect(current_path).to eq(item_path(item))
