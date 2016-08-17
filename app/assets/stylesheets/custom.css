@@ -12,3 +12,8 @@ th,td {
 
   background-color: white;
 }
+#slider-range {
+  margin: 0 auto;
+  width: 450px;
+  margin-top: 45px;
+}

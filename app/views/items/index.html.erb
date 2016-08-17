@@ -1,6 +1,5 @@
-
 <% @items.each do |item| %>
-  <div class="well col-md-3">
+  <div class="well col-md-3 item">
     <%= link_to item.title, item_path(item) %><br>
     <%= item.description %><br>
     Price: <%= number_to_currency(item.price) %><br>
@@ -11,3 +10,9 @@
     <% end %>
   </div>
 <% end %>
+<p style='margin:0 auto; width: 350px;'>
+  <label for='amount'>Price Range:</label>
+  <input type='text' id='amount' readonly style-'border:0; color:#f6931f; font-weight:bold;'>
+</p>
+
+<div id='slider-range'></div>

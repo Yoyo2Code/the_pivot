@@ -12,6 +12,12 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'users#show'
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :items, only: [:index]
+    end
+  end
+
   # delete "/orders", to: 'orders#destroy'
   delete "/cart_items", to: 'cart_items#destroy'
   get "/cart_items", to: 'cart_items#create'
@@ -22,5 +28,6 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'users#show'
 
   get "/:category_title", to: 'categories#show'
+
 
 end
