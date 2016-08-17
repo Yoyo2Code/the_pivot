@@ -1,0 +1,17 @@
+<h1 style="color:white"><%= @property.title %><br></h1>
+<img src=" <%= @property.image_path %> " style="width:220px;height:228px;"  /><br><br>
+
+    <div style="color:white">
+      <h2> Description: </h2>
+    <h3><%= @property.description %></h3><br>
+    <h4>Price Per Guest: <%= number_to_currency(@property.price_per_guest) %></h4><br>
+    <h4>Max Occupancy: <%= @property.max_occupancy %> </h4>
+  </div>
+  <!-- <%# #if @property.status == "retired" %>
+    <p>Item Retired</p>
+  <%# #else %>
+    <%#= #button_to "Add to Cart", cart_items_path({item_id: @property.id}) %>
+  <%# #end %>
+  <%# #if current_admin? %>
+    <button type="button" class="btn btn-default"><%#= #link_to "Edit", edit_item_path(@property) %></button>
+  <%# #end %> -->

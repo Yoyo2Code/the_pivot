@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817190526) do
+ActiveRecord::Schema.define(version: 20160817204321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "businesses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string   "city"
@@ -37,6 +43,8 @@ ActiveRecord::Schema.define(version: 20160817190526) do
     t.string   "image_content_type"
     t.integer  "location_id"
     t.integer  "max_occupancy"
+    t.integer  "business_id"
+    t.index ["business_id"], name: "index_properties_on_business_id", using: :btree
     t.index ["location_id"], name: "index_properties_on_location_id", using: :btree
   end
 
@@ -63,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160817190526) do
   end
 
   add_foreign_key "orders", "users"
+  add_foreign_key "properties", "businesses"
   add_foreign_key "properties", "locations"
   add_foreign_key "reservations", "orders"
   add_foreign_key "reservations", "properties"
