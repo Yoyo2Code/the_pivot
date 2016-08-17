@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class PropertiesController < ApplicationController
   skip_before_action :require_user
 skip_before_action :require_admin, except: [:new, :create, :edit, :update]
   def index
@@ -6,12 +6,13 @@ skip_before_action :require_admin, except: [:new, :create, :edit, :update]
   end
 
   def show
-    if @_request.env["HTTP_REFERER"].split("/") && @_request.env["HTTP_REFERER"].split("/")[3] == "orders"
-      order_item = OrderItem.find(params[:id])
-      @item = Item.find(order_item.item_id)
-    else
-      @item = Item.find(params[:id])
-    end
+    @property = Property.find(params[:id])
+    # if @_request.env["HTTP_REFERER"].split("/") && @_request.env["HTTP_REFERER"].split("/")[3] == "orders"
+    #   order_item = OrderItem.find(params[:id])
+    #   @item = Item.find(order_item.item_id)
+    # else
+    #   @item = Item.find(params[:id])
+    # end
   end
 
   def new
