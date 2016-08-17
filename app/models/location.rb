@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  validates :title, presence: true, uniqueness: true
+  validates :city, presence: true, uniqueness: true
 
-  has_many :items
+  has_many :properties
 end
