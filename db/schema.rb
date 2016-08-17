@@ -10,26 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816234027) do
+ActiveRecord::Schema.define(version: 20160817175549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "items", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.decimal  "price"
-    t.string   "image_path",         default: "http://vignette4.wikia.nocookie.net/lego/images/6/63/New52Cyborg_Happy!.png/revision/latest?cb=20141224001316"
-    t.datetime "created_at",                                                                                                                                   null: false
-    t.datetime "updated_at",                                                                                                                                   null: false
-    t.integer  "status",             default: 0
-    t.string   "image_content_type"
-    t.integer  "location_id"
-    t.index ["location_id"], name: "index_items_on_location_id", using: :btree
-  end
-
   create_table "locations", force: :cascade do |t|
-    t.string   "title"
+    t.string   "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,6 +38,19 @@ ActiveRecord::Schema.define(version: 20160816234027) do
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
+  create_table "properties", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.decimal  "price"
+    t.string   "image_path",         default: "http://vignette4.wikia.nocookie.net/lego/images/6/63/New52Cyborg_Happy!.png/revision/latest?cb=20141224001316"
+    t.datetime "created_at",                                                                                                                                   null: false
+    t.datetime "updated_at",                                                                                                                                   null: false
+    t.integer  "status",             default: 0
+    t.string   "image_content_type"
+    t.integer  "location_id"
+    t.index ["location_id"], name: "index_properties_on_location_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string  "username"
     t.string  "password_digest"
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20160816234027) do
     t.string  "email"
   end
 
-  add_foreign_key "items", "locations"
-  add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "properties", column: "item_id"
   add_foreign_key "orders", "users"
+  add_foreign_key "properties", "locations"
 end
