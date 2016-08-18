@@ -28,8 +28,8 @@
             Categories <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-            <% Category.all.each do |category| %>
-              <li><%=link_to category.title.capitalize, "/#{category.title}"%></li>
+            <% Location.all.each do |location| %>
+              <li><%=link_to location.title.capitalize, "/#{location.title}"%></li>
             <% end %>
           </ul>
         </div>

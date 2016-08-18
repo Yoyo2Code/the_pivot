@@ -16,61 +16,61 @@
     <nav class="navbar navbar-default">
       <div class="container">
         <navbar class="navbar-nav navbar-right">
-          <span><%= link_to "Cart Items", cart_index_path %>: <%= @cart.total %><br>
-          <% if current_user %>
-            <%= form_tag orders_path do %>
+          <!-- <span><%#= link_to "Cart Items", cart_index_path %>: <%#= @cart.total %><br>
+          <%# if current_user %>
+            <%#= form_tag orders_path do %>
               <article>
-                <% if flash[:error].present? %>
+                <%# if flash[:error].present? %>
                   <div id="error_explanation">
-                    <p><%= flash[:error] %></p>
+                    <p><%#= flash[:error] %></p>
                   </div>
-                <% end %>
+                <%# end %>
                 <label class="amount">
-                  <span>Total: <%= number_to_currency(@cart.total_price) %></span>
+                  <span>Total: <%#= number_to_currency(@cart.total_price) %></span>
                 </label>
-              </article>
+              </article> -->
 
-              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              <!-- <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="<%#= Rails.configuration.stripe[:publishable_key] %>"
                       data-description="Your Cyborg Parts"
-                      data-amount=<%= number_to_currency(@cart.total_price) %>
+                      data-amount=<%#= number_to_currency(@cart.total_price) %>
                       data-locale="auto"></script>
-            <% end %>
-          <% else %>
-            <%= link_to "Login", login_path %> or <%= link_to "Create Account", new_user_path %> to Checkout<br>
-          <% end %>
+            <%# end %>
+          <%# else %>
+            <%#= link_to "Login", login_path %> or <%#= link_to "Create Account", new_user_path %> to Checkout<br>
+          <%# end %> -->
         </navbar>
 
 
 
-        <div class="btn-group">
-          <button type="button" class="btn btn-default"><%= link_to "Home", root_path %></button>
-            <% if current_user && current_admin? == false %>
-              <button type="button" class="btn btn-default"><%= link_to "Logout", logout_path %></button>
-              <button type="button" class="btn btn-default"><%= link_to "My Account", dashboard_path %></button>
-              <% unless current_user.orders.empty? %>
-                <button type="button" class="btn btn-default"><%= link_to "Past Orders", orders_path %></button>
-              <% end %>
-            <% elsif current_admin? %>
-            <button type="button" class="btn btn-default"><%= link_to "Logout", logout_path %></button>
-            <button type="button" class="btn btn-default"><%= link_to "My Account", admin_dashboard_path %></button>
-            <button type="button" class="btn btn-default"><%= link_to "Create New Item", new_item_path %></button>
-              <% unless current_user.orders.empty? %>
-                <button type="button" class="btn btn-default"><%= link_to "Past Orders", orders_path %></button>
-              <% end %>
-            <% else %>
-              <button type="button" class="btn btn-default"><%= link_to "Login", login_path %></button>
-            <% end %>
+        <!-- <div class="btn-group">
+          <button type="button" class="btn btn-default"><%#= link_to "Home", root_path %></button>
+            <%# if current_user && current_admin? == false %>
+              <button type="button" class="btn btn-default"><%#= link_to "Logout", logout_path %></button>
+              <button type="button" class="btn btn-default"><%#= link_to "My Account", dashboard_path %></button>
+              <%# unless current_user.orders.empty? %>
+                <button type="button" class="btn btn-default"><%#= link_to "Past Orders", orders_path %></button>
+              <%# end %>
+            <%# elsif current_admin? %>
+            <button type="button" class="btn btn-default"><%#= link_to "Logout", logout_path %></button>
+            <button type="button" class="btn btn-default"><%#= link_to "My Account", admin_dashboard_path %></button>
+            <button type="button" class="btn btn-default"><%#= link_to "Create New Item", new_item_path %></button>
+              <%# unless current_user.orders.empty? %>
+                <button type="button" class="btn btn-default"><%#= link_to "Past Orders", orders_path %></button>
+              <%# end %>
+            <%# else %>
+              <button type="button" class="btn btn-default"><%#= link_to "Login", login_path %></button>
+            <%# end %>
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categories <span class="caret"></span>
+            Locations <span class="caret"></span>
           </button>
           <ul class="dropdown-menu dropdown-menu-right">
-            <% Category.all.each do |category| %>
-              <li><%=link_to category.title.capitalize, "/#{category.title}"%></li>
-            <% end %>
+            <%# Location.all.each do |location| %>
+              <li><%#=link_to location.title.capitalize, "/#{location.title}"%></li>
+            <%# end %>
           </ul>
         </div>
-      </div>
+      </div> -->
     </nav>
   <% flash.each do |type, message| %>
   <%= content_tag :div, sanitize(message), style: "color: green",
