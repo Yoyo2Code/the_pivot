@@ -1,4 +1,4 @@
-class Api::V1::PropertiesController < ApplicationController
+class Api::V1::Location::PropertiesController < ApplicationController
   respond_to :json
   # skip_before_action :require_user, :require_admin
 
@@ -10,7 +10,7 @@ class Api::V1::PropertiesController < ApplicationController
   private
 
   def find_properties
-    business = Business.find_by(slug: params[:business_name])
-    business.properties.all
+    location = Location.find_by(slug: params[:city])
+    location.properties.all
   end
 end

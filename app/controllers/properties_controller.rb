@@ -12,12 +12,6 @@ class PropertiesController < ApplicationController
 
   def show
     @property = Property.find(params[:id])
-    # if @_request.env["HTTP_REFERER"].split("/") && @_request.env["HTTP_REFERER"].split("/")[3] == "orders"
-    #   order_item = OrderItem.find(params[:id])
-    #   @item = Item.find(order_item.item_id)
-    # else
-    #   @item = Item.find(params[:id])
-    # end
   end
 
   def new
