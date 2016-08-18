@@ -7,7 +7,4 @@ FactoryGirl.define do
     max_occupancy 4
     location
   end
-  factory :location do
-    city 'New York'
-  end
 end

@@ -1,5 +1,5 @@
-# FactoryGirl.define do
-#   factory :location do
-#     city 'New York'
-#   end
-# end
+FactoryGirl.define do
+  factory :location do
+    city 'New York'
+  end
+end

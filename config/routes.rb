@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-    get '/:business/:id', to: "properties#show"
+      get '/:category/:id', to: "properties#show", as: "property"
+
+      get '/:category', to: 'properties#index', as: "properties"
+
+
+
 # root 'items#index'
 #   # resources :items
 #   # resources :cart_items, only: [:create]
@@ -23,6 +28,5 @@ Rails.application.routes.draw do
 #
 #   get '/dashboard', to: 'users#show'
 #
-#   get "/:location_title", to: 'locations#show'
 #
 end
