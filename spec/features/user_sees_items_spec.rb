@@ -7,7 +7,6 @@ RSpec.feature "User sees items" do
     end
     item = location.items.first
 
-
     visit items_path
 
     expect(page).to have_content(item.title)
