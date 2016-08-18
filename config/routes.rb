@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'users#show', as: 'dashboard'
 
-  delete '/logout', to: 'users#destroy', as: 'logout'
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
 
   namespace :location do
     get '/:city', to: 'properties#index'

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_user
-  skip_before_action :require_admin
+  # skip_before_action :require_user
+  # skip_before_action :require_admin
 
   def create
     user = User.find_by(username: params[:session][:username])
@@ -23,7 +23,8 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
-    redirect_to root_path
+    flash[:success] = 'Successfully logged out!'
+    redirect_to login_path
   end
 
 end

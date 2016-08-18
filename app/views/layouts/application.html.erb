@@ -78,8 +78,7 @@
       <% end %>
     </nav>
   <% flash.each do |type, message| %>
-  <%= content_tag :div, sanitize(message), style: "color: green",
-  class: "flash#{type}" %>
+    <%= content_tag :div, sanitize(message), class: "flash#{type}" %>
   <% end %>
     <%= yield %>
 
