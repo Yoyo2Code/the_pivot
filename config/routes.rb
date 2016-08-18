@@ -1,11 +1,25 @@
 Rails.application.routes.draw do
-  get '/:category/:id', to: "properties#show", as: "property"
 
-  get '/:category', to: 'properties#index', as: "properties"
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to: 'sessions#create'
+
+  get '/dashboard', to: 'users#show', as: 'dashboard'
+
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
+
+  namespace :location do
+    get '/:city', to: 'properties#index'
+  end
+
+  get '/:business_name/:id', to: "properties#show", as: "property"
+
+  get '/:business_name', to: 'properties#index', as: "properties"
 
   namespace :api do
     namespace :v1 do
-      get '/:category', to: 'properties#index', as: "properties"
+      # get '/:category', to: 'properties#index', as: "properties"
+      get '/:business_name', to: 'properties#index', as: "properties"
+      get '/location/:city', to: 'location/properties#index', as: "city"
     end
   end
 
