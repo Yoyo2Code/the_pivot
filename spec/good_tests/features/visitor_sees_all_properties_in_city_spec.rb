@@ -14,8 +14,9 @@ RSpec.feature "visitor can see all properties in a city" do
                       location: location,
                       business: business)
 
-    visit "/new-york"
+    visit '/location/new-york'
 
+    expect(page).to have_content("New York")
     expect(page).to have_content("Trump Tower")
     expect(page).to have_content("Small rooms")
     expect(page).to have_content("Price Per Guest: $10,000.00")
