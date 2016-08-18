@@ -1,5 +1,4 @@
 body {
-  background-image: url("cyborgism.jpg");
   background-position: center;
   background-size: center;
 }
@@ -11,4 +10,57 @@ body {
 th,td {
 
   background-color: white;
+}
+#slider-range {
+  margin: 0 auto;
+  width: 450px;
+  margin-top: 45px;
+}
+.hide-me {
+  display: none;
+}
+#start-date {
+  margin-right: 25px;
+}
+.navbar-fixed-left {
+  width: 250px;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+  margin-left: 10px;
+}
+#price-slider {
+  margin-left: 10px;
+  margin-bottom: 25px;
+}
+#dates {
+  margin: 0 auto;
+  width: 200px;
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+#dates input {
+  margin: 0 auto;
+  width: 100px;
+  display: block;
+}
+#slider-range {
+  width: 200px;
+  margin: 0 auto;
+}
+#range-text {
+  width: 200px;
+  text-align: center;
+}
+#amount {
+  text-align: center;
+}
+.navbar {
+  min-height: 50px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+.sidebar {
+  margin-left: 15px;
 }
