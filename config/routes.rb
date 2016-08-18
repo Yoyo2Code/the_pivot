@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      # get '/:category', to: 'properties#index', as: "properties"
       get '/:business_name', to: 'properties#index', as: "properties"
       get '/location/:city', to: 'location/properties#index', as: "city"
     end

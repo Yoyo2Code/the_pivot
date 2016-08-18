@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'User can logout', type: :feature do
   scenario 'they can click to logout' do
     user = create(:user)
-    page.set_rack_session(:user_id => user.id)
+    page.set_rack_session(user_id: user.id)
 
     visit dashboard_path(user)
     click_link 'Logout'

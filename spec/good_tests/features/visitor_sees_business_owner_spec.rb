@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "visitor sees business owner" do
   scenario "they can see all properties belonging to an owner" do
-
     location = create(:location, city: "New York")
     business = create(:business)
     create(:property, location: location, business: business)

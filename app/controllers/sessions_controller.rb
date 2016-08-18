@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-  # skip_before_action :require_user
-  # skip_before_action :require_admin
 
   def create
     user = User.find_by(username: params[:session][:username])
@@ -8,11 +6,6 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:success] = ""
       redirect_to dashboard_path
-      # if current_admin?
-      #   # redirect_to '/admin/dashboard'
-      # else
-      #   # redirect_to '/dashboard'
-      # end
     else
       render :new
     end
