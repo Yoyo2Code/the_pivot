@@ -15,9 +15,10 @@ $(document).ready(function() {
   });
 
   let $items = $('.item')
+  let slug = window.location.pathname
   let _items
   let _values
-  $.getJSON('/api/v1/items.json', 
+  $.getJSON(`/api/v1${slug}.json`, 
     (response) => { start(response) })
 
   function start(response) {
@@ -27,11 +28,11 @@ $(document).ready(function() {
 
   function showAvailable(values) {
     _items.forEach(( item, index ) => {
-      if ( values[1] < item.price || values[0] > item.price ) {
+      if ( values[1] < item.price_per_guest || values[0] > item.price_per_guest ) {
         let $item = $items[index]
         $($item).fadeOut(500);
       }
-      else if ( values[1] > item.price || values[0] < item.price ) {
+      else if ( values[1] > item.price_per_guest || values[0] < item.price_per_guest ) {
         let $item = $items[index]
         $($item).fadeIn(500);
       }

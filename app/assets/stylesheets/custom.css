@@ -61,3 +61,6 @@ th,td {
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
+.sidebar {
+  margin-left: 15px;
+}

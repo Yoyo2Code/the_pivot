@@ -2,8 +2,17 @@ class PropertiesController < ApplicationController
   skip_before_action :require_user
   skip_before_action :require_admin, except: [:new, :create, :edit, :update]
   def index
-    @items = Item.all
-    @item = Item.new
+    business = Business.find_by(slug: params[:category])
+    location = Location.find_by(slug: params[:category])
+
+    if location
+      @properties = location.properties.all
+    elsif business
+      @properties = business.properties.all
+    else
+      # render :error
+      #render 404
+    end
   end
 
   def show

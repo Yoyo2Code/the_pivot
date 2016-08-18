@@ -6,6 +6,8 @@
     <h3><%= @property.description %></h3><br>
     <h4>Price Per Guest: <%= number_to_currency(@property.price_per_guest) %></h4><br>
     <h4>Max Occupancy: <%= @property.max_occupancy %> </h4>
+    <h4>Business: <%= @property.business.name %></h4>
+    <h4>Location: <%= @property.location.city %></h4>
   </div>
   <!-- <%# #if @property.status == "retired" %>
     <p>Item Retired</p>
