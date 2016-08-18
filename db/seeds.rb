@@ -9,6 +9,10 @@ Property.destroy_all
 Location.destroy_all
 Business.destroy_all
 
+20.times do |i|
+
+end
+
 cat1 = Location.create!(city: "arms")
 cat2 = Location.create!(city: "legs")
 business = Business.create!(name: "acme")
