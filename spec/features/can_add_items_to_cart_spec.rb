@@ -6,10 +6,10 @@ RSpec.feature "User sees items" do
     # As a visitor
     # When I visit any page with an item on it
     cart = Cart.new(nil)
-    category = create(:category) do |category|
-      category.items.create(attributes_for(:item))
+    location = create(:location) do |location|
+      location.items.create(attributes_for(:item))
     end
-    item = category.items.first
+    item = location.items.first
     visit items_path
     expect(page).to have_content("Cart Items: 0")
     # I should see a link or button for "Add to Cart"
@@ -32,12 +32,12 @@ RSpec.feature "User sees items" do
 
   scenario "a visitor can add multiple items to their cart" do
     cart = Cart.new(nil)
-    category = create(:category) do |category|
-      category.items.create(attributes_for(:item))
+    location = create(:location) do |location|
+      location.items.create(attributes_for(:item))
     end
 
-    item1 = category.items.first
-    item2 = category.items.create(attributes_for(:item, title: "Robot Hand", description: "Cool ass hand", price: 3000.0, image_path: 'http://www.bulldozer-vfx.com/wp-content/uploads/2013/07/yyyyyyyyuu.jpg') )
+    item1 = location.items.first
+    item2 = location.items.create(attributes_for(:item, title: "Robot Hand", description: "Cool ass hand", price: 3000.0, image_path: 'http://www.bulldozer-vfx.com/wp-content/uploads/2013/07/yyyyyyyyuu.jpg') )
 
     visit items_path
 

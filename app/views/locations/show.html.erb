@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <h1 style="color: white"><%= @location.title.capitalize %></h1><br><br>
+</div>
+<% @location.items.each do |item| %>
+<div class="well col-md-3">
+  <%= item.title %><br>
+  <%= item.description %><br>
+  Price: $<%= item.price %><br><br>
+  <img src=" <%= item.image_path %> " style="width:220px;height:228px;" /><br><br>
+  <%= button_to "Add to Cart", cart_items_path({item_id: item.id}) %>
+</div>
+<% end %>
