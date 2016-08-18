@@ -6,18 +6,19 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:session][:username])
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      if current_admin?
-        redirect_to '/admin/dashboard'
-      else
-        redirect_to '/dashboard'
-      end
+      flash[:success] = ""
+      redirect_to dashboard_path
+      # if current_admin?
+      #   # redirect_to '/admin/dashboard'
+      # else
+      #   # redirect_to '/dashboard'
+      # end
     else
       render :new
     end
   end
 
   def new
-
   end
 
   def destroy

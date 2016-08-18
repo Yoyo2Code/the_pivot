@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to: 'sessions#create'
+
+  get '/dashboard', to: 'users#show', as: 'dashboard'
+
+  delete '/logout', to: 'users#destroy', as: 'logout'
+
   namespace :location do
     get '/:city', to: 'properties#index'
   end

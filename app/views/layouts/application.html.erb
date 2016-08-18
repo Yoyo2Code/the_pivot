@@ -71,6 +71,11 @@
           </ul>
         </div>
       </div> -->
+      <% if current_user %>
+        <%= link_to "Logout", logout_path, method: :delete %>
+        <% else %>
+        <%= link_to "Login", login_path %>
+      <% end %>
     </nav>
   <% flash.each do |type, message| %>
   <%= content_tag :div, sanitize(message), style: "color: green",
