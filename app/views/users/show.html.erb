@@ -1,11 +1,11 @@
 <nav class="navbar navbar-default">
   <div class="navbar-header">
-    <a class="navbar-brand">Logged in as <%= @user.username %></a>
+    <a class="navbar-brand">Logged in as <%= current_user.username %></a>
   </div>
 </nav>
 
 <div class="container-fluid">
   <p style="color: white">
-    Username: <%= @user.username %>
+    Username: <%= current_user.username %>
   </p>
 </div>
