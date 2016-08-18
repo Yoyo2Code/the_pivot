@@ -1,6 +1,5 @@
 class Api::V1::PropertiesController < ApplicationController
   respond_to :json
-  # skip_before_action :require_user, :require_admin
 
   def index
     @properties = find_properties

@@ -1,15 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user
-
-  helper_method :current_admin?
+  helper_method :current_user, :current_admin?
 
   before_action :set_cart
-
-  # before_action :require_user
-
-  # before_action :require_admin
 
   def require_admin
     render file: "/public/404" unless current_admin?

@@ -1,5 +1,4 @@
 class Location::PropertiesController < ApplicationController
-
   def index
     location = Location.find_by(slug: params[:city])
     if location
@@ -8,5 +7,4 @@ class Location::PropertiesController < ApplicationController
       redirect_to root_path
     end
   end
-
 end

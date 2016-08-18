@@ -1,6 +1,4 @@
 class PropertiesController < ApplicationController
-  # skip_before_action :require_user
-  # skip_before_action :require_admin, except: [:new, :create, :edit, :update]
   def index
     business = Business.find_by(slug: params[:business_name])
     if business
@@ -47,5 +45,4 @@ class PropertiesController < ApplicationController
   def item_params
     params.require(:item).permit(:title, :description, :price, :image_path)
   end
-
 end
