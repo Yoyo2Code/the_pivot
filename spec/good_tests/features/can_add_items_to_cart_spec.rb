@@ -19,7 +19,7 @@ RSpec.feature "User sees items" do
     # I should see a link or button for "Add to Cart"
     # When I click "Add to cart" for that item
     find('#property_occupancy').find(:xpath, 'option[1]').select_option
-    select_date("2016-8-30", xpath: "//path_to//your_date_input", datepicker: :bootstrap)
+    select("2016-8-30", xpath: "//path_to//your_date_input", datepicker: :bootstrap)
     select_date("2016-9-5", xpath: "//path_to//your_date_input", datepicker: :bootstrap)
     click_on "Book Me"
     expect(page).to have_content("Cart Items: 1")
