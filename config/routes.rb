@@ -7,13 +7,11 @@ Rails.application.routes.draw do
 
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
+  resources :users, only: [:new, :create]
   namespace :location do
     get '/:city', to: 'properties#index'
   end
 
-  get '/:business_name/:id', to: "properties#show", as: "property"
-
-  get '/:business_name', to: 'properties#index', as: "properties"
 
   namespace :api do
     namespace :v1 do
@@ -23,6 +21,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/:business_name/:id', to: "properties#show", as: "property"
+
+  get '/:business_name', to: 'properties#index', as: "properties"
 
   # root 'items#index'
   #   # resources :items

@@ -6,7 +6,8 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       session[:user_id] = @user.id
-       UserNotifier.send_signup_email(@user).deliver_now
+       # UserNotifier.send_signup_email(@user).deliver_now
+      flash[:success] = 'Account successfully created!'
       redirect_to dashboard_path
     else
       flash.now[:notice] = "Invalid Username or Password"
