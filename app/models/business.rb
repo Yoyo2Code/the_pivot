@@ -7,6 +7,6 @@ class Business < ApplicationRecord
   private
 
   def make_slug
-    self.slug = name.parameterize
+    self.slug = name.parameterize if name
   end
 end
