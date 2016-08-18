@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.feature 'user can delete items from cart' do
   scenario 'delete item from a cart with 1 item' do
 
-    category = create(:category) do |category|
-      category.items.create(attributes_for(:item))
+    location = create(:location) do |location|
+      location.items.create(attributes_for(:item))
     end
 
     visit items_path
@@ -23,8 +23,8 @@ RSpec.feature 'user can delete items from cart' do
   end
 
     scenario 'user can delete multiple items from cart'do
-    category = create(:category) do |category|
-      category.items.create(attributes_for(:item))
+    location = create(:location) do |location|
+      location.items.create(attributes_for(:item))
     end
 
     visit items_path

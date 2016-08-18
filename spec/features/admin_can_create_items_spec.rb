@@ -14,7 +14,7 @@ RSpec.feature "admin can create an item" do
     fill_in "Title", with: "Robot Head"
     fill_in "Description", with: "Big Robot Head"
     fill_in "Price", with: 10000
-    fill_in "Category", with: "Head"
+    fill_in "Location", with: "Head"
     # And click 'Create Item'
     click_on "Create Item"
     # I should see the item on the item show page
