@@ -9,6 +9,13 @@
     <h4>Business: <%= @property.business.name %></h4>
     <h4>Location: <%= @property.location.city %></h4>
   </div>
+
+  <%= form_for CartItem.new(@property.id, :occupancy, :starting_date, :end_date) do |f| %>
+  <%= f.select :occupancy, options_for_select([*1..@property.max_occupancy]) %>
+  <%= f.text_field :starting_date, "data-provide" => 'datepicker' %>
+  <%= f.text_field :end_date, "data-provide" => 'datepicker' %>
+  <%= f.submit "Book Me" %>
+  <% end %>
   <!-- <%# #if @property.status == "retired" %>
     <p>Item Retired</p>
   <%# #else %>

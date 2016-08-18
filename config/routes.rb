@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :cart, only: [:index]
+  
   namespace :location do
     get '/:city', to: 'properties#index'
   end
@@ -20,7 +22,6 @@ Rails.application.routes.draw do
   # root 'items#index'
   #   # resources :items
   #   # resources :cart_items, only: [:create]
-  #   # resources :cart, only: [:index]
   #   resources :users, only: [:new, :create, :show]
   #
   #   resources :orders, only: [:create, :index, :show, :destroy]

@@ -1,8 +1,8 @@
-<% @items.each do |item| %>
+<% @properties.each do |property| %>
   <div class="well col-md-3">
-    <%= item.title %>: <%= @cart.contents[item.id.to_s] %><%= button_to "Add", cart_items_path({item_id: item.id}) %><%= button_to "Remove", cart_items_path({item_id: item.id}), method: :delete %><br>
-    <%= item.description %><br>
-    <%= number_to_currency(item.price) %><br>
-    <img src=" <%= item.image_path %> " style="width:220px;height:175px;"/><br><br>
+    <%= property.title %>: <%= @cart.contents[property.id.to_s] %><%= button_to "Add", cart_items_path({item_id: property.id}) %><%= button_to "Remove", cart_items_path({item_id: property.id}), method: :delete %><br>
+    <%= property.description %><br>
+    <%= number_to_currency(property.price) %><br>
+    <img src=" <%= property.image_path %> " style="width:220px;height:175px;"/><br><br>
   </div>
   <% end %>
