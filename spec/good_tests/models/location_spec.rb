@@ -5,5 +5,6 @@ RSpec.describe Location, type: :model do
     it { should have_many(:properties) }
     it { is_expected.to validate_presence_of(:city) }
     it { is_expected.to validate_uniqueness_of(:city) }
+    it { is_expected.to validate_presence_of(:slug) }
   end
 end

@@ -1,13 +1,14 @@
 
-<% @items.each do |item| %>
+<% @properties.each do |property| %>
   <div class="well col-md-3">
-    <%= link_to item.title, item_path(item) %><br>
-    <%= item.description %><br>
-    Price: <%= number_to_currency(item.price) %><br>
-    <img src=" <%= item.image_path %> " style="width:220px;height:228px;"  /><br><br>
-    <%= button_to "Add to Cart", cart_items_path({item_id: item.id}) %>
-    <% if current_admin? %>
-      <button type="button" class="btn btn-default"><%= link_to "Edit", edit_item_path(item) %></button>
-    <% end %>
+    <%= link_to property.title, property_path(id: property.id) %><br>
+    <%= property.description %><br>
+    Price Per Guest: <%= number_to_currency(property.price_per_guest) %><br>
+    Max Occupancy: <%= property.max_occupancy %>
+    <img src=" <%=property.image_path %> " style="width:220px;height:228px;"  /><br><br>
+    <!-- <%#= button_to "Add to Cart", cart_items_path({item_id:property.id}) %> -->
+    <%# if current_admin? %>
+      <!-- <button type="button" class="btn btn-default"><%#= link_to "Edit", edit_item_path(item) %></button> -->
+    <%# end %>
   </div>
 <% end %>
