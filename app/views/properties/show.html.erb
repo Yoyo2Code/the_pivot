@@ -1,7 +1,7 @@
 <h1 style="color:white"><%= @property.title %><br></h1>
 <img src=" <%= @property.image_path %> " style="width:220px;height:228px;"  /><br><br>
 
-    <div style="color:white">
+    <div style="background-color:white">
       <h2> Description: </h2>
     <h3><%= @property.description %></h3><br>
     <h4>Price Per Guest: <%= number_to_currency(@property.price_per_guest) %></h4><br>
