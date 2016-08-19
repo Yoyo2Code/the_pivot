@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+  root 'root#index'
   resources :cart, only: [:index]
+  resources :cart_items, only: [:create]
 
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
@@ -26,9 +28,7 @@ Rails.application.routes.draw do
 
   get '/:business_name', to: 'properties#index', as: "properties"
 
-  # root 'items#index'
   #   # resources :items
-  #   # resources :cart_items, only: [:create]
   #   resources :users, only: [:new, :create, :show]
   #
   #   resources :orders, only: [:create, :index, :show, :destroy]

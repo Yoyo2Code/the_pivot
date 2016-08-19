@@ -2,7 +2,7 @@
   <div class="well col-md-3">
     <%= property.title %>: <%= @cart.contents[property.id.to_s] %><%= button_to "Add", cart_items_path({item_id: property.id}) %><%= button_to "Remove", cart_items_path({item_id: property.id}), method: :delete %><br>
     <%= property.description %><br>
-    <%= number_to_currency(property.price) %><br>
+    Subtotal: <%= number_to_currency(property.price_per_guest) %><br>
     <img src=" <%= property.image_path %> " style="width:220px;height:175px;"/><br><br>
   </div>
   <% end %>

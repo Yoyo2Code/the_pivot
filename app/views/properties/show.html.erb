@@ -10,16 +10,21 @@
     <h4>Location: <%= @property.location.city %></h4>
   </div>
 
-  <%= form_for CartItem.new(@property.id, :occupancy, :starting_date, :end_date) do |f| %>
-  <%= f.select :occupancy, options_for_select([*1..@property.max_occupancy]) %>
+  <%= form_tag("/cart_items", method: "post") do %>
+  <%= hidden_field_tag :property_id, @property.id %>
+  <%= select_tag :occupancy, options_for_select([*1..@property.max_occupancy]) %>
   <!-- <%#= f.text_field :starting_date, :class => 'datepicker', placeholder: "Check-In" %>
   <%#= f.text_field :end_date, "data-provide" => 'datepicker' %> -->
 <!-- <div id="dates"> -->
-  <%= f.text_field :starting_date, placeholder: "Check-In", id: "datepicker1" %>
-  <%= f.text_field :end_date, id: "datepicker2" %>
+  <%= text_field_tag :starting_date, Time.now.strftime("%Y/%m/%d"), id: "datepicker1" %>
+  <%= text_field_tag :end_date, Time.now.tomorrow.strftime("%Y/%m/%d"), id: "datepicker2" %>
 <!-- </div> -->
-  <%= f.submit "Book Me" %>
+  <%= submit_tag "Book Me" %>
   <% end %>
+
+
+
+
   <!-- <%# #if @property.status == "retired" %>
     <p>Item Retired</p>
   <%# #else %>

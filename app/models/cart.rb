@@ -21,13 +21,13 @@ class Cart
 
   def find_items
     contents.keys.map do |id|
-      Item.find(id)
+      Property.find(id)
     end
   end
 
   def total_price
     contents.map do |id, quantity|
-      item = Item.find(id)
+      item = Property.find(id)
       item.price * quantity
     end.sum.to_f
   end

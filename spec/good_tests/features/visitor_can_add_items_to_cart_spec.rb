@@ -13,14 +13,13 @@ RSpec.feature "User sees items" do
     property = location.properties.first
     property.update(business: business)
     property = location.properties.first
-    visit property_path(id: property.id, business_name: property.business.slug)
-    save_and_open_page
+    visit property_path(property, business_name: property.business.slug)
     expect(page).to have_content("Cart Items: 0")
     # I should see a link or button for "Add to Cart"
     # When I click "Add to cart" for that item
-    find('#property_occupancy').find(:xpath, 'option[1]').select_option
-    select("2016-8-30", xpath: "//path_to//your_date_input", datepicker: :bootstrap)
-    select_date("2016-9-5", xpath: "//path_to//your_date_input", datepicker: :bootstrap)
+    find('#occupancy').find(:xpath, 'option[1]').select_option
+    fill_in :starting_date, with: "2016/08/30"
+    fill_in :end_date, with: "2016/09/05"
     click_on "Book Me"
     expect(page).to have_content("Cart Items: 1")
     # And I click a link or button to view cart
