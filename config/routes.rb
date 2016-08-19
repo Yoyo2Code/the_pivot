@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
 
   root 'root#index'
+  get '/dashboard', to: 'users#show', as: 'dashboard'
+
   resources :cart, only: [:index]
   resources :cart_items, only: [:create]
   resources :businesses, only: [:new, :create]
+  resources :users, only: [:edit, :update]
 
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
-
-  get '/dashboard', to: 'users#show', as: 'dashboard'
 
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
