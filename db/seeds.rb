@@ -22,3 +22,7 @@ cat2.properties.create!(title: "Boat", description: "Stay on the water", price_p
 
 business.properties.create!(title: "My House", description: "Come stay at my house", price_per_guest: 5000.0, image_path: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Imperial_Hotel_Osaka_regular_floor_standard_twin_room_20120630-001.jpg',
  location: cat1, business_id: business.id, max_occupancy: 4)
+
+User.create!(username: 'Yoseph', password: 'password')
+User.first.orders.create!
+User.first.orders.first.reservations.create!(starting_date: DateTime.new(2016, 8, 22), end_date: DateTime.new(2016, 8, 30), number_of_guests: 2, price: 1500, property_id: Property.first.id)
