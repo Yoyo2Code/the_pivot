@@ -48,6 +48,7 @@ group :development, :test do
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
   gem 'database_cleaner'
   gem "factory_girl_rails"
+  gem 'capybara-bootstrap-datepicker'
 end
 
 group :development do
