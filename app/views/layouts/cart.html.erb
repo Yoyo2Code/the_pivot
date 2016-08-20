@@ -25,11 +25,11 @@
               <button type="button" class="btn btn-default"><%= link_to "My Account", '/dashboard' %></button>
             <% end %>
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categories <span class="caret"></span>
+            Locations <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-            <% Location.all.each do |location| %>
-              <li><%=link_to location.title.capitalize, "/#{location.title}"%></li>
+            <% @locations.each do |location| %>
+              <li><%= link_to location.city.capitalize, "/location/#{location.slug}" %></li>
             <% end %>
           </ul>
         </div>
@@ -37,7 +37,7 @@
     </nav>
   <% flash.each do |type, message| %>
   <%= content_tag :div, sanitize(message), style: "color: green",
-  class: "flash#{type}" %>
+  class: "flash-#{type}" %>
   <% end %>
     <%= yield %>
     <nav class="navbar navbar-default navbar-fixed-bottom">
