@@ -53,8 +53,8 @@ RSpec.describe "Cart" do
                            end_date: "09/10/2016",
                            occupancy: 4 })
 
-        expect(cart.total).to eq(2)
-      end
+    expect(cart.total).to eq(2)
+  end
 
   xit "should give count of specific item" do
     cart = Cart.new({"1" => 2})
@@ -67,8 +67,7 @@ RSpec.describe "Cart" do
     cat1 = Location.create!(title: "arms")
     item = cat1.items.create!(title: "Robot Arm", description: "Cool ass arm", price: 10000.0, image_path: 'http://img09.deviantart.net/588b/i/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
 
-
-    cart = Cart.new({ item.id => 3 })
+    cart = Cart.new(item.id => 3)
 
     expect(cart.find_items.first).to eq(Item.first)
   end
@@ -77,8 +76,7 @@ RSpec.describe "Cart" do
     cat1 = Location.create!(title: "arms")
     item = cat1.items.create!(title: "Robot Arm", description: "Cool ass arm", price: 10000.0, image_path: 'http://img09.deviantart.net/588b/i/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
 
-
-    cart = Cart.new({ item.id => 3})
+    cart = Cart.new(item.id => 3)
 
     expect(cart.total_price).to eq(30000.0)
   end
@@ -87,8 +85,7 @@ RSpec.describe "Cart" do
     cat1 = Location.create!(title: "arms")
     item = cat1.items.create!(title: "Robot Arm", description: "Cool ass arm", price: 10000.0, image_path: 'http://img09.deviantart.net/588b/i/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
 
-
-    cart = Cart.new({ "#{item.id}" => 3})
+    cart = Cart.new("#{item.id}" => 3)
 
     cart.delete_item(item.id)
 
