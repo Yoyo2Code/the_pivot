@@ -1,5 +1,6 @@
 <% @cart_items.each do |cart_item| %>
   <div class="well col-md-3">
+    Thank you for staying and playing with <%= cart_item.business.name %>!
     <%= cart_item.title %><br>
     <%= cart_item.description %><br>
     Subtotal: <%= number_to_currency(cart_item.subtotal) %><br>
