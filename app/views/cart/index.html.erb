@@ -11,3 +11,4 @@
     <%#= button_to "Remove", cart_items_path({item_id: property.id}), method: :delete %>
   </div>
 <% end %>
+Total: <%= number_to_currency(@cart.total_price) %>
