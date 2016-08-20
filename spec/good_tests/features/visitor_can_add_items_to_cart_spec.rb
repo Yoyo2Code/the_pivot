@@ -5,8 +5,8 @@ RSpec.feature "User sees items" do
 
     Cart.new(nil)
     business = create(:business)
-    location = create(:location) do |location|
-      location.properties.create(attributes_for(:property, business_id: business.id))
+    location = create(:location) do |loc|
+      loc.properties.create(attributes_for(:property, business_id: business.id))
     end
     property = location.properties.first
 
@@ -38,9 +38,9 @@ RSpec.feature "User sees items" do
   scenario "a visitor can add multiple items to their cart" do
     Cart.new(nil)
     business = create(:business)
-    location = create(:location) do |location|
-      location.properties.create(attributes_for(:property, business_id: business.id))
-      location.properties.create(attributes_for(:property, business_id: business.id, price_per_guest: 3000.0, max_occupancy: 6, title: "The Waldorf", description: "Nice rooms" ))
+    location = create(:location) do |loc|
+      loc.properties.create(attributes_for(:property, business_id: business.id))
+      loc.properties.create(attributes_for(:property, business_id: business.id, price_per_guest: 3000.0, max_occupancy: 6, title: "The Waldorf", description: "Nice rooms" ))
     end
     property = location.properties.first
     property2 = location.properties.last
@@ -91,9 +91,9 @@ RSpec.feature "User sees items" do
     Cart.new(nil)
     business = create(:business)
     business2 = create(:business, name: "The Waldorf")
-    location = create(:location) do |location|
-      location.properties.create(attributes_for(:property, business_id: business.id))
-      location.properties.create(attributes_for(:property, business_id: business2.id, price_per_guest: 3000.0, max_occupancy: 6, title: "The Waldorf", description: "Nice rooms" ))
+    location = create(:location) do |loc|
+      loc.properties.create(attributes_for(:property, business_id: business.id))
+      loc.properties.create(attributes_for(:property, business_id: business2.id, price_per_guest: 3000.0, max_occupancy: 6, title: "The Waldorf", description: "Nice rooms"))
     end
     property = location.properties.first
     property2 = location.properties.last
@@ -145,8 +145,8 @@ RSpec.feature "User sees items" do
   scenario "visitor sees flash notice when adding item to cart" do
     Cart.new(nil)
     business = create(:business)
-    location = create(:location) do |location|
-      location.properties.create(attributes_for(:property, business_id: business.id))
+    location = create(:location) do |loc|
+      loc.properties.create(attributes_for(:property, business_id: business.id))
     end
     property = location.properties.first
 
@@ -161,6 +161,5 @@ RSpec.feature "User sees items" do
     within(".flash-success") do
       expect(page).to have_content("Successfully added booking to cart!")
     end
-
   end
 end
