@@ -1,7 +1,7 @@
 <h1 style="color:white"><%= @property.title %><br></h1>
 <img src=" <%= @property.image_path %> " style="width:220px;height:228px;"  /><br><br>
 
-    <div style="background-color:white">
+  <div style="background-color:white">
       <h2> Description: </h2>
     <h3><%= @property.description %></h3><br>
     <h4>Price Per Guest: <%= number_to_currency(@property.price_per_guest) %></h4><br>
@@ -9,6 +9,22 @@
     <h4>Business: <%= @property.business.name %></h4>
     <h4>Location: <%= @property.location.city %></h4>
   </div>
+
+  <%= form_tag("/cart_items", method: "post") do %>
+  <%= hidden_field_tag :property_id, @property.id %>
+  <%= select_tag :occupancy, options_for_select([*1..@property.max_occupancy]) %>
+  <!-- <%#= f.text_field :starting_date, :class => 'datepicker', placeholder: "Check-In" %>
+  <%#= f.text_field :end_date, "data-provide" => 'datepicker' %> -->
+<!-- <div id="dates"> -->
+  <%= text_field_tag :starting_date, Time.now.strftime("%m/%d/%Y"), id: "datepicker1" %>
+  <%= text_field_tag :end_date, Time.now.tomorrow.strftime("%m/%d/%Y"), id: "datepicker2" %>
+<!-- </div> -->
+  <%= submit_tag "Book Me" %>
+  <% end %>
+
+
+
+
   <!-- <%# #if @property.status == "retired" %>
     <p>Item Retired</p>
   <%# #else %>

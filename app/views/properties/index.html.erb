@@ -6,7 +6,7 @@
   <div class='col-md-9 properties'>
     <% @properties.each do |property| %>
       <div class="well col-md-3 col-md-offset-1 item">
-        <%= link_to property.title, property_path(id: property.id) %><br>
+        <%= link_to property.title, property_path(property, business_name: property.business.slug) %><br>
         <%= property.description %><br>
         Price Per Guest: <%= number_to_currency(property.price_per_guest) %><br>
         Max Occupancy: <%= property.max_occupancy %>
