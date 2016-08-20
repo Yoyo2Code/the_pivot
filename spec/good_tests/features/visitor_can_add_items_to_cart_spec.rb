@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "User sees items" do
   scenario "a visitor can add an item to their cart" do
 
-    cart = Cart.new(nil)
+    Cart.new(nil)
     business = create(:business)
     location = create(:location) do |location|
       location.properties.create(attributes_for(:property, business_id: business.id))
@@ -36,7 +36,7 @@ RSpec.feature "User sees items" do
   end
 
   scenario "a visitor can add multiple items to their cart" do
-    cart = Cart.new(nil)
+    Cart.new(nil)
     business = create(:business)
     location = create(:location) do |location|
       location.properties.create(attributes_for(:property, business_id: business.id))
@@ -88,7 +88,7 @@ RSpec.feature "User sees items" do
   end
 
   scenario "a visitor can add multiple items to their cart from different businesses" do
-    cart = Cart.new(nil)
+    Cart.new(nil)
     business = create(:business)
     business2 = create(:business, name: "The Waldorf")
     location = create(:location) do |location|
@@ -140,5 +140,27 @@ RSpec.feature "User sees items" do
     expect(page).to have_content("Check-Out: 09/09/2016")
     expect(page).to have_css("img[src*='http://img09.deviantart.net']")
     expect(page).to have_content("$26,000.00")
+  end
+
+  scenario "visitor sees flash notice when adding item to cart" do
+    Cart.new(nil)
+    business = create(:business)
+    location = create(:location) do |location|
+      location.properties.create(attributes_for(:property, business_id: business.id))
+    end
+    property = location.properties.first
+
+    visit property_path(property, business_name: property.business.slug)
+
+    find('#occupancy').find(:xpath, 'option[2]').select_option
+    fill_in :starting_date, with: "08/30/2016"
+    fill_in :end_date, with: "09/05/2016"
+
+    click_on "Book Me"
+
+    within(".flash-success") do
+      expect(page).to have_content("Successfully added booking to cart!")
+    end
+
   end
 end

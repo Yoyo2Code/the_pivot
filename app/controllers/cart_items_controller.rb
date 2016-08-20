@@ -3,16 +3,10 @@ class CartItemsController < ApplicationController
   # skip_before_action :require_admin
 
   def create
-    # property = Property.find(params[:property_id])
-    # cart_item = CartItem.new(params)
     @cart.add_item(params)
     session[:cart] = @cart.contents
-    # referer_path = request.env['HTTP_REFERER']
-    # if referer_path.include?("/cart")
+    flash[:success] = "Successfully added booking to cart!"
     redirect_to cart_index_path
-    # else IF BOOKING RESERVATION IS NOT VALID
-    #   redirect_to property_path(property, business_name: property.business.slug)
-    # end
   end
 
   def destroy
