@@ -13,14 +13,18 @@ RSpec.feature "User sees items" do
     property = location.properties.first
     property.update(business: business)
     property = location.properties.first
+
     visit property_path(property, business_name: property.business.slug)
+
     expect(page).to have_content("Cart Items: 0")
     # I should see a link or button for "Add to Cart"
     # When I click "Add to cart" for that item
-    find('#occupancy').find(:xpath, 'option[1]').select_option
-    fill_in :starting_date, with: "2016/08/30"
-    fill_in :end_date, with: "2016/09/05"
+    find('#occupancy').find(:xpath, 'option[2]').select_option
+    fill_in :starting_date, with: "08/30/2016"
+    fill_in :end_date, with: "09/05/2016"
+
     click_on "Book Me"
+
     expect(page).to have_content("Cart Items: 1")
     # And I click a link or button to view cart
     click_link("Cart Items")
@@ -31,9 +35,10 @@ RSpec.feature "User sees items" do
     expect(page).to have_content(property.description)
     expect(page).to have_content("$20,000.00")
     expect(page).to have_content("Total Guests: 2")
-    expect(page).to have_content("Check-In: 8/30/2016")
-    expect(page).to have_content("Check-Out: 9/5/2016")
+    expect(page).to have_content("Check-In: 08/30/2016")
+    expect(page).to have_content("Check-Out: 09/05/2016")
     expect(page).to have_css("img[src*='http://img09.deviantart.net']")
+    save_and_open_page
     # And there should be a "total" price for the cart that should be the sum of all items in the cart
     expect(page).to have_content(cart.total)
 

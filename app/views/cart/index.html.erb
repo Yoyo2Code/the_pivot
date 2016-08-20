@@ -1,8 +1,13 @@
-<% @properties.each do |property| %>
+<% @cart_items.each do |cart_item| %>
   <div class="well col-md-3">
-    <%= property.title %>: <%= @cart.contents[property.id.to_s] %><%= button_to "Add", cart_items_path({item_id: property.id}) %><%= button_to "Remove", cart_items_path({item_id: property.id}), method: :delete %><br>
-    <%= property.description %><br>
-    Subtotal: <%= number_to_currency(property.price_per_guest) %><br>
-    <img src=" <%= property.image_path %> " style="width:220px;height:175px;"/><br><br>
+    <%= cart_item.title %><br>
+    <%= cart_item.description %><br>
+    Subtotal: <%= number_to_currency(cart_item.subtotal) %><br>
+    Total Guests: <%= cart_item.occupancy %><br>
+    Check-In: <%= cart_item.starting_date %><br>
+    Check-Out: <%= cart_item.end_date %><br>
+    <img src="<%= cart_item.image_path %>" style="width:220px;height:175px;"/><br><br>
+    <%#= button_to "Add", cart_items_path({item_id: property.id}) %>
+    <%#= button_to "Remove", cart_items_path({item_id: property.id}), method: :delete %>
   </div>
-  <% end %>
+<% end %>
