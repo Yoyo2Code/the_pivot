@@ -20,6 +20,7 @@ class Seed
     Location.create!(city: 'Los Angeles')
     Location.create!(city: 'Chicago')
     Location.create!(city: 'Dallas')
+    add_properties_to_businesses
   end
 
   def add_properties_to_businesses
@@ -29,23 +30,15 @@ class Seed
   end
 
   def add_properties(business)
-    6.times do
+    6.times do |t|
       business.properties.create!(
         title: Faker::Book.title + "##{rand(100)}",
         description: Faker::Lorem.paragraph,
         price_per_guest: Faker::Commerce.price,
         max_occupancy: rand(10),
-        image_path: 'http://i.dailymail.co.uk/i/pix/2015/07/09/14/2A6072FF00000578-3154851-image-a-1_1436449347511.jpg'
+        image_path: 'http://i.dailymail.co.uk/i/pix/2015/07/09/14/2A6072FF00000578-3154851-image-a-1_1436449347511.jpg',
+        location: Location.all[t]
       )
-    end
-  end
-
-  def add_properties_to_locations
-    seed_properties = Property.all.to_a
-    Location.all.each do |location|
-      12.times do
-        location.properties << seed_properties.shift
-      end
     end
   end
 
@@ -57,6 +50,4 @@ class Seed
 end
 seeder = Seed.new
 seeder.seed
-seeder.add_properties_to_businesses
-seeder.add_properties_to_locations
 seeder.seed_users
