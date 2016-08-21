@@ -34,7 +34,6 @@ Rails.application.routes.draw do
 
   get '/:business_name', to: 'properties#index', as: "properties"
 
-
   #   # resources :items
   #   resources :users, only: [:new, :create, :show]
   #
