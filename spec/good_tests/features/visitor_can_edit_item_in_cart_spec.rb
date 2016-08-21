@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Visitor can edit items in cart' do
   scenario 'they click edit and see the show page for a property' do
     business = create(:business)
+    slug = business.slug
     create(:location) do |loc|
       loc.properties.create(attributes_for(:property, business_id: business.id))
     end
@@ -30,7 +31,7 @@ RSpec.feature 'Visitor can edit items in cart' do
 
     click_on("Edit")
 
-    expect(current_path).to eq property_path(property, business_name: business.slug)
+    expect(current_path).to eq property_path(property, business_name: slug)
     find('#occupancy').find(:xpath, 'option[1]').select_option
     fill_in :starting_date, with: "09/06/2016"
     fill_in :end_date, with: "09/09/2016"
@@ -39,6 +40,7 @@ RSpec.feature 'Visitor can edit items in cart' do
 
     expect(current_path).to eq cart_path
     expect(page).to have_content("Cart Items: 1")
+
     within("#cart-item-#{property.id}") do
       expect(page).to have_content("Check-In: 09/06/2016")
       expect(page).to have_content("Check-Out: 09/09/2016")
