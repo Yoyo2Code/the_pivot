@@ -12,7 +12,7 @@ RSpec.feature "VisitorPrivelegesTest" do
     click_on("Add to Cart")
     expect(page).to have_content("Cart Items: 1")
 
-    visit cart_index_path
+    visit cart_path
     expect(page).to have_content "Login or Create Account"
   end
 
