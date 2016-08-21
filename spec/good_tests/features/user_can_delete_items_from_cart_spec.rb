@@ -4,7 +4,7 @@ RSpec.feature 'user can delete items from cart' do
   scenario 'delete item from a cart with 1 item' do
     business = create(:business)
 
-    location = create(:location) do |loc|
+    create(:location) do |loc|
       loc.properties.create(attributes_for(:property,
                                            business_id: business.id))
     end
@@ -14,7 +14,7 @@ RSpec.feature 'user can delete items from cart' do
                             { Property.first.id.to_s =>
                               { starting_date: "08/15/2016",
                                 end_date: "09/01/2016",
-                                occupancy: 2 }})
+                                occupancy: 2 } })
 
     visit cart_path
 
@@ -32,11 +32,12 @@ RSpec.feature 'user can delete items from cart' do
   scenario 'user can delete multiple items from cart' do
     business = create(:business)
 
-    location = create(:location) do |loc|
+    create(:location) do |loc|
       loc.properties.create(attributes_for(:property,
                                            business_id: business.id))
 
-      loc.properties.create(attributes_for(:property, title: "Disneyland",
+      loc.properties.create(attributes_for(:property,
+                                           title: "Disneyland",
                                            business_id: business.id))
     end
 
