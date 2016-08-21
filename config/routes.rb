@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   post '/login', to: 'sessions#create'
 
-  get '/orders', to: 'orders#index', as: 'orders'
+  resources :orders, only: [:create, :index, :show, :destroy]
+
+  # get '/orders/:id', to: 'orders#show', as: 'orders'
 
   get '/dashboard', to: 'users#show', as: 'dashboard'
 
@@ -36,7 +38,6 @@ Rails.application.routes.draw do
   #   # resources :items
   #   resources :users, only: [:new, :create, :show]
   #
-  #   resources :orders, only: [:create, :index, :show, :destroy]
   #
   #   namespace :admin do
   #     resources :users, only: [:show, :edit, :update]

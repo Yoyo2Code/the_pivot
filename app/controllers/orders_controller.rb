@@ -18,9 +18,10 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order_number = @_request.env["PATH_INFO"].split("/").last
-    @order = current_user.orders.find(@order_number)
-    @order_total = order_total(@order)
+    @order = Order.find(params[:id])
+    # @order_number = @_request.env["PATH_INFO"].split("/").last
+    # @order = current_user.orders.find(@order_number)
+    # @order_total = order_total(@order)
   end
 
   def order_total(order)

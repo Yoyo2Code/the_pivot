@@ -1,20 +1,15 @@
-<h1>Order History</h1>
-  <%= @orders.each do |order| %>
-  <br>
-    <%= order.reservations.each do |res| %>
-      <br>
-        $<%= res.price %>
-          <br>
-        Guests: <%= res.number_of_guests %>
-          <br>
-        <%= res.starting_date %>
-      <br>
-      <%= res.end_date %>
-      <br>
-          <%= res.property.title %>
-          <br>
-          <%= res.property.price_per_guest %>
-          <br>
-            <%= res.property.business.name %>
-    <% end %>
-  <% end %>
+<h3>Order History</h3>
+    <thead>
+      <td>Order Number</td>
+      <td>Date Created</td>
+      <td>Status</td>
+      <td>Details</td>
+    </thead>
+      <% @orders.each do |order| %>
+    <tbody>
+      <td><%= order.id %></td>
+      <td><%= order.status %></td>
+      <td><%= order.created_at %></td>
+      <td><%= link_to "View Order Details", order_path(order) %></td>
+    </tbody>
+      <% end %>

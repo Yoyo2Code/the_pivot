@@ -1,39 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe "user can see purchase history", type: :feature do
-  it "user is logged in" do
+  scenario "user can see order index" do
     user = create(:user)
-
-    business = create(:business)
-
-    location = create(:location)
-
-    property = create(
-      :property,
-      location: location,
-      business: business
-    )
-
-    reservation = build(
-      :reservation,
-      property: property
-    )
-
-    order = build(
-    :order
-    )
-
-    reservation.order = order
-
-    reservation.save
-    order.save
+    order = create(:order, user_id: user.id)
 
     page.set_rack_session(user_id: user.id)
 
-    visit '/orders'
+    visit orders_path
 
-    save_and_open_page
-
-
+    expect(page).to have_content("Order History")
+    expect(page).to have_content("ordered")
+    expect(page).to have_content("Status")
+    expect(page).to have_link("View Order Details")
+    expect(page).to have_content(order.id.to_s)
+    expect(page).to have_content("Date Created")
   end
 end
