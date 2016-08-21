@@ -16,8 +16,8 @@
   <!-- <%#= f.text_field :starting_date, :class => 'datepicker', placeholder: "Check-In" %>
   <%#= f.text_field :end_date, "data-provide" => 'datepicker' %> -->
 <!-- <div id="dates"> -->
-  <%= text_field_tag :starting_date, Time.now.strftime("%Y/%m/%d"), id: "datepicker1" %>
-  <%= text_field_tag :end_date, Time.now.tomorrow.strftime("%Y/%m/%d"), id: "datepicker2" %>
+  <%= text_field_tag :starting_date, Time.now.strftime("%m/%d/%Y"), id: "datepicker1" %>
+  <%= text_field_tag :end_date, Time.now.tomorrow.strftime("%m/%d/%Y"), id: "datepicker2" %>
 <!-- </div> -->
   <%= submit_tag "Book Me" %>
   <% end %>

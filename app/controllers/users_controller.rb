@@ -23,12 +23,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.update(params[:id], user_params)
-    if user.save
+    if current_user.update(user_params)
       flash[:success] = 'Changes to your account have been saved!'
       redirect_to dashboard_path
     else
-      #Active Record validation errors
+      #ActiveRecord errors
       render :edit
     end
   end

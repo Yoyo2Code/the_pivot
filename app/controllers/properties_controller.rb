@@ -11,7 +11,6 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    require 'pry'; binding.pry
     @property = Property.find(params[:id])
   end
 

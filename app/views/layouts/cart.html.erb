@@ -37,7 +37,7 @@
     </nav>
   <% flash.each do |type, message| %>
   <%= content_tag :div, sanitize(message), style: "color: green",
-  class: "flash#{type}" %>
+  class: "flash-#{type}" %>
   <% end %>
     <%= yield %>
     <nav class="navbar navbar-default navbar-fixed-bottom">
