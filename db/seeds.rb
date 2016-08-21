@@ -63,4 +63,3 @@ seeder = Seed.new
 seeder.seed
 seeder.add_nights
 seeder.seed_users
-seeder.add_nights

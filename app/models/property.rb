@@ -19,7 +19,7 @@ class Property < ApplicationRecord
     reservations.map do |r|
       Night.where(
         date: r.starting_date...r.end_date
-      ).map{ |d| d.date.strftime('%-m/%d/%Y') }
+      ).map{ |d| d.date.strftime('%-m/%-d/%Y') }
     end.flatten
   end
 end
