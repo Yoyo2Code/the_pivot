@@ -4,8 +4,10 @@
   </div>
 </nav>
 
-<div class="container-fluid">
-  <p style="color: white">
+<div class="container-fluid" id='user-dashboard'>
+  <p>
     Username: <%= current_user.username %>
   </p>
 </div>
+<%= link_to 'Open a Business', new_business_path %>
+<%= link_to 'Edit Account Information', edit_user_path(current_user) %>
