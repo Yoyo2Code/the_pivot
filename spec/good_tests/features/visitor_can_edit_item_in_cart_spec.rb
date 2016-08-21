@@ -8,16 +8,16 @@ RSpec.feature 'Visitor can edit items in cart' do
     end
     property = Property.last
     page.set_rack_session(
-                            cart:
+                          cart:
+                          {
+                            Property.first.id.to_s =>
                             {
-                              Property.first.id.to_s =>
-                              {
-                                starting_date: "08/15/2016",
-                                end_date: "09/01/2016",
-                                occupancy: 2
-                              }
+                              starting_date: "08/15/2016",
+                              end_date: "09/01/2016",
+                              occupancy: 2
                             }
-                          )
+                          }
+                         )
 
     visit cart_path
 
