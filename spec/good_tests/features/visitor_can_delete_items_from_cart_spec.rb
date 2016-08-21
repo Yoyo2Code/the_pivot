@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature 'user can delete items from cart' do
-  scenario 'delete item from a cart with 1 item' do
+RSpec.feature 'Visitor can delete items from cart' do
+  scenario 'they delete item from a cart with 1 item' do
     business = create(:business)
 
     create(:location) do |loc|
@@ -37,7 +37,7 @@ RSpec.feature 'user can delete items from cart' do
     expect(page).to have_content("Your Cart is Empty")
   end
 
-  scenario 'user can delete multiple items from cart' do
+  scenario 'they can delete multiple items from cart' do
     business = create(:business)
 
     create(:location) do |loc|
