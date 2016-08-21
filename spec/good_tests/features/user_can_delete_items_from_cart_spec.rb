@@ -44,7 +44,9 @@ RSpec.feature 'user can delete items from cart' do
       loc.properties.create(attributes_for(:property,
 
                                            title: "Disneyland",
-                                           business_id: business.id))
+                                           business_id: business.id
+                                           )
+                            )
     end
 
     property_1 = Property.first
