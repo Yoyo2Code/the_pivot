@@ -1,6 +1,7 @@
 class RootController < ApplicationController
 
   def index
-    @location = Location.first
+    @locations = Location.all
+    @businesses = Business.all
   end
 end

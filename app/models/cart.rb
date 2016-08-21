@@ -33,8 +33,7 @@ class Cart
   end
 
   def delete_item(item_id)
-    contents[item_id.to_s] -= 1
-    contents.delete_if { |id, quantity| quantity == 0 }
+    contents.delete_if { |id, quantity| id == item_id.to_s }
   end
 
   def increment_quantity_by

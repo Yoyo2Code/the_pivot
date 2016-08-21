@@ -2,9 +2,12 @@ Rails.application.routes.draw do
 
   root 'root#index'
 
-  resources :cart, only: [:index]
+  get '/cart', to: "cart#index", as: 'cart'
 
   resources :cart_items, only: [:create]
+  resources :businesses, only: [:new, :create]
+
+  delete "/cart_items", to: 'cart_items#destroy'
 
   get '/login', to: 'sessions#new', as: 'login'
 
@@ -14,7 +17,7 @@ Rails.application.routes.draw do
 
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
 
   namespace :location do
     get '/:city', to: 'properties#index'
@@ -31,6 +34,7 @@ Rails.application.routes.draw do
 
   get '/:business_name', to: 'properties#index', as: "properties"
 
+
   #   # resources :items
   #   resources :users, only: [:new, :create, :show]
   #
@@ -42,12 +46,6 @@ Rails.application.routes.draw do
   #   end
   #
   #   # delete "/orders", to: 'orders#destroy'
-  #   delete "/cart_items", to: 'cart_items#destroy'
-  #   get "/cart_items", to: 'cart_items#create'
-  #   post "/login", to: 'sessions#create'
-  #   get "/login", to: 'sessions#new'
-  #   get '/logout', to: 'sessions#destroy'
-  #
   #   get '/dashboard', to: 'users#show'
   #
   #

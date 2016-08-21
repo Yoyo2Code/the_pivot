@@ -10,16 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818011342) do
+ActiveRecord::Schema.define(version: 20160821182539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "booked_dates", force: :cascade do |t|
+    t.integer "night_id"
+    t.integer "property_id"
+    t.index ["night_id"], name: "index_booked_dates_on_night_id", using: :btree
+    t.index ["property_id"], name: "index_booked_dates_on_property_id", using: :btree
+  end
+
+  create_table "business_roles", force: :cascade do |t|
+    t.integer "business_id"
+    t.integer "role_id"
+    t.index ["business_id"], name: "index_business_roles_on_business_id", using: :btree
+    t.index ["role_id"], name: "index_business_roles_on_role_id", using: :btree
+  end
 
   create_table "businesses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "slug"
+    t.text     "image_url"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -27,6 +42,10 @@ ActiveRecord::Schema.define(version: 20160818011342) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "slug"
+  end
+
+  create_table "nights", force: :cascade do |t|
+    t.datetime "date"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -63,6 +82,10 @@ ActiveRecord::Schema.define(version: 20160818011342) do
     t.index ["property_id"], name: "index_reservations_on_property_id", using: :btree
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string  "username"
     t.string  "password_digest"
@@ -72,6 +95,10 @@ ActiveRecord::Schema.define(version: 20160818011342) do
     t.string  "email"
   end
 
+  add_foreign_key "booked_dates", "nights"
+  add_foreign_key "booked_dates", "properties"
+  add_foreign_key "business_roles", "businesses"
+  add_foreign_key "business_roles", "roles"
   add_foreign_key "orders", "users"
   add_foreign_key "properties", "businesses"
   add_foreign_key "properties", "locations"
