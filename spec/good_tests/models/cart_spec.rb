@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe "Cart" do
   it "should have initial content" do
     cart = Cart.new(
-      "1" =>  { 
-        starting_date: "08/15/2016", 
-        end_date: "09/01/2016", 
-        occupancy: 2 
+      "1" => {
+        starting_date: "08/15/2016",
+        end_date: "09/01/2016",
+        occupancy: 2
       })
 
     expect(cart.contents).to eq(
@@ -60,7 +60,7 @@ RSpec.describe "Cart" do
         starting_date: "08/15/2016",
         end_date: "09/01/2016",
         occupancy: 2
-    })
+      })
     cart.add_item(
       "2" => {
         starting_date: "08/16/2016",
@@ -79,10 +79,12 @@ RSpec.describe "Cart" do
 
   xit "should be able to find items" do
     cat1 = Location.create!(title: "arms")
-    item = cat1.items.create!(title: "Robot Arm", description: "Cool ass arm",
-                              price: 10_000.0,
-                              image_path: 'http://img09.deviantart.net/588b/i'\
-                              '/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
+    item = cat1.items.create!(
+      title: "Robot Arm",
+      description: "Cool ass arm",
+      price: 10_000.0,
+      image_path: 'http://img09.deviantart.net/588b/i/2004'\
+      '/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
 
     cart = Cart.new(item.id => 3)
 
@@ -91,10 +93,12 @@ RSpec.describe "Cart" do
 
   xit "should be able to compute total price" do
     cat1 = Location.create!(title: "arms")
-    item = cat1.items.create!(title: "Robot Arm", description: "Cool ass arm",
-                              price: 10000.0,
-                              image_path: 'http://img09.deviantart.net/588b/i/'\
-                              '2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
+    item = cat1.items.create!(
+      title: "Robot Arm",
+      description: "Cool ass arm",
+      price: 10_000.0,
+      image_path: 'http://img09.deviantart.net/588b/i/'\
+      '2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
 
     cart = Cart.new(item.id => 3)
 
@@ -103,10 +107,12 @@ RSpec.describe "Cart" do
 
   xit "delete an item" do
     cat1 = Location.create!(title: "arms")
-    item = cat1.items.create!(title: "Robot Arm", description: "Cool ass arm",
-                              price: 10_000.0,
-                              image_path: 'http://img09.deviantart.net/588b/i'\
-                              '/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
+    item = cat1.items.create!(
+      title: "Robot Arm",
+      description: "Cool ass arm",
+      price: 10_000.0,
+      image_path: 'http://img09.deviantart.net/588b/i'\
+      '/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
 
     cart = Cart.new(item.id => 3)
 

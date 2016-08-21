@@ -7,7 +7,7 @@ RSpec.describe "CartItem" do
     property = location.properties.create!(
       title: "Tiny House",
       description: "It's really small",
-      price_per_guest: 10000.0,
+      price_per_guest: 10_000.0,
       image_path: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Hotel-room-renaissance-columbus-ohio.jpg',
       business_id: business.id,
       max_occupancy: 3)
@@ -32,7 +32,7 @@ RSpec.describe "CartItem" do
     property = location.properties.create!(
       title: "Tiny House",
       description: "It's really small",
-      price_per_guest: 10000.0,
+      price_per_guest: 10_000.0,
       image_path: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Hotel-room-renaissance-columbus-ohio.jpg',
       business_id: business.id,
       max_occupancy: 3)
@@ -46,6 +46,6 @@ RSpec.describe "CartItem" do
                              params[:end_date] )
     subtotal = cart_item.subtotal
 
-    expect(subtotal).to eq(20000.0)
+    expect(subtotal).to eq(20_000.0)
   end
 end
