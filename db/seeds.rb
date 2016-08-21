@@ -1,24 +1,62 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-Property.destroy_all
-Location.destroy_all
-Business.destroy_all
+class Seed
+  def seed
+    Property.destroy_all
+    Location.destroy_all
+    Business.destroy_all
+    create_businesses
+  end
 
-loc1 = Location.create!(city: "Denver")
-loc2 = Location.create!(city: "New York")
+  def create_businesses
+    12.times do 
+      Business.create!(name: Faker::Company.name, image_url: "https://robohash.org/#{rand(10)}")
+    end
+    create_locations
+  end
 
-business = Business.create!(name: "Acme")
+  def create_locations
+    Location.create!(city: "Denver")
+    Location.create!(city: "New York")
+    Location.create!(city: 'Toronto')
+    Location.create!(city: 'Los Angeles')
+    Location.create!(city: 'Chicago')
+    Location.create!(city: 'Dallas')
+  end
 
-loc1.properties.create!(title: "Tiny House", description: "It's really small", price_per_guest: 10000.0, image_path: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Hotel-room-renaissance-columbus-ohio.jpg', business_id: business.id, max_occupancy: 3)
-loc1.properties.create!(title: "Hotel", description: "The lap of luxury", price_per_guest: 3000.0, image_path: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/UMass_Hotel_room.JPG', business_id: business.id, max_occupancy: 4)
+  def add_properties_to_businesses
+    Business.all.each do |business|
+      add_properties(business)
+    end
+  end
 
-loc2.properties.create!(title: "Motel", description: "Sleep for cheap", price_per_guest: 15000.0, image_path: 'https://c2.staticflickr.com/8/7309/9638499309_43eb058de5_b.jpg', business_id: business.id, max_occupancy: 2)
-loc2.properties.create!(title: "Boat", description: "Stay on the water", price_per_guest: 5000.0, image_path: 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Executive_Premier_Room_-_Novotel_Century_Hong_Kong_Hotel.jpg', business_id: business.id, max_occupancy: 4)
+  def add_properties(business)
+    6.times do
+      business.properties.create!(
+        title: Faker::Book.title + "##{rand(100)}",
+        description: Faker::Lorem.words,
+        price_per_guest: Faker::Commerce.price,
+        max_occupancy: rand(10),
+        image_path: 'http://i.dailymail.co.uk/i/pix/2015/07/09/14/2A6072FF00000578-3154851-image-a-1_1436449347511.jpg'
+      )
+    end
+  end
 
-business.properties.create!(title: "My House", description: "Come stay at my house", price_per_guest: 5000.0, image_path: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Imperial_Hotel_Osaka_regular_floor_standard_twin_room_20120630-001.jpg',
- location: loc1, business_id: business.id, max_occupancy: 4)
+  def add_properties_to_locations
+    seed_properties = Property.all.to_a
+    Location.all.each do |location|
+      12.times do
+        location.properties << seed_properties.shift
+      end
+    end
+  end
+
+  def seed_users
+    User.create!(username: 'Yoseph', password: 'password')
+    User.first.orders.create!
+    User.first.orders.first.reservations.create!(starting_date: DateTime.new(2016, 8, 22), end_date: DateTime.new(2016, 8, 30), number_of_guests: 2, price: 1500, property_id: Property.first.id)
+  end
+end
+seeder = Seed.new
+seeder.seed
+seeder.add_properties_to_businesses
+seeder.add_properties_to_locations
+seeder.seed_users

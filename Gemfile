@@ -32,6 +32,7 @@ gem 'stripe'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 gem 'responders'
+gem 'faker'
 gem 'rack_session_access', group: :test
 
 # Use Capistrano for deployment

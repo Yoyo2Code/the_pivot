@@ -16,6 +16,9 @@ class BusinessesController < ApplicationController
     end
   end
 
+  def show
+    @business = Business.find_by(slug: params[:id])
+  end
   private
     def business_params
       params.require(:business).permit(:name)
