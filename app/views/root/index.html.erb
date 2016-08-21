@@ -1,1 +1,34 @@
-<h1> Welcome to Stay and Play </h1>
+<h1 id='header'> Welcome to Stay and Play </h1>
+<hr>
+<div class='row' id='pill-options'>
+  <ul class='nav nav-pills'>
+    <li role='presentation'>
+      <a href='#' id='location-pill' data-toggle='pill'>Locations</a>
+    </li>
+    <li role='presentation'>
+      <a href='#' id='business-pill' data-toggle='pill'>Businesses</a>
+    </li>
+  </ul>
+</div>
+<div>
+  <div class='row text-center hide-me' id='businesses'>
+    <% @businesses.each do |business| %>
+      <a href='/<%= business.slug %>'>
+        <div class='well col-md-4 business'>
+          <%= business.name %>
+          <img src="<%= business.image_url %>">
+        </div>
+      </a>
+    <% end %>
+  </div>
+
+  <div class='row text-center' id='locations'>
+    <% @locations.each do |location| %>
+      <a href="/location/<%= location.slug %>">
+        <div class='well col-md-4 location' id='<%= location.slug %>'>
+          <%= location.city %>
+        </div>
+      </a>
+    <% end %>
+  </div>
+</div>

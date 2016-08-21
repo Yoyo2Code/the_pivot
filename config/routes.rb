@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   get '/cart', to: "cart#index", as: 'cart'
 
   resources :cart_items, only: [:create]
+  resources :businesses, only: [:new, :create]
 
   delete "/cart_items", to: 'cart_items#destroy'
-  
+
   get '/login', to: 'sessions#new', as: 'login'
 
   post '/login', to: 'sessions#create'
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
 
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
 
   namespace :location do
     get '/:city', to: 'properties#index'

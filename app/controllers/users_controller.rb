@@ -19,6 +19,19 @@ class UsersController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if current_user.update(user_params)
+      flash[:success] = 'Changes to your account have been saved!'
+      redirect_to dashboard_path
+    else
+      #ActiveRecord errors
+      render :edit
+    end
+  end
+
   private
 
   def user_params
