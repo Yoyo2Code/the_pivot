@@ -23,8 +23,8 @@
         <img src="<%= cart_item.image_path %>" style="width:220px;height:175px;"/>
           <br>
           <br>
-        <%#= button_to "Add", cart_items_path({item_id: property.id}) %>
-        <%= button_to "Remove", cart_items_path({id: cart_item.id}), method: :delete %>
+        <%= button_to "Edit", property_path(id: cart_item.id, business_name: cart_item.business.slug), method: :get %>
+        <%= button_to "Remove", cart_items_path(id: cart_item.id), method: :delete %>
       </p>
     </div>
     <% end %>
