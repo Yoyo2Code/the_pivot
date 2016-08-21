@@ -6,23 +6,23 @@ RSpec.feature 'user can delete items from cart' do
 
     create(:location) do |loc|
       loc.properties.create(attributes_for(
-                                            :property,
-                                            business_id: business.id
+                                           :property,
+                                           business_id: business.id
                                            )
-                            )
+                           )
     end
 
     page.set_rack_session(
-                            cart:
-                              {
-                                Property.first.id.to_s =>
-                                {
-                                  starting_date: "08/15/2016",
-                                  end_date: "09/01/2016",
-                                  occupancy: 2
-                                }
-                              }
-                          )
+                           cart:
+                             {
+                               Property.first.id.to_s =>
+                               {
+                                 starting_date: "08/15/2016",
+                                 end_date: "09/01/2016",
+                                 occupancy: 2
+                               }
+                             }
+                         )
 
     visit cart_path
 
@@ -44,15 +44,15 @@ RSpec.feature 'user can delete items from cart' do
       loc.properties.create(attributes_for(
                                             :property,
                                             business_id: business.id
-                                           )
-                            )
+                                          )
+                           )
 
-      loc.properties.create(attributes_for(:property,
-
+      loc.properties.create(attributes_for(
+                                           :property,
                                            title: "Disneyland",
                                            business_id: business.id
-                                           )
-                            )
+                                          )
+                           )
     end
 
     property_1 = Property.first
@@ -73,7 +73,7 @@ RSpec.feature 'user can delete items from cart' do
                                 occupancy: 2
                               }
                             }
-                          )
+                         )
 
     visit cart_path
 
