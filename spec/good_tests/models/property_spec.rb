@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Property, type: :model do
+  context 'associations' do
+    it { should have_many(:booked_dates) }
+    it { should have_many(:nights).through(:booked_dates) }
+  end
   context "validations" do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:description) }
