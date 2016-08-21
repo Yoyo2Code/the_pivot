@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   post '/login', to: 'sessions#create'
 
+  get '/orders', to: 'orders#index', as: 'orders'
+
   get '/dashboard', to: 'users#show', as: 'dashboard'
 
   delete '/logout', to: 'sessions#destroy', as: 'logout'
