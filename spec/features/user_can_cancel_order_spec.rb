@@ -12,7 +12,7 @@
 #     first(:button, "Add to Cart").click
 #     first(:button, "Add to Cart").click
 #     first(:button, "Add to Cart").click
-#     visit cart_index_path
+#     visit cart_path
 #     first(:link, "Create Account").click
 #     fill_in "First Name", with: "Penelope"
 #     fill_in "Last Name", with: "Jones"
@@ -20,7 +20,7 @@
 #     fill_in "Password", with: "password"
 #     fill_in "Email Address", with: "penelope@gmail.com"
 #     first(:button, "Create Account").click
-#     visit cart_index_path
+#     visit cart_path
 #
 #     # When I visit "/orders"
 #     page.execute_script("$('.stripe-button').show()")
