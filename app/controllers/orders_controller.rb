@@ -1,9 +1,10 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_admin
-  skip_before_action :require_user, only: [:show, :destroy]
+  # skip_before_action :require_admin
+  # skip_before_action :require_user, only: [:show, :destroy]
 
   def index
-    @orders = current_user.orders
+    # @orders = current_user.orders
+    @orders = Order.all
   end
 
   def create
@@ -17,9 +18,10 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order_number = @_request.env["PATH_INFO"].split("/").last
-    @order = current_user.orders.find(@order_number)
-    @order_total = order_total(@order)
+    @order = Order.find(params[:id])
+    # @order_number = @_request.env["PATH_INFO"].split("/").last
+    # @order = current_user.orders.find(@order_number)
+    # @order_total = order_total(@order)
   end
 
   def order_total(order)
@@ -36,6 +38,4 @@ class OrdersController < ApplicationController
     @order.update(status: "cancelled")
     redirect_to order_path
   end
-
-
 end
