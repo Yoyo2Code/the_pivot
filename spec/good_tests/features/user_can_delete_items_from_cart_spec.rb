@@ -5,8 +5,11 @@ RSpec.feature 'user can delete items from cart' do
     business = create(:business)
 
     create(:location) do |loc|
-      loc.properties.create(attributes_for(:property,
-                                           business_id: business.id))
+      loc.properties.create(attributes_for(
+                                            :property,
+                                            business_id: business.id
+                                           )
+                            )
     end
 
     page.set_rack_session(
@@ -38,8 +41,11 @@ RSpec.feature 'user can delete items from cart' do
     business = create(:business)
 
     create(:location) do |loc|
-      loc.properties.create(attributes_for(:property,
-                                           business_id: business.id))
+      loc.properties.create(attributes_for(
+                                            :property,
+                                            business_id: business.id
+                                           )
+                            )
 
       loc.properties.create(attributes_for(:property,
 

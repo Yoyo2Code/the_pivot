@@ -11,7 +11,9 @@ RSpec.describe "CartItem" do
       image_path: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Hotel-room-renaissance-columbus-ohio.jpg',
       business_id: business.id,
       max_occupancy: 3)
-    params = { property_id: property.id,
+
+    params = {
+               property_id: property.id,
                occupancy: 2,
                starting_date: "08/15/2016",
                end_date: "09/01/2016"
@@ -37,7 +39,9 @@ RSpec.describe "CartItem" do
       image_path: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Hotel-room-renaissance-columbus-ohio.jpg',
       business_id: business.id,
       max_occupancy: 3)
-    params = { property_id: property.id,
+      
+    params = {
+               property_id: property.id,
                occupancy: 2,
                starting_date: "08/15/2016",
                end_date: "09/01/2016"
