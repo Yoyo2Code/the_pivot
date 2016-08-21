@@ -6,8 +6,8 @@ RSpec.feature 'user can delete items from cart' do
 
     create(:location) do |loc|
       loc.properties.create(attributes_for(
-                                           :property,
-                                           business_id: business.id
+                                            :property,
+                                            business_id: business.id
                                            )
                            )
     end
@@ -48,9 +48,9 @@ RSpec.feature 'user can delete items from cart' do
                            )
 
       loc.properties.create(attributes_for(
-                                           :property,
-                                           title: "Disneyland",
-                                           business_id: business.id
+                                            :property,
+                                            title: "Disneyland",
+                                            business_id: business.id
                                           )
                            )
     end
