@@ -2,9 +2,9 @@ $(document).ready(function() {
   $(function() {
     $( '#slider-range' ).slider({
       range: true,
-      min: 2500,
-      max: 20000,
-      values: [ 2500, 10000 ],
+      min: 40,
+      max: 150,
+      values: [ 40, 150 ],
       slide: function( event, ui ) {
         $('#amount').val("$" + ui.values[0] + " - $" + ui.values[ 1 ] );
         showAvailable(ui.values);
