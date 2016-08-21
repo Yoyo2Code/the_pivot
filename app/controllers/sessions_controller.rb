@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:session][:username])
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      flash[:success] = "Successfully logged in as #{params[:session][:username]}"
+      flash[:success] = "Successfully logged in as #{current_user.username}"
       redirect_to cart_path if @cart.contents.any?
       redirect_to dashboard_path if @cart.contents.empty?
     else
