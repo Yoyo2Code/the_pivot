@@ -42,6 +42,14 @@ class Seed
     end
   end
 
+  def add_nights
+    from = Time.now
+    to = Time.new('2017/1/1')
+    until from >= to
+      Night.create!(date: (from += 1.day))
+    end
+  end
+
   def seed_users
     User.create!(username: 'Yoseph', password: 'password')
     User.first.orders.create!
@@ -51,3 +59,4 @@ end
 seeder = Seed.new
 seeder.seed
 seeder.seed_users
+seeder.add_nights
