@@ -31,4 +31,16 @@
     <p>
       Total: <%= number_to_currency(@cart.total_price) %>
     </p>
+    <br>
+    <% if current_user %>
+      <button type="button" class="btn btn-default">
+        Complete My Booking
+      </button>
+    <% else %>
+      <span>
+        <button id ="login-or-create-account" type="button" class="btn btn-default">
+          <%= link_to "Login or Create Account to Checkout", login_path %>
+        </button>
+      </span>
+    <% end %>
 <% end %>
