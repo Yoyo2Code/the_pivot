@@ -10,11 +10,16 @@ RSpec.feature 'user can delete items from cart' do
     end
 
     page.set_rack_session(
-                          cart:
-                            { Property.first.id.to_s =>
-                              { starting_date: "08/15/2016",
-                                end_date: "09/01/2016",
-                                occupancy: 2 } })
+                            cart:
+                              {
+                                Property.first.id.to_s =>
+                                {
+                                  starting_date: "08/15/2016",
+                                  end_date: "09/01/2016",
+                                  occupancy: 2
+                                }
+                              }
+                          )
 
     visit cart_path
 
@@ -37,6 +42,7 @@ RSpec.feature 'user can delete items from cart' do
                                            business_id: business.id))
 
       loc.properties.create(attributes_for(:property,
+
                                            title: "Disneyland",
                                            business_id: business.id))
     end
@@ -46,16 +52,20 @@ RSpec.feature 'user can delete items from cart' do
 
     page.set_rack_session(
                           cart:
-                            { property_1.id.to_s =>
-                              { starting_date: "08/15/2016",
+                            {
+                              property_1.id.to_s =>
+                              {
+                                starting_date: "08/15/2016",
                                 end_date: "09/01/2016",
                                 occupancy: 2 },
                               property_2.id.to_s =>
-                              { starting_date: "08/15/2016",
+                              {
+                                starting_date: "08/15/2016",
                                 end_date: "09/01/2016",
-                                occupancy: 2 }
+                                occupancy: 2
+                              }
                             }
-                        )
+                          )
 
     visit cart_path
 
