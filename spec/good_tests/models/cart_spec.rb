@@ -10,10 +10,10 @@ RSpec.describe "Cart" do
       })
 
     expect(cart.contents).to eq(
-      "1" => { 
-        starting_date: "08/15/2016", 
-        end_date: "09/01/2016", 
-        occupancy: 2 
+      "1" => {
+        starting_date: "08/15/2016",
+        end_date: "09/01/2016",
+        occupancy: 2
       })
   end
 
@@ -47,32 +47,32 @@ RSpec.describe "Cart" do
     cart.add_item(params)
 
     expect(cart.contents).to eq(
-      property.id => { 
-        starting_date: "08/15/2016", 
+      property.id => {
+        starting_date: "08/15/2016",
         end_date: "09/01/2016",
-        occupancy: 2 
+        occupancy: 2
       })
   end
 
   it "should return total number of items in cart" do
     cart = Cart.new(
-      "1" => { 
-        starting_date: "08/15/2016", 
-        end_date: "09/01/2016", 
-        occupancy: 2 
+      "1" => {
+        starting_date: "08/15/2016",
+        end_date: "09/01/2016",
+        occupancy: 2
     })
     cart.add_item(
-      "2" => { 
-        starting_date: "08/16/2016", 
-        end_date: "09/10/2016", 
-        occupancy: 4 
+      "2" => {
+        starting_date: "08/16/2016",
+        end_date: "09/10/2016",
+        occupancy: 4
       })
 
     expect(cart.total).to eq(2)
   end
 
   xit "should give count of specific item" do
-    cart = Cart.new({"1" => 2})
+    cart = Cart.new("1" => 2)
 
     expect(cart.count_of(1)).to eq(2)
   end
@@ -80,7 +80,7 @@ RSpec.describe "Cart" do
   xit "should be able to find items" do
     cat1 = Location.create!(title: "arms")
     item = cat1.items.create!(title: "Robot Arm", description: "Cool ass arm",
-                              price: 10_000.0, 
+                              price: 10_000.0,
                               image_path: 'http://img09.deviantart.net/588b/i'\
                               '/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
 
@@ -104,7 +104,7 @@ RSpec.describe "Cart" do
   xit "delete an item" do
     cat1 = Location.create!(title: "arms")
     item = cat1.items.create!(title: "Robot Arm", description: "Cool ass arm",
-                              price: 10_000.0, 
+                              price: 10_000.0,
                               image_path: 'http://img09.deviantart.net/588b/i'\
                               '/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
 
