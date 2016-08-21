@@ -4,7 +4,7 @@ class CartController < ApplicationController
 
   def index
     @cart_items = @cart.find_items
-    @locations = Location.all
-    render layout: "cart", locations: @locations
+    # @locations = Location.all
+    # render layout: "cart", locations: @locations
   end
 end
