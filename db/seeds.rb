@@ -7,7 +7,7 @@ class Seed
   end
 
   def create_businesses
-    12.times do 
+    12.times do
       Business.create!(name: Faker::Company.name, image_url: "https://robohash.org/#{rand(10)}")
     end
     create_locations
@@ -63,3 +63,4 @@ seeder = Seed.new
 seeder.seed
 seeder.add_nights
 seeder.seed_users
+seeder.add_nights

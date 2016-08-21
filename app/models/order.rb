@@ -5,4 +5,16 @@ class Order < ActiveRecord::Base
 
   enum status: %w(ordered paid completed cancelled)
 
+  def order_data
+    self.status
+    self.reservations
+  end
+
+  private
+
+  def reservation_data
+    self.reservations.map do |reservation|
+      reservation
+    end
+  end
 end

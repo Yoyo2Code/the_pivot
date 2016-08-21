@@ -5,7 +5,8 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = 'Account successfully created!'
-      redirect_to dashboard_path
+      redirect_to cart_path if @cart.contents.any?
+      redirect_to dashboard_path if @cart.contents.empty?
     else
       flash.now[:notice] = "Invalid Username or Password"
       render :new
