@@ -12,4 +12,6 @@ class Property < ApplicationRecord
   belongs_to :location
   has_many :reservations
   has_many :orders, through: :reservations
+  has_many :booked_dates
+  has_many :nights, through: :booked_dates
 end
