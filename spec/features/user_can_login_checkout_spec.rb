@@ -5,7 +5,7 @@ RSpec.feature "user can login and checkout" do
 
     # As a visitor when I have items in my cart
     # And when I visit "/cart"
-    visit cart_index_path
+    visit cart_path
 
     # I should not see an option to "Checkout"
     expect(page).to_not have_link("Checkout")
@@ -19,7 +19,7 @@ RSpec.feature "user can login and checkout" do
     fill_in "Email Address", with: "penelope@gmail.com"
     first(:button, "Create Account").click
     # And I visit "/cart
-    visit cart_index_path
+    visit cart_path
     # Then I should see all of the data that was there when I was not logged in
     # When I click "Logout"
 
