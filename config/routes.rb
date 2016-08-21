@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  root 'root#index'
+  resources :cart, only: [:index]
+  resources :cart_items, only: [:create]
+  resources :businesses, only: [:new, :create]
+
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
 
@@ -7,7 +12,7 @@ Rails.application.routes.draw do
 
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
   namespace :location do
     get '/:city', to: 'properties#index'
   end
@@ -24,10 +29,7 @@ Rails.application.routes.draw do
 
   get '/:business_name', to: 'properties#index', as: "properties"
 
-  # root 'items#index'
   #   # resources :items
-  #   # resources :cart_items, only: [:create]
-  #   # resources :cart, only: [:index]
   #   resources :users, only: [:new, :create, :show]
   #
   #   resources :orders, only: [:create, :index, :show, :destroy]
