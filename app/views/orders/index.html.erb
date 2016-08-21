@@ -1,8 +1,20 @@
-<!-- <h1>Order History</h1>
-  <%# @orders.each do |order| %>
-    <div id="link" class="row col-md-12 top-row">
-      <li>Order # <%#=link_to @orders.find_index(order)+1, order_path(order)%></li>
-        <%# order.items.each do |item| %>
-        <%# end %>
-    </div>
-<%# end %> -->
+<h1>Order History</h1>
+  <%= @orders.each do |order| %>
+  <br>
+    <%= order.reservations.each do |res| %>
+      <br>
+        $<%= res.price %>
+          <br>
+        Guests: <%= res.number_of_guests %>
+          <br>
+        <%= res.starting_date %>
+      <br>
+      <%= res.end_date %>
+      <br>
+          <%= res.property.title %>
+          <br>
+          <%= res.property.price_per_guest %>
+          <br>
+            <%= res.property.business.name %>
+    <% end %>
+  <% end %>
