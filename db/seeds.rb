@@ -32,8 +32,8 @@ class Seed
   def add_properties(business)
     6.times do |t|
       business.properties.create!(
-        title: Faker::Book.title + "##{rand(100)}",
-        description: Faker::Lorem.paragraph,
+        title: Faker::Book.title + "##{rand(1000)}",
+        description: Faker::Lorem.paragraph(4),
         price_per_guest: Faker::Commerce.price,
         max_occupancy: rand(10),
         image_path: 'http://i.dailymail.co.uk/i/pix/2015/07/09/14/2A6072FF00000578-3154851-image-a-1_1436449347511.jpg',

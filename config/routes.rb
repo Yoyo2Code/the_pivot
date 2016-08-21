@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
   resources :users, only: [:new, :create, :edit, :update]
+
   namespace :location do
     get '/:city', to: 'properties#index'
   end
