@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "User sees items" do
+RSpec.feature "User sees items", :js => true do
   scenario "a visitor can add an item to their cart" do
 
     Cart.new(nil)

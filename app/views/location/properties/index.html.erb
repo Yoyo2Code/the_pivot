@@ -1,1 +1,8 @@
-<%= render partial: 'shared/properties', locals: { name: @properties.first.location.city }%>
+<div class='page-header location-header' id='<%= get_location(@properties).slug %>-header'>
+  <div class='col-xs-5 line'><hr></div>
+  <div class='col-xs-2 line' id='city-header'>
+    <p><%= get_location(@properties).city %></p>
+  </div>
+  <div class='col-xs-5 line'><hr></div>
+</div>
+<%= render partial: 'shared/properties', locals: { name: get_location(@properties).city }%>

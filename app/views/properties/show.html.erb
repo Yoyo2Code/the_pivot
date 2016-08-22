@@ -29,7 +29,7 @@
       <%= form_tag("/cart_items", method: "post") do %>
       <%= hidden_field_tag :property_id, @property.id %>
       <p>Guests</p>
-      <div id='occupancy' class='col-md-2'>
+      <div id='max_occupancy' class='col-md-2'>
         <%= select_tag :occupancy, options_for_select([*1..@property.max_occupancy]), class: 'form-control'%>
       </div>
       <!-- <%#= f.text_field :starting_date, :class => 'datepicker', placeholder: "Check-In" %>
