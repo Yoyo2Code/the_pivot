@@ -8,11 +8,6 @@ RSpec.describe Business, type: :model do
     it { should validate_presence_of(:status) }
   end
 
-  context 'associations' do
-    it { should have_many(:business_roles) }
-    it { should have_many(:roles).through(:business_roles) }
-  end
-
   context 'enum' do
     it { should define_enum_for(:status) }
   end
