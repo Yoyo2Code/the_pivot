@@ -1,10 +1,14 @@
-class Api::V1::PropertiesController < ApplicationController
-  respond_to :json
+class Api::V1::PropertiesController < Api::V1::BaseController
   # skip_before_action :require_user, :require_admin
 
   def index
     @properties = find_properties
     respond_with @properties
+  end
+
+  def show
+    property = Property.find_by(id: params[:property_id])
+    respond_with property.bookings
   end
 
   private

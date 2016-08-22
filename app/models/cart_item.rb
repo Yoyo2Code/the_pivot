@@ -12,5 +12,4 @@ class CartItem < SimpleDelegator
   def subtotal
     price_per_guest * occupancy.to_i
   end
-
 end

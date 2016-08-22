@@ -1,0 +1,39 @@
+require 'rails_helper'
+
+RSpec.feature "User can cancel an order" do
+  scenario "they click cancel and see that the order is canceled" do
+    user = create(:user)
+    business = create(:business)
+    location = create(:location) do |loc|
+      loc.properties.create(attributes_for(:property, business_id: business.id))
+    end
+    property = location.properties.first
+
+    visit login_path
+
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: user.password
+
+    within('.login-form') do
+      click_on "Login"
+    end
+
+    visit property_path(property, business_name: property.business.slug)
+
+    find('#occupancy').find(:xpath, 'option[2]').select_option
+    fill_in :starting_date, with: "08/30/2016"
+    fill_in :end_date, with: "09/05/2016"
+
+    click_on "Book Me"
+    click_button 'Complete My Booking'
+
+    order = Order.last
+
+    within('#cancel-order') do
+      click_on "Cancel Order"
+    end
+
+    expect(current_path).to eq order_path(order)
+    expect(page).to have_content("cancelled")
+  end
+end

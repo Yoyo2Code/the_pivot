@@ -51,12 +51,15 @@ class Seed
   end
 
   def seed_users
-    User.create!(username: 'Yoseph', password: 'password')
-    User.first.orders.create!
-    User.first.orders.first.reservations.create!(starting_date: DateTime.new(2016, 8, 22), end_date: DateTime.new(2016, 8, 30), number_of_guests: 2, price: 1500, property_id: Property.first.id)
+    u1 = User.create!(username: 'Yoseph', password: 'password')
+    u2 = User.create!(username: 'Pat', password: 'password')
+    u1.orders.create!
+    u2.orders.create!
+    u1.orders.first.reservations.create!(starting_date: Night.all[1].date, end_date: Night.all[5].date, number_of_guests: 2, price: 1500, property_id: Property.first.id)
+    u2.orders.first.reservations.create!(starting_date: Night.all[10].date, end_date: Night.all[13].date, number_of_guests: 2, price: 1500, property_id: Property.first.id)
   end
 end
 seeder = Seed.new
 seeder.seed
-seeder.seed_users
 seeder.add_nights
+seeder.seed_users
