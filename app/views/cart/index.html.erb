@@ -33,8 +33,8 @@
     </p>
     <br>
     <% if current_user %>
-      <button type="button" class="btn btn-default">
-        Complete My Booking
+      <button id='complete-booking' type="button" class="btn btn-default">
+        <%= button_to "Complete My Booking", orders_path %>
       </button>
     <% else %>
       <span>
