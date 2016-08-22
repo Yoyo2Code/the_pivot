@@ -32,7 +32,8 @@ gem 'stripe'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 gem 'responders'
-
+gem 'faker'
+gem 'rack_session_access', group: :test
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -48,6 +49,7 @@ group :development, :test do
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
   gem 'database_cleaner'
   gem "factory_girl_rails"
+  gem 'capybara-bootstrap-datepicker'
 end
 
 group :development do

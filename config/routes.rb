@@ -1,19 +1,35 @@
 Rails.application.routes.draw do
-  get '/:category/:id', to: "properties#show", as: "property"
 
-  get '/:category', to: 'properties#index', as: "properties"
+  root 'root#index'
+  resources :cart, only: [:index]
+  resources :cart_items, only: [:create]
+  resources :businesses, only: [:new, :create]
 
-  namespace :api do
-    namespace :v1 do
-      get '/:category', to: 'properties#index', as: "properties"
-    end
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to: 'sessions#create'
+
+  get '/dashboard', to: 'users#show', as: 'dashboard'
+
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
+
+  resources :users, only: [:new, :create, :edit, :update]
+  namespace :location do
+    get '/:city', to: 'properties#index'
   end
 
 
-  # root 'items#index'
+  namespace :api do
+    namespace :v1 do
+      get '/:business_name', to: 'properties#index', as: "properties"
+      get '/location/:city', to: 'location/properties#index', as: "city"
+    end
+  end
+
+  get '/:business_name/:id', to: "properties#show", as: "property"
+
+  get '/:business_name', to: 'properties#index', as: "properties"
+
   #   # resources :items
-  #   # resources :cart_items, only: [:create]
-  #   # resources :cart, only: [:index]
   #   resources :users, only: [:new, :create, :show]
   #
   #   resources :orders, only: [:create, :index, :show, :destroy]

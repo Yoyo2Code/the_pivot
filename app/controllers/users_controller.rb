@@ -1,12 +1,10 @@
 class UsersController < ApplicationController
-  skip_before_action :require_user, except: [:show]
-  skip_before_action :require_admin
 
   def create
     @user = User.create(user_params)
     if @user.save
       session[:user_id] = @user.id
-       UserNotifier.send_signup_email(@user).deliver_now
+      flash[:success] = 'Account successfully created!'
       redirect_to dashboard_path
     else
       flash.now[:notice] = "Invalid Username or Password"
@@ -19,7 +17,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+  end
+
+  def edit
+  end
+
+  def update
+    if current_user.update(user_params)
+      flash[:success] = 'Changes to your account have been saved!'
+      redirect_to dashboard_path
+    else
+      #ActiveRecord errors
+      render :edit
+    end
   end
 
   private

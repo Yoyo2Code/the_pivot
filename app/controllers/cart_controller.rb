@@ -1,9 +1,10 @@
 class CartController < ApplicationController
-  skip_before_action :require_user
-  skip_before_action :require_admin
+  # skip_before_action :require_user
+  # skip_before_action :require_admin
 
   def index
-    @items = @cart.find_items
-    render layout: "cart"
+    @cart_items = @cart.find_items
+    @locations = Location.all
+    render layout: "cart", locations: @locations
   end
 end

@@ -2,13 +2,15 @@
   <div class='col-md-2 sidebar'>
     <%= render partial: 'layouts/navbar-side' %>
   </div>
+  <h1 class='text-center'><%= @properties.first.business.name %></h1>
   <div class='col-md-9 properties'>
     <% @properties.each do |property| %>
       <div class="well col-md-3 col-md-offset-1 item">
-        <%= link_to property.title, property_path(id: property.id) %><br>
+        <%= link_to property.title, property_path(property, business_name: property.business.slug) %><br>
         <%= property.description %><br>
         Price Per Guest: <%= number_to_currency(property.price_per_guest) %><br>
         Max Occupancy: <%= property.max_occupancy %>
+        Location: <%= property.location.city %>
         <img src=" <%=property.image_path %> " style="width:220px;height:228px;"  /><br><br>
         <!-- <%#= button_to "Add to Cart", cart_items_path({item_id:property.id}) %> -->
         <%# if current_admin? %>

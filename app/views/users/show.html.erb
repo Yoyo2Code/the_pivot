@@ -1,11 +1,13 @@
 <nav class="navbar navbar-default">
   <div class="navbar-header">
-    <a class="navbar-brand">Logged in as <%= @user.username %></a>
+    <a class="navbar-brand">Logged in as <%= current_user.username %></a>
   </div>
 </nav>
 
-<div class="container-fluid">
-  <p style="color: white">
-    Username: <%= @user.username %>
+<div class="container-fluid" id='user-dashboard'>
+  <p>
+    Username: <%= current_user.username %>
   </p>
 </div>
+<%= link_to 'Open a Business', new_business_path %>
+<%= link_to 'Edit Account Information', edit_user_path(current_user) %>

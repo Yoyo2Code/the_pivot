@@ -1,28 +1,15 @@
 class PropertiesController < ApplicationController
-  skip_before_action :require_user
-  skip_before_action :require_admin, except: [:new, :create, :edit, :update]
   def index
-    business = Business.find_by(slug: params[:category])
-    location = Location.find_by(slug: params[:category])
-
-    if location
-      @properties = location.properties.all
-    elsif business
+    business = Business.find_by(slug: params[:business_name])
+    if business
       @properties = business.properties.all
     else
-      # render :error
-      #render 404
+      redirect_to root_path
     end
   end
 
   def show
     @property = Property.find(params[:id])
-    # if @_request.env["HTTP_REFERER"].split("/") && @_request.env["HTTP_REFERER"].split("/")[3] == "orders"
-    #   order_item = OrderItem.find(params[:id])
-    #   @item = Item.find(order_item.item_id)
-    # else
-    #   @item = Item.find(params[:id])
-    # end
   end
 
   def new
