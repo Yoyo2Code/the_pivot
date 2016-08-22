@@ -29466,18 +29466,104 @@ return $.widget( "ui.tooltip", {
 
 }).call(this);
 $(document).ready(function() {
-  $("#slider-range").slider({
-    range: true,
-    min: 0,
-    max: 500,
-    values: [ 75, 300 ],
-    slide: function( event, ui ) {
-      $("#amount").val("$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-    }
-  });
-  $("#amount").val("$" + $( "#slider-range" ).slider( "values", 0 ) +
-    " - $" + $( "#slider-range" ).slider( "values", 1 ) ) ;
 
+  // function saveResponse(response) {
+  //   bookings = response
+  // }
+
+  $( function() {
+    $('#datepicker1').datepicker({
+      beforeShowDay: checkAvailability,
+      minDate: 0,
+      onSelect: function(dateText, inst) {
+      }
+    });
+  });
+
+  $( function() {
+    $('#datepicker2').datepicker({
+      beforeShowDay: checkAvailability,
+      minDate: 0,
+      onSelect: function(dateText, inst) {
+      }
+    })
+  });
+
+  let prop_id = window.location.pathname.slice(-1)
+  let bookings 
+  $.getJSON(`/api/v1/properties/${prop_id}`,
+            (response) => { bookings = response })
+
+  function checkAvailability(date) {
+    let y = date.getFullYear();
+    let m = date.getMonth();
+    let d = date.getDate();
+    let currentDate = (m + 1) + '/' + d + '/' + y;
+    if (bookings.indexOf(currentDate.toString()) === -1) {
+      return [true];
+    }
+    else {
+      return [false, "", "Booked"]
+    }
+  }
+
+})
+;
+$(document).ready(function() {
+
+})
+;
+$(document).ready(function() {
+  $('#location-pill').click('on', function() {
+    $('#businesses').addClass('hide-me');
+    $('#locations').removeClass('hide-me');
+  });
+
+  $('#business-pill').click('on', function() {
+    $('#businesses').removeClass('hide-me');
+    $('#locations').addClass('hide-me');
+  });
+});
+$(document).ready(function() {
+  $(function() {
+    $( '#slider-range' ).slider({
+      range: true,
+      min: 40,
+      max: 150,
+      values: [ 40, 150 ],
+      slide: function( event, ui ) {
+        $('#amount').val("$" + ui.values[0] + " - $" + ui.values[ 1 ] );
+        showAvailable(ui.values);
+      }
+    });
+    $('#amount').val("$" + $('#slider-range').slider( 'values', 0 ) + 
+      " - $" + $('#slider-range').slider( 'values', 1 ) );
+  });
+
+  let $items = $('.item')
+  let slug = window.location.pathname
+  let _items
+  let _values
+  $.getJSON(`/api/v1${slug}.json`, 
+    (response) => { start(response) })
+
+  function start(response) {
+    _items = response
+    _values = $('#slider-range').slider('values');
+  }
+
+  function showAvailable(values) {
+    _items.forEach(( item, index ) => {
+      if ( values[1] < item.price_per_guest || values[0] > item.price_per_guest ) {
+        let $item = $items[index]
+        $($item).fadeOut(500);
+      }
+      else if ( values[1] > item.price_per_guest || values[0] < item.price_per_guest ) {
+        let $item = $items[index]
+        $($item).fadeIn(500);
+      }
+    });
+  }
 });
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
