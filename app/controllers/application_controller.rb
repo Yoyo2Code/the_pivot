@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
 
   # before_action :require_admin
 
-  def require_admin
-    render file: "/public/404" unless current_admin?
-  end
+  # def require_admin
+  #   render file: "/public/404" unless current_admin?
+  # end
 
   def require_user
     render file: "/public/404" unless current_user && current_user.id == params[:id].to_i if params[:id]
