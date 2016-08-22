@@ -4,9 +4,8 @@ RSpec.describe 'User can make a reservation', type: :feature do
   scenario 'they click checkout in the cart and the reservation is made' do
     user = create(:user)
     business = create(:business)
-    location = create(:location) do |loc|
-      loc.properties.create(attributes_for(:property, business_id: business.id))
-    end
+    location = create(:location)
+    create(:property, business: business, location: location)
     property = location.properties.first
 
     visit login_path
