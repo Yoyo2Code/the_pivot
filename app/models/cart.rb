@@ -22,11 +22,12 @@ class Cart
 
   def find_items
     contents.map do |id, data|
-      CartItem.new(id,
+      CartItem.new(
+                   id,
                    data["occupancy"],
                    data["starting_date"],
                    data["end_date"]
-                   )
+                  )
     end
   end
 
