@@ -3,8 +3,7 @@ class OrdersController < ApplicationController
   # skip_before_action :require_user, only: [:show, :destroy]
 
   def index
-    # @orders = current_user.orders
-    @orders = Order.all
+    @orders = current_user.orders
   end
 
   def create
@@ -13,8 +12,9 @@ class OrdersController < ApplicationController
       order.reservations.create(property_id: property.id,
                                 price: property.subtotal,
                                 number_of_guests: property.occupancy,
-                                starting_date: property.starting_date,
-                                end_date: property.end_date)
+                                starting_date: DateTime.strptime(property.starting_date, "%m/%d/%Y"),
+                                end_date: DateTime.strptime(property.end_date, "%m/%d/%Y")
+                                )
     end
     @cart.contents.clear
     flash[:success] = "Your order has been placed!"
@@ -22,9 +22,8 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
     # @order_number = @_request.env["PATH_INFO"].split("/").last
-    # @order = current_user.orders.find(@order_number)
+    @order = current_user.orders.find(params[:id])
     # @order_total = order_total(@order)
   end
 

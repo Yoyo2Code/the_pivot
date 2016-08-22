@@ -1,5 +1,4 @@
-<h1>Order Details</h1>
-<h3>Order ID: <%= @order.id %></h3>
+<h1>Order #<%= @order.id %> Details</h1>
 
 <h1 style="color: white"> Order <%= @order_number %> </h1><br>
 <% unless @order.status == "cancelled" %>
@@ -8,33 +7,31 @@
 
   <% @order.reservations.each do |reservation| %>
   <table class="table table-bordered">
+    <h5>Status: <%= @order.status %></h5>
+    <h5>Order Submitted On: <%= @order.created_at.strftime("%A, %d %b %Y %l:%M") %></h5>
+    <h5>Order Updated On: <%= @order.updated_at.strftime("%A, %d %b %Y %l:%M") %></h5>
   <thead>
     <tr>
-      <th>Item Name</th>
-      <th>Item Quantity</th>
-      <th>Item Price</th>
-      <th>Time Order Was Submitted</th>
-      <th>Order Status</th>
-      <th>Time Completed or Canceled</th>
-      <!-- <th>Problem?</th> -->
+      <th>Name</th>
+      <th>Description</th>
+      <th>Total Guests</th>
+      <th>Check-In</th>
+      <th>Check-Out</th>
+      <th>Total Cost</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row"> <%= link_to reservation.title, item_path(reservation) %></th>
-      <td><%= reservation.quantity %></td>
+      <th scope="row"> <%= reservation.property.title %></th>
+      <td><%= reservation.property.description %></td>
+      <td><%= reservation.number_of_guests %></td>
+      <td><%= reservation.starting_date.strftime("%m/%d/%Y") %></td>
+      <td><%= reservation.end_date.strftime("%m/%d/%Y") %></td>
       <td><%= number_to_currency(reservation.price) %></td>
-      <td><%= reservation.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
-      <td><%= @order.status %></td>
-      <td><%= reservation.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
     </tr>
   </tbody>
 </table><br><br>
 </div>
-
   <% end %>
   <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="btn-group">
-      <span> Order Total:<%= number_to_currency(@order_total) %></span>
-    </div>
   </nav>

@@ -27,13 +27,14 @@ RSpec.describe 'User can make a reservation', type: :feature do
     click_on "Book Me"
     click_button 'Complete My Booking'
 
-    expect(current_path).to eq order_path(Order.last)
+    order = Order.last
+
+    expect(current_path).to eq order_path(order)
 
     within('.flash-success') do
       expect(page).to have_content "Your order has been placed!"
     end
 
-    expect(page).to have_content "Order Details"
-    expect(page).to have_content "Order ID: #{Order.last.id}"
+    expect(page).to have_content "Order ##{order.id} Details"
   end
 end

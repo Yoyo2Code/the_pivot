@@ -5,5 +5,6 @@ FactoryGirl.define do
     starting_date Time.now
     end_date Time.now.tomorrow
     property
+    order
   end
 end
