@@ -34,7 +34,9 @@ gem 'aws-sdk', '~> 2.3'
 gem 'responders'
 gem 'faker'
 gem 'rack_session_access', group: :test
-
+# gem 'browserify-rails'
+gem 'sprockets', '>= 3.0.0'
+gem 'sprockets-es6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
