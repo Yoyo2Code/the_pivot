@@ -4,5 +4,4 @@ class Order < ActiveRecord::Base
   has_many :properties, through: :reservations
 
   enum status: %w(ordered paid completed cancelled)
-
 end

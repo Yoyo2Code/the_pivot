@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819235119) do
+ActiveRecord::Schema.define(version: 20160821223035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "booked_dates", force: :cascade do |t|
+    t.integer "night_id"
+    t.integer "property_id"
+    t.index ["night_id"], name: "index_booked_dates_on_night_id", using: :btree
+    t.index ["property_id"], name: "index_booked_dates_on_property_id", using: :btree
+  end
 
   create_table "business_roles", force: :cascade do |t|
     t.integer "business_id"
@@ -37,9 +44,15 @@ ActiveRecord::Schema.define(version: 20160819235119) do
     t.string   "slug"
   end
 
+  create_table "nights", force: :cascade do |t|
+    t.datetime "date"
+  end
+
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "status",  default: 0
+    t.integer  "user_id"
+    t.integer  "status",     default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
@@ -84,6 +97,8 @@ ActiveRecord::Schema.define(version: 20160819235119) do
     t.string  "email"
   end
 
+  add_foreign_key "booked_dates", "nights"
+  add_foreign_key "booked_dates", "properties"
   add_foreign_key "business_roles", "businesses"
   add_foreign_key "business_roles", "roles"
   add_foreign_key "orders", "users"

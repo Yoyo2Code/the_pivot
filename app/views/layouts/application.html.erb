@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cyborgism: This aint your daddy's ism</title>
+    <title>Stay and Play</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -16,7 +16,7 @@
     <nav class="navbar navbar-default">
       <div class="container">
         <navbar class="navbar-nav navbar-right">
-          <span><%= link_to "Cart Items", cart_index_path %>: <%= @cart.total %><br></span>
+          <span><%= link_to "Cart Items", cart_path %>: <%= @cart.total %><br></span>
           <!--<%# if current_user %>
             <%#= form_tag orders_path do %>
               <article>
