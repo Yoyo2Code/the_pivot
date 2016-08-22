@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
 
   # def require_admin
   #   render file: "/public/404" unless current_admin?
+  # # end
+  #
+  # def require_user
+  #   render file: "/public/404" unless current_user && current_user.id == params[:id].to_i if params[:id]
   # end
-
-  def require_user
-    render file: "/public/404" unless current_user && current_user.id == params[:id].to_i if params[:id]
-  end
 
   def set_cart
     @cart = Cart.new(session[:cart])
