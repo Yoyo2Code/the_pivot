@@ -39,6 +39,6 @@ class OrdersController < ApplicationController
   def destroy
     @order = current_user.orders.find(params[:id])
     @order.update(status: "cancelled")
-    redirect_to order_path
+    redirect_to order_path(@order)
   end
 end

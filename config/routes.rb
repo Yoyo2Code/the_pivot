@@ -15,8 +15,6 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:create, :index, :show, :destroy]
 
-  # get '/orders/:id', to: 'orders#show', as: 'orders'
-
   get '/dashboard', to: 'users#show', as: 'dashboard'
 
   delete '/logout', to: 'sessions#destroy', as: 'logout'

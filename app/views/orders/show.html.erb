@@ -2,7 +2,7 @@
 
 <h1 style="color: white"> Order <%= @order_number %> </h1><br>
 <% unless @order.status == "cancelled" %>
-  <button class"btn btn-default"><%= link_to "Cancel Order", order_path(@order), method: :delete %></button><br>
+  <button id='cancel-order' class"btn btn-default"><%= link_to "Cancel Order", order_path(@order), method: :delete %></button><br>
 <% end %>
 
   <% @order.reservations.each do |reservation| %>
