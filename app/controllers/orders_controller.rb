@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_admin
-  skip_before_action :require_user, only: [:show, :destroy]
+  # skip_before_action :require_admin
+  # skip_before_action :require_user, only: [:show, :destroy]
 
   def index
     @orders = current_user.orders
@@ -8,18 +8,24 @@ class OrdersController < ApplicationController
 
   def create
     order = current_user.orders.create
-    @cart.find_items.each do |item|
-      order.order_items.create(item_id: item.id, title: item.title, quantity: @cart.contents[item.id.to_s], price: item.price)
+    @cart.find_items.each do |property|
+      order.reservations.create(
+                                property_id: property.id,
+                                price: property.subtotal,
+                                number_of_guests: property.occupancy,
+                                starting_date: DateTime.strptime(property.starting_date, "%m/%d/%Y"),
+                                end_date: DateTime.strptime(property.end_date, "%m/%d/%Y")
+                               )
     end
     @cart.contents.clear
-    flash[:notice] = "Order Successfully Placed!"
-    redirect_to orders_path
+    flash[:success] = "Your order has been placed!"
+    redirect_to order_path(order)
   end
 
   def show
-    @order_number = @_request.env["PATH_INFO"].split("/").last
-    @order = current_user.orders.find(@order_number)
-    @order_total = order_total(@order)
+    # @order_number = @_request.env["PATH_INFO"].split("/").last
+    @order = current_user.orders.find(params[:id])
+    # @order_total = order_total(@order)
   end
 
   def order_total(order)
@@ -34,8 +40,6 @@ class OrdersController < ApplicationController
   def destroy
     @order = current_user.orders.find(params[:id])
     @order.update(status: "cancelled")
-    redirect_to order_path
+    redirect_to order_path(@order)
   end
-
-
 end

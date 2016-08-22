@@ -47,7 +47,7 @@ RSpec.describe "Cart" do
     cart.add_item(params)
 
     expect(cart.contents).to eq(
-      property.id => {
+      property.id.to_s => {
         starting_date: "08/15/2016",
         end_date: "09/01/2016",
         occupancy: 2

@@ -2,12 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "visitor can see individual property page" do
   scenario "visitor sees property page" do
-    
     location = create(:location)
     business = create(:business)
-    property = create(:property,
-                      business: business,
-                      location: location)
+    property = create(:property, business: business, location: location)
 
     visit "/acme/#{property.id}"
 

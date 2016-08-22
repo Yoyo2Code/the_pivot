@@ -7,7 +7,7 @@ class Seed
   end
 
   def create_businesses
-    12.times do 
+    12.times do
       Business.create!(name: Faker::Company.name, image_url: "https://robohash.org/#{rand(10)}")
     end
     create_locations
@@ -20,6 +20,7 @@ class Seed
     Location.create!(city: 'Los Angeles')
     Location.create!(city: 'Chicago')
     Location.create!(city: 'Dallas')
+    add_properties_to_businesses
   end
 
   def add_properties_to_businesses
@@ -29,34 +30,36 @@ class Seed
   end
 
   def add_properties(business)
-    6.times do
+    6.times do |t|
       business.properties.create!(
-        title: Faker::Book.title + "##{rand(100)}",
-        description: Faker::Lorem.paragraph,
+        title: Faker::Book.title + "##{rand(1000)}",
+        description: Faker::Lorem.paragraph(4),
         price_per_guest: Faker::Commerce.price,
         max_occupancy: rand(10),
-        image_path: 'http://i.dailymail.co.uk/i/pix/2015/07/09/14/2A6072FF00000578-3154851-image-a-1_1436449347511.jpg'
+        image_path: 'http://i.dailymail.co.uk/i/pix/2015/07/09/14/2A6072FF00000578-3154851-image-a-1_1436449347511.jpg',
+        location: Location.all[t]
       )
     end
   end
 
-  def add_properties_to_locations
-    seed_properties = Property.all.to_a
-    Location.all.each do |location|
-      12.times do
-        location.properties << seed_properties.shift
-      end
+  def add_nights
+    from = Time.now
+    to = Time.new('2017/1/1')
+    until from >= to
+      Night.create!(date: (from += 1.day))
     end
   end
 
   def seed_users
-    User.create!(username: 'Yoseph', password: 'password')
-    User.first.orders.create!
-    User.first.orders.first.reservations.create!(starting_date: DateTime.new(2016, 8, 22), end_date: DateTime.new(2016, 8, 30), number_of_guests: 2, price: 1500, property_id: Property.first.id)
+    u1 = User.create!(username: 'Yoseph', password: 'password')
+    u2 = User.create!(username: 'Pat', password: 'password')
+    u1.orders.create!
+    u2.orders.create!
+    u1.orders.first.reservations.create!(starting_date: Night.all[1].date, end_date: Night.all[5].date, number_of_guests: 2, price: 1500, property_id: Property.first.id)
+    u2.orders.first.reservations.create!(starting_date: Night.all[10].date, end_date: Night.all[13].date, number_of_guests: 2, price: 1500, property_id: Property.first.id)
   end
 end
 seeder = Seed.new
 seeder.seed
-seeder.add_properties_to_businesses
-seeder.add_properties_to_locations
+seeder.add_nights
 seeder.seed_users

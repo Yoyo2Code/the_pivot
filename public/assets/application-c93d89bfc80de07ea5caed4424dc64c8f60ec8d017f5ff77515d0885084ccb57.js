@@ -29466,21 +29466,47 @@ return $.widget( "ui.tooltip", {
 
 }).call(this);
 $(document).ready(function() {
-  let startDate 
+
+  // function saveResponse(response) {
+  //   bookings = response
+  // }
+
   $( function() {
     $('#datepicker1').datepicker({
+      beforeShowDay: checkAvailability,
+      minDate: 0,
       onSelect: function(dateText, inst) {
-        console.log(dateText);
       }
     });
+  });
 
+  $( function() {
     $('#datepicker2').datepicker({
+      beforeShowDay: checkAvailability,
+      minDate: 0,
       onSelect: function(dateText, inst) {
-        console.log(dateText);
       }
     })
   });
 
+  let prop_id = window.location.pathname.slice(-1)
+  let bookings 
+  $.getJSON(`/api/v1/properties/${prop_id}`,
+            (response) => { bookings = response })
+
+  function checkAvailability(date) {
+    let y = date.getFullYear();
+    let m = date.getMonth();
+    let d = date.getDate();
+    let currentDate = (m + 1) + '/' + d + '/' + y;
+    if (bookings.indexOf(currentDate.toString()) === -1) {
+      return [true];
+    }
+    else {
+      return [false, "", "Booked"]
+    }
+  }
+
 })
 ;
 $(document).ready(function() {
@@ -29488,12 +29514,23 @@ $(document).ready(function() {
 })
 ;
 $(document).ready(function() {
+  $('#location-pill').click('on', function() {
+    $('#businesses').addClass('hide-me');
+    $('#locations').removeClass('hide-me');
+  });
+
+  $('#business-pill').click('on', function() {
+    $('#businesses').removeClass('hide-me');
+    $('#locations').addClass('hide-me');
+  });
+});
+$(document).ready(function() {
   $(function() {
     $( '#slider-range' ).slider({
       range: true,
-      min: 2500,
-      max: 20000,
-      values: [ 2500, 10000 ],
+      min: 40,
+      max: 150,
+      values: [ 40, 150 ],
       slide: function( event, ui ) {
         $('#amount').val("$" + ui.values[0] + " - $" + ui.values[ 1 ] );
         showAvailable(ui.values);
