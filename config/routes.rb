@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/:business_name', to: 'properties#index', as: "properties"
       get '/location/:city', to: 'location/properties#index', as: "city"
+      get '/properties/:property_id', to: 'properties#show'
     end
   end
 

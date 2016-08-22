@@ -1,17 +1,43 @@
 $(document).ready(function() {
-  let startDate 
+
+  // function saveResponse(response) {
+  //   bookings = response
+  // }
+
   $( function() {
     $('#datepicker1').datepicker({
+      beforeShowDay: checkAvailability,
+      minDate: 0,
       onSelect: function(dateText, inst) {
-        console.log(dateText);
       }
     });
+  });
 
+  $( function() {
     $('#datepicker2').datepicker({
+      beforeShowDay: checkAvailability,
+      minDate: 0,
       onSelect: function(dateText, inst) {
-        console.log(dateText);
       }
     })
   });
+
+  let prop_id = window.location.pathname.slice(-1)
+  let bookings 
+  $.getJSON(`/api/v1/properties/${prop_id}`,
+            (response) => { bookings = response })
+
+  function checkAvailability(date) {
+    let y = date.getFullYear();
+    let m = date.getMonth();
+    let d = date.getDate();
+    let currentDate = (m + 1) + '/' + d + '/' + y;
+    if (bookings.indexOf(currentDate.toString()) === -1) {
+      return [true];
+    }
+    else {
+      return [false, "", "Booked"]
+    }
+  }
 
 })
