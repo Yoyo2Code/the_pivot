@@ -20,7 +20,7 @@ RSpec.feature "Business admin can update their properties" do
       click_on "Edit Property"
     end
 
-    expect(current_path).to eq edit_property_path(property, business_name: business_name)
+    expect(current_path).to eq admin_edit_property_path(property, business_name: business_name)
   end
 
   scenario "they can edit a property and save those changes" do
@@ -52,5 +52,7 @@ RSpec.feature "Business admin can update their properties" do
     end
 
     expect(current_path).to eq property_path(property, business_name: property.business.slug)
+    expect(page).to have_content "Turing"
+    expect(page).to have_content("Sleep and code")
   end
 end

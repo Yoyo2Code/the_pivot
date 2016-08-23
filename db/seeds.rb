@@ -3,12 +3,15 @@ class Seed
     Property.destroy_all
     Location.destroy_all
     Business.destroy_all
-    create_businesses
+    user = create_user
+    create_businesses(user)
   end
 
-  def create_businesses
+  def create_businesses(user)
     12.times do
-      Business.create!(name: Faker::Company.name, image_url: "https://robohash.org/#{rand(10)}")
+      Business.create!(name: Faker::Company.name,
+                       image_url: "https://robohash.org/#{rand(10)}",
+                       user: user)
     end
     create_locations
   end
@@ -48,6 +51,10 @@ class Seed
     until from >= to
       Night.create!(date: (from += 1.day))
     end
+  end
+
+  def create_user
+    User.create!(username: 'David', password: 'password', role: 1)
   end
 
   def seed_users

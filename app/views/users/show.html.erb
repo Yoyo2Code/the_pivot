@@ -2,9 +2,9 @@
 
 <%= link_to 'Open a Business', new_business_path %>
 <br>
-<%= link_to "Edit My Business", edit_business_path(current_user.business) if current_business_admin? %>
+<%= link_to "Edit My Business", edit_admin_business_path(current_user.business) if current_admin? && current_user.business %>
 <br>
-<%= link_to "My Properties", properties_path(business_name: current_user.business.slug) if current_business_admin? %>
+<%= link_to "My Properties", properties_path(business_name: current_user.business.slug) if current_admin? && current_user.business %>
 <br>
 <%= link_to 'Edit Account Information', edit_user_path(current_user) %>
 <br>

@@ -1,6 +1,6 @@
 <h1>Edit Property</h1>
 <div class="form-group">
-  <%= form_for @property do |f| %>
+  <%= form_for @property, url: admin_update_property_path, method: :patch do |f| %>
     <%= f.label :title %><br>
     <%= f.text_field :title, placeholder: "Title" %>
     <%= f.label :description %><br>
