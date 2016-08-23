@@ -9,7 +9,7 @@ class Seed
     create_businesses
   end
 
-  def create_businesses
+  def create_businesses(user)
     12.times do
       Business.create!(name: Faker::Company.name,
                        image_url: "https://robohash.org/#{rand(10)}",
