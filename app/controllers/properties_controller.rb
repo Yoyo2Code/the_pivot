@@ -12,36 +12,36 @@ class PropertiesController < ApplicationController
     @property = Property.find(params[:id])
   end
 
-  def new
-    @item = Item.new
-  end
+  # def new
+  #   @item = Item.new
+  # end
 
-  def create
-    location = Location.find_or_create_by(title: params[:item][:location].downcase)
-    item = location.items.create(item_params)
-    if item.save
-      redirect_to item_path(item)
-    else
-      render :new
-    end
-  end
+  # def create
+  #   location = Location.find_or_create_by(title: params[:item][:location].downcase)
+  #   item = location.items.create(item_params)
+  #   if item.save
+  #     redirect_to item_path(item)
+  #   else
+  #     render :new
+  #   end
+  # end
 
   def edit
-    @item = Item.find(params[:id])
+    @property = Property.find(params[:id])
   end
 
-  def update
-    item = Item.find(params[:id])
-    if item.update(item_params)
-      redirect_to item_path(item)
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   item = Item.find(params[:id])
+  #   if item.update(item_params)
+  #     redirect_to item_path(item)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   private
 
-  def item_params
-    params.require(:item).permit(:title, :description, :price, :image_path)
-  end
+  # def item_params
+  #   params.require(:item).permit(:title, :description, :price, :image_path)
+  # end
 end

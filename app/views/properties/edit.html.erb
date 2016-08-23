@@ -1,10 +1,10 @@
-<%= form_for(@item, html: {multipart: true}) do |f| %>
+<%= form_for(@property, html: {multipart: true}) do |f| %>
   <p style="color: white"><%= f.label :title, "Title" %></p>
   <%= f.text_field :title, placeholder: "Title" %><br><br>
   <p style="color: white"><%= f.label :description, "Description" %></p>
   <%= f.text_area :description, placeholder: "Description" %><br><br>
-  <p style="color: white"><%= f.label :price, "Price" %></p>
-  <%= f.number_field :price, placeholder: "Price" %><br><br>
+  <p style="color: white"><%= f.label :price_per_guest, "Price Per Guest" %></p>
+  <%= f.number_field :price, placeholder: "Price Per Guest" %><br><br>
   <p style="color: white"><%= f.label :location, "Location" %></p>
   <%= f.text_field :location, value: @item.location.title.capitalize, placeholder: "Location" %><br><br>
   <p style="color: white"><%= f.label :image, "Attach an Image" %></p>

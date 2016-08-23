@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get '/properties/:property_id', to: 'properties#show'
     end
   end
+  get '/:business_name/edit/:id', to: "properties#edit", as: "edit_property"
 
   get '/:business_name/:id', to: "properties#show", as: "property"
 
