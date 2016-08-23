@@ -5,6 +5,8 @@ class Business < ApplicationRecord
   has_many :roles, through: :business_roles
   validates :name, presence: true, uniqueness: true
   validates :slug, presence: true
+  validates :status, presence: true
+  enum status: %w[pending active inactive]
 
   private
 
