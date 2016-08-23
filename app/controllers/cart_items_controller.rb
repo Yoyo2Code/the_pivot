@@ -11,7 +11,6 @@ class CartItemsController < ApplicationController
 
   def destroy
     # property  = Property.find(params[:id])
-    # require 'pry'; binding.pry
     @cart.delete_item(params[:id])
     flash[:success] = "Successfully removed"
     # flash[:notice] = "Successfully removed #{view_context.link_to(property.title,

@@ -11,4 +11,8 @@ module ApplicationHelper
       sanitize(%Q[Location: <a href="/location/#{property.location.slug}">#{property.location.city}</a>])
     end
   end
+
+  def owns_property?(property)
+    property.business.user == current_user
+  end
 end
