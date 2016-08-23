@@ -79,15 +79,9 @@ RSpec.describe "Cart" do
   end
 
   it "should be able to find items" do
-    # user = create(:user)
     business = create(:business)
     location = create(:location)
-    # name: ,
-    # slug: ,
-    # image_url: ,
-    # status: ,
-    # user_id: ,
-    # )
+
     property = location.properties.create!(
       title: "Denver Tower",
       description: "Cool looking thing",
@@ -98,25 +92,36 @@ RSpec.describe "Cart" do
       location_id: location.id,
       business_id: business.id
       )
-    cart = Cart.new(property.id.to_s => { :starting_date=>"08/15/2016",
-                                          :end_date=>"09/01/2016",
-                                          :occupancy=>2 })
+    cart = Cart.new(nil)
+    cart.add_item({ :property_id => property.id,
+                    :starting_date => "08/15/2016",
+                    :end_date => "09/01/2016",
+                    :occupancy => 2 })
 
     expect(cart.find_items.first).to eq(property)
   end
 
-  xit "should be able to compute total price" do
-    cat1 = Location.create!(title: "arms")
-    item = cat1.items.create!(
-      title: "Robot Arm",
-      description: "Cool ass arm",
-      price: 10_000.0,
-      image_path: 'http://img09.deviantart.net/588b/i/'\
-      '2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
+  it "should be able to compute total price" do
+    business = create(:business)
+    location = create(:location)
 
-    cart = Cart.new(item.id => 3)
+    property = location.properties.create!(
+      title: "Denver Tower",
+      description: "Cool looking thing",
+      price_per_guest: 10.00,
+      image_path: 'http://img09.deviantart.net/588b/i/2004'\
+      '/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg',
+      max_occupancy: 2,
+      location_id: location.id,
+      business_id: business.id
+      )
+    cart = Cart.new(nil)
+    cart.add_item({ :property_id => property.id,
+                    :starting_date => "08/15/2016",
+                    :end_date => "08/16/2016",
+                    :occupancy => 4 })
 
-    expect(cart.total_price).to eq(30_000.0)
+    expect(cart.total_price.to_f).to eq(40.00)
   end
 
   xit "delete an item" do

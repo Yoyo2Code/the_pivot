@@ -24,9 +24,9 @@ class Cart
     contents.map do |id, data|
       CartItem.new(
                    id,
-                   data["occupancy"],
-                   data["starting_date"],
-                   data["end_date"]
+                   data[:occupancy],
+                   data[:starting_date],
+                   data[:end_date]
                   )
     end
   end
