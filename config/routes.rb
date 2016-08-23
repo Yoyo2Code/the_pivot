@@ -33,6 +33,13 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :businesses, only: [:edit, :update]
+    get '/:business_name/edit/:id', to: "properties#edit", as: "edit_property"
+    patch '/:business_name/:id', to: "properties#update", as: "update_property"
+  end
+
+
   get '/:business_name/:id', to: "properties#show", as: "property"
 
   get '/:business_name', to: 'properties#index', as: "properties"

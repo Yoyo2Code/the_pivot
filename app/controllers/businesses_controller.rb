@@ -5,8 +5,7 @@ class BusinessesController < ApplicationController
 
   def create
     business = Business.new(business_params)
-    business.update(user_id: current_user.id)
-    if business.save!
+    if business.update(user_id: current_user.id)
       flash[:success] = 'Your business application has been submitted!'\
       'We will be getting back to you shortly.'
       redirect_to dashboard_path
@@ -19,21 +18,21 @@ class BusinessesController < ApplicationController
   def show
     @business = Business.find_by(slug: params[:id])
   end
-
-  def edit
-    @business = Business.find(params[:id])
-  end
-
-  def update
-    business = Business.find(params[:id])
-    if business.update(business_params)
-      flash[:success] = "Business Successfully Updated!"
-      redirect_to dashboard_path
-    else
-      flash[:failure] = "Something went wrong! Please try again."
-      render :edit
-    end
-  end
+  #
+  # def edit
+  #   @business = Business.find(params[:id])
+  # end
+  #
+  # def update
+  #   business = Business.find(params[:id])
+  #   if business.update(business_params)
+  #     flash[:success] = "Business Successfully Updated!"
+  #     redirect_to dashboard_path
+  #   else
+  #     flash[:failure] = "Something went wrong! Please try again."
+  #     render :edit
+  #   end
+  # end
 
   private
 

@@ -19,14 +19,14 @@ class OrdersController < ApplicationController
     # @order_total = order_total(@order)
   end
 
-  def order_total(order)
-    prices = order.order_items.pluck(:price)
-    quantities = order.order_items.pluck(:quantity)
-
-    prices.map do |price|
-      quantities[prices.index(price)] * price
-    end.sum.to_f
-  end
+  # def order_total(order)
+  #   prices = order.order_items.pluck(:price)
+  #   quantities = order.order_items.pluck(:quantity)
+  #
+  #   prices.map do |price|
+  #     quantities[prices.index(price)] * price
+  #   end.sum.to_f
+  # end
 
   def destroy
     @order = current_user.orders.find(params[:id])
