@@ -1,17 +1,19 @@
 class Seed
   def seed
+    Reservation.destroy_all
+    Order.destroy_all
     Property.destroy_all
     Location.destroy_all
     Business.destroy_all
-    user = create_user
-    create_businesses(user)
+    User.destroy_all
+    create_businesses
   end
 
-  def create_businesses(user)
+  def create_businesses
     12.times do
       Business.create!(name: Faker::Company.name,
                        image_url: "https://robohash.org/#{rand(10)}",
-                       user: user)
+                       user: create_user)
     end
     create_locations
   end
@@ -54,7 +56,9 @@ class Seed
   end
 
   def create_user
-    User.create!(username: 'David', password: 'password', role: 1)
+    User.create!(username: Faker::Name.first_name,
+                 password: 'password',
+                 role: rand(3))
   end
 
   def seed_users

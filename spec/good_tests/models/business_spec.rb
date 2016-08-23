@@ -6,10 +6,7 @@ RSpec.describe Business, type: :model do
     it { should validate_presence_of(:slug) }
     it { should validate_uniqueness_of(:name) }
     it { should validate_presence_of(:status) }
-  end
-
-  context 'enum' do
-    it { should define_enum_for(:status) }
+    it { should validate_presence_of(:user) }
   end
 
   context 'enum' do
