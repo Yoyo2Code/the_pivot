@@ -7,16 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = current_user.orders.create
-    @cart.find_items.each do |property|
-      order.reservations.create(
-                                property_id: property.id,
-                                price: property.subtotal,
-                                number_of_guests: property.occupancy,
-                                starting_date: DateTime.strptime(property.starting_date, "%m/%d/%Y"),
-                                end_date: DateTime.strptime(property.end_date, "%m/%d/%Y")
-                               )
-    end
+    order = CartManager.new(user: current_user, cart: @cart).process_order
     @cart.contents.clear
     flash[:success] = "Your order has been placed!"
     redirect_to order_path(order)
