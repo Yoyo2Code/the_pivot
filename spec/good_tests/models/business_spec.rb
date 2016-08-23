@@ -11,4 +11,8 @@ RSpec.describe Business, type: :model do
   context 'enum' do
     it { should define_enum_for(:status) }
   end
+
+  context 'enum' do
+    it { should define_enum_for(:status) }
+  end
 end
