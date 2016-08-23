@@ -5,8 +5,8 @@ class BusinessesController < ApplicationController
 
   def create
     business = Business.new(business_params)
+    business.update(user_id: current_user.id)
     if business.save!
-      RoleDelegator.new(business).assign_role('pending')
       flash[:success] = 'Your business application has been submitted!'\
                         'We will be getting back to you shortly.'
       redirect_to dashboard_path
@@ -19,6 +19,7 @@ class BusinessesController < ApplicationController
   def show
     @business = Business.find_by(slug: params[:id])
   end
+
   private
     def business_params
       params.require(:business).permit(:name)
