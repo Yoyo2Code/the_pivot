@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
                 :current_platform_admin?,
                 :current_admin?
 
+
   before_action :set_cart
 
   # before_action :require_user
@@ -38,5 +39,6 @@ class ApplicationController < ActionController::Base
 
   def current_admin?
     current_user && (current_user.business_admin? || current_user.platform_admin?)
+
   end
 end
