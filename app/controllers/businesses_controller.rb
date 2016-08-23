@@ -5,6 +5,7 @@ class BusinessesController < ApplicationController
 
   def create
     business = Business.new(business_params)
+    business.update(user_id: current_user.id)
     if business.save!
       flash[:success] = 'Your business application has been submitted!'\
                         'We will be getting back to you shortly.'
@@ -18,6 +19,7 @@ class BusinessesController < ApplicationController
   def show
     @business = Business.find_by(slug: params[:id])
   end
+
   private
     def business_params
       params.require(:business).permit(:name)

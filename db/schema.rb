@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822213407) do
+ActiveRecord::Schema.define(version: 20160823000527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20160822213407) do
     t.string   "slug"
     t.text     "image_url"
     t.integer  "status",     default: 0
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_businesses_on_user_id", using: :btree
   end
 
   create_table "locations", force: :cascade do |t|
@@ -89,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160822213407) do
 
   add_foreign_key "booked_dates", "nights"
   add_foreign_key "booked_dates", "properties"
+  add_foreign_key "businesses", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "properties", "businesses"
   add_foreign_key "properties", "locations"

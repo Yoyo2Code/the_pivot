@@ -4,6 +4,7 @@ class Business < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :slug, presence: true
   validates :status, presence: true
+  belongs_to :user
   enum status: %w[pending active inactive]
 
   private

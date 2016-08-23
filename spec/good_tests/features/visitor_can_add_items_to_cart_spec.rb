@@ -89,8 +89,10 @@ RSpec.feature "User sees items" do
 
   scenario "a visitor can add multiple items to their cart from different businesses" do
     Cart.new(nil)
-    business = create(:business)
-    business2 = create(:business, name: "The Waldorf")
+    user = create(:user)
+    user2 = create(:user, username: "Jason")
+    business = create(:business, user: user)
+    business2 = create(:business, name: "The Waldorf", user: user2)
     location = create(:location) do |loc|
       loc.properties.create(attributes_for(:property, business_id: business.id))
       loc.properties.create(attributes_for(:property, business_id: business2.id, price_per_guest: 3000.0, max_occupancy: 6, title: "The Waldorf", description: "Nice rooms"))

@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature "User can cancel an order" do
-  scenario "they click cancel and see that the order is canceled" do
+  scenario "they click cancel and see that the order is cancelled" do
     user = create(:user)
-    business = create(:business)
+    business = create(:business, user: user)
     location = create(:location) do |loc|
       loc.properties.create(attributes_for(:property, business_id: business.id))
     end
