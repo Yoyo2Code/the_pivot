@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/cart', to: "cart#index", as: 'cart'
 
   resources :cart_items, only: [:create]
-  resources :businesses, only: [:new, :create]
+  resources :businesses, only: [:new, :create, :edit, :update]
 
   delete "/cart_items", to: 'cart_items#destroy'
 
@@ -36,7 +36,6 @@ Rails.application.routes.draw do
   get '/:business_name/:id', to: "properties#show", as: "property"
 
   get '/:business_name', to: 'properties#index', as: "properties"
-
 
   #   # resources :items
   #   resources :users, only: [:new, :create, :show]
