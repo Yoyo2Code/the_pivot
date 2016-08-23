@@ -32,8 +32,7 @@ class PropertiesController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-    item.update(item_params)
-    if item.save
+    if item.update(item_params)
       redirect_to item_path(item)
     else
       render :edit
@@ -45,5 +44,4 @@ class PropertiesController < ApplicationController
   def item_params
     params.require(:item).permit(:title, :description, :price, :image_path)
   end
-
 end
