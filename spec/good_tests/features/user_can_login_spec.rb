@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Visitor can login" do
+RSpec.feature "User can login" do
   scenario "they see a logout link after logging in" do
     user = create(:user)
 
@@ -15,5 +15,6 @@ RSpec.feature "Visitor can login" do
 
     expect(page).to have_link("Logout")
     expect(page).not_to have_link("Login")
+    expect(page).to have_content("Welcome, #{user.username}")
   end
 end

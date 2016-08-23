@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  has_one :business
   has_many :orders
 
   enum role: %w(default business_admin platform_admin)
