@@ -2,8 +2,9 @@ require "rails_helper"
 
 RSpec.describe "CartItem" do
   it "initializes with property, start date, end date, and occupancy" do
-    location = Location.create!(city: "Denver")
-    business = Business.create!(name: "Acme")
+    user = create(:user)
+    location = create(:location)
+    business = create(:business, user: user)
     property = location.properties.create!(
       title: "Tiny House",
       description: "It's really small",
@@ -29,8 +30,9 @@ RSpec.describe "CartItem" do
   end
 
   it "can calculate subtotal" do
-    location = Location.create!(city: "Denver")
-    business = Business.create!(name: "Acme")
+    user = create(:user)
+    location = create(:location)
+    business = create(:business, user: user)
     property = location.properties.create!(
       title: "Tiny House",
       description: "It's really small",

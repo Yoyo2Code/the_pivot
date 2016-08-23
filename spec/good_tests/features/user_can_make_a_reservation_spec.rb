@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'User can make a reservation', type: :feature do
   scenario 'they click checkout in the cart and the reservation is made' do
     user = create(:user)
-    business = create(:business)
+    business = create(:business, user: user)
     location = create(:location)
     create(:property, business: business, location: location)
     property = location.properties.first

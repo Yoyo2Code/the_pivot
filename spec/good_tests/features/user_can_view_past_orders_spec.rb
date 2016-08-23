@@ -18,7 +18,7 @@ RSpec.describe "User can see view past orders", type: :feature do
 
   scenario "they can see an individual past order" do
     user = create(:user)
-    business = create(:business)
+    business = create(:business, user: user)
     location = create(:location) do |loc|
       loc.properties.create(attributes_for(:property, business_id: business.id))
     end
