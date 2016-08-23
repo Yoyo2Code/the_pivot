@@ -30,18 +30,19 @@ class PropertiesController < ApplicationController
     @property = Property.find(params[:id])
   end
 
-  # def update
-  #   item = Item.find(params[:id])
-  #   if item.update(item_params)
-  #     redirect_to item_path(item)
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+    property = current_user.business.properties.find(params[:id])
+    if property.update(property_params)
+      flash[:success] = "Property successfully updated!"
+      redirect_to property_path(property, business_name: property.business.slug)
+    else
+      render :edit
+    end
+  end
 
   private
 
-  # def item_params
-  #   params.require(:item).permit(:title, :description, :price, :image_path)
-  # end
+  def property_params
+    params.require(:property).permit(:title, :description, :price_per_guest, :max_occupancy, :image_path)
+  end
 end

@@ -5,8 +5,7 @@ class BusinessesController < ApplicationController
 
   def create
     business = Business.new(business_params)
-    business.update(user_id: current_user.id)
-    if business.save!
+    if business.update(user_id: current_user.id)
       flash[:success] = 'Your business application has been submitted!'\
       'We will be getting back to you shortly.'
       redirect_to dashboard_path

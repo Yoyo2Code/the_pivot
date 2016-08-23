@@ -34,19 +34,23 @@ RSpec.feature "Business admin can update their properties" do
     visit dashboard_path
 
     click_on "My Properties"
-    click_button "Edit"
+
+    within('#edit-property') do
+      click_on "Edit Property"
+    end
 
     fill_in "Title", with: "Turing"
     fill_in "Description", with: "Sleep and code"
     fill_in "Price Per Guest", with: 80
     fill_in "Max Occupancy", with: 6
-    fill_in "Image", with: "http://people.turing.io/assets/students/dj_greenfield-572acd74ca15fcc9eff531f092d5e234.jpg"
+    fill_in "Image Url", with: "http://people.turing.io/assets/students/dj_greenfield-572acd74ca15fcc9eff531f092d5e234.jpg"
 
     click_on "Save Changes"
 
     within('.flash-success') do
-      expect(page).to have_content "Property Successfully Updated!"
+      expect(page).to have_content "Property successfully updated!"
     end
-    expect(current_path).to eq dashboard_path
+
+    expect(current_path).to eq property_path(property, business_name: property.business.slug)
   end
 end

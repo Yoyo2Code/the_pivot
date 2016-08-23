@@ -10,6 +10,17 @@
     <h4>Location: <%= @property.location.city %></h4>
   </div>
 
+ <%#= form_for @cart_item do |f| %>
+ <%# f.hidden_field :property_id, @property.id %>
+ <%#= f.label "Occupancy" %>
+ <%#= f.select :occupancy, options_for_select([*1..@property.max_occupancy]) %>
+ <%#= f.label "Starting Date" %>
+ <%#= f.text_field :starting_date, Time.now.strftime("%m/%d/%Y"), id: "datepicker1" %>
+ <%#= f.label "End Date" %>
+ <%#= f.text_field :end_date, Time.now.tomorrow.strftime("%m/%d/%Y"), id: "datepicker2" %>
+ <%#= f.submit "Book Me" %>
+ <%# end %>
+
   <%= form_tag("/cart_items", method: "post") do %>
   <%= hidden_field_tag :property_id, @property.id %>
   <%= select_tag :occupancy, options_for_select([*1..@property.max_occupancy]) %>

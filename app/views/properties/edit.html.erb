@@ -1,13 +1,16 @@
-<%= form_for(@property, html: {multipart: true}) do |f| %>
-  <p style="color: white"><%= f.label :title, "Title" %></p>
-  <%= f.text_field :title, placeholder: "Title" %><br><br>
-  <p style="color: white"><%= f.label :description, "Description" %></p>
-  <%= f.text_area :description, placeholder: "Description" %><br><br>
-  <p style="color: white"><%= f.label :price_per_guest, "Price Per Guest" %></p>
-  <%= f.number_field :price, placeholder: "Price Per Guest" %><br><br>
-  <p style="color: white"><%= f.label :location, "Location" %></p>
-  <%= f.text_field :location, value: @item.location.title.capitalize, placeholder: "Location" %><br><br>
-  <p style="color: white"><%= f.label :image, "Attach an Image" %></p>
-  <%= f.file_field :image %><br>
-  <%= f.submit "Edit Item" %>
-<% end %>
+<h1>Edit Property</h1>
+<div class="form-group">
+  <%= form_for @property do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title, placeholder: "Title" %>
+    <%= f.label :description %><br>
+    <%= f.text_area :description, placeholder: "Description" %>
+    <%= f.label :price_per_guest %><br>
+    <%= f.number_field :price_per_guest, placeholder: "Price Per Guest" %>
+    <%= f.label :max_occupancy %>
+    <%= f.number_field :max_occupancy, placeholder: "Max Occupancy" %>
+    <%= f.label :image_path %><br>
+    <%= f.text_field :image_path, placeholder: "Image Url" %>
+    <%= f.submit "Save Changes" %>
+  <% end %>
+</div>

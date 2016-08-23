@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   end
   get '/:business_name/edit/:id', to: "properties#edit", as: "edit_property"
 
+  patch '/:business_name/:id', to: "properties#update"
+
   get '/:business_name/:id', to: "properties#show", as: "property"
 
   get '/:business_name', to: 'properties#index', as: "properties"
