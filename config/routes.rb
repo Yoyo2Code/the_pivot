@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/cart', to: "cart#index", as: 'cart'
 
   resources :cart_items, only: [:create]
-  resources :businesses, only: [:new, :create]
+  resources :businesses, only: [:new, :create, :edit, :update]
 
   delete "/cart_items", to: 'cart_items#destroy'
 
@@ -33,10 +33,16 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :businesses, only: [:edit, :update]
+    get '/:business_name/edit/:id', to: "properties#edit", as: "edit_property"
+    patch '/:business_name/:id', to: "properties#update", as: "update_property"
+  end
+
+
   get '/:business_name/:id', to: "properties#show", as: "property"
 
   get '/:business_name', to: 'properties#index', as: "properties"
-
 
   #   # resources :items
   #   resources :users, only: [:new, :create, :show]

@@ -15,5 +15,6 @@ RSpec.feature "Visitor can login" do
 
     expect(page).to have_link("Logout")
     expect(page).not_to have_link("Login")
+    expect(page).to have_content("Welcome, #{user.username}")
   end
 end

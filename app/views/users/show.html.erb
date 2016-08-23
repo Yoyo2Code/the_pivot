@@ -1,13 +1,11 @@
-<nav class="navbar navbar-default">
-  <div class="navbar-header">
-    <a class="navbar-brand">Logged in as <%= current_user.username %></a>
-  </div>
-</nav>
+<h1 class="well text-center" id='user-dashboard'>Welcome, <%= current_user.username %></h1>
 
-<div class="container-fluid" id='user-dashboard'>
-  <p>
-    Username: <%= current_user.username %>
-  </p>
-</div>
 <%= link_to 'Open a Business', new_business_path %>
+<br>
+<%= link_to "Edit My Business", edit_admin_business_path(current_user.business) if current_admin? && current_user.business %>
+<br>
+<%= link_to "My Properties", properties_path(business_name: current_user.business.slug) if current_admin? && current_user.business %>
+<br>
 <%= link_to 'Edit Account Information', edit_user_path(current_user) %>
+<br>
+<%= link_to "View Past Orders", orders_path %>
