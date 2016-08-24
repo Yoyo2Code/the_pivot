@@ -22,6 +22,13 @@ class BusinessesController < ApplicationController
   def pending
     @businesses = Business.where(status: 'pending')
   end
+
+  def approve
+    business = Business.find(params[:id])
+    business.update(status: 'active')
+    flash[:success] = "Business successfully approved!"
+    redirect_to businesses_pending_path
+  end
   #
   # def edit
   #   @business = Business.find(params[:id])

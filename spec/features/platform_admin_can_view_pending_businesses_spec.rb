@@ -24,7 +24,7 @@ RSpec.describe 'Platform admin can view pending businesses', type: :feature do
     expect(page).to have_button "Deny"
   end
 
-  scenario "there are no pending businesses" do
+  scenario "there are no pending businesses and they see a message" do
     user = create(:user, username: "David", role: 2)
     page.set_rack_session(user_id: user.id)
 

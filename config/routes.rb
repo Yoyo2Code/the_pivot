@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   get '/cart', to: "cart#index", as: 'cart'
 
   resources :cart_items, only: [:create]
+
   resources :businesses, only: [:new, :create, :edit, :update]
 
   get '/businesses/pending', to: "businesses#pending"
+
+  post '/business/:id/status', to: "businesses#approve", as: 'approve_business'
 
   delete "/cart_items", to: 'cart_items#destroy'
 

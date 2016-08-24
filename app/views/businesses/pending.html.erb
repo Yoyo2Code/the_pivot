@@ -7,8 +7,7 @@
   <%= image_tag business.image_url %>
   <br>
   <br>
-    <%= form_for :business do |f| %>
-      <%= f.hidden_field :name, status: "active" %>
+    <%= form_for :business, url: approve_business_path(business) do |f| %>
       <%= f.submit "Approve" %>
     <% end %>
     <br>
