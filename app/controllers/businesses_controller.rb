@@ -30,10 +30,10 @@ class BusinessesController < ApplicationController
     @businesses = Business.where(status: 'pending')
   end
 
-  def approve
+  def activate
     business = Business.find(params[:id])
     business.update(status: 'active')
-    flash[:success] = "Business successfully approved!"
+    flash[:success] = "Business successfully activated!"
     redirect_to businesses_pending_path
   end
   #

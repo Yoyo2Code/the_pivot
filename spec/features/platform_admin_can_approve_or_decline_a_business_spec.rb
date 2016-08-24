@@ -26,7 +26,7 @@ RSpec.describe 'Platform admin can approve or decline pending businsses', type: 
 
     expect(Business.first.status).to eq "active"
     expect(current_path).to eq businesses_pending_path
-    expect(page).to have_content "Business successfully approved!"
+    expect(page).to have_content "Business successfully activated!"
     expect(page).to have_content "There are no pending businesses."
   end
 
