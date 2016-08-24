@@ -40,6 +40,7 @@ class BusinessesController < ApplicationController
     flash[:success] = "Business successfully activated!"
     redirect_to businesses_pending_path
   end
+
   #
   # def edit
   #   @business = Business.find(params[:id])

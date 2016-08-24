@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   post '/businesses/:id/deactivate', to: "businesses#deactivate", as: 'deactive_business'
 
+  get '/businesses/pending', to: "businesses#pending"
+
   delete "/cart_items", to: 'cart_items#destroy'
 
   get '/login', to: 'sessions#new', as: 'login'
