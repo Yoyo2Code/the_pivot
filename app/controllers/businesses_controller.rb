@@ -22,12 +22,16 @@ class BusinessesController < ApplicationController
   def destroy
     business = Business.find(params[:id])
     business.destroy
-    flash[:success] = "Business successfully denied and deleted."
+    flash[:success] = "Business successfully deleted."
     redirect_to businesses_pending_path
   end
 
   def pending
     @businesses = Business.where(status: 'pending')
+  end
+
+  def manage
+    @businesses = Business.where(status: ['active', 'inactive'])
   end
 
   def activate

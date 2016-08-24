@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Platform admin can approve or decline pending businsses', type: :feature do
+RSpec.describe 'Platform admin can approve or decline pending businesses', type: :feature do
   scenario 'they click approve and the business status changes to active' do
     user = create(:user)
     page.set_rack_session(user_id: user.id)
@@ -11,8 +11,8 @@ RSpec.describe 'Platform admin can approve or decline pending businsses', type: 
     fill_in 'business[image_url]', with: 'http://people.turing.io/assets/students/dj_greenfield-572acd74ca15fcc9eff531f092d5e234.jpg'
     click_button 'Submit New Business Application'
 
-    user = create(:user, username: "David", role: 2)
-    page.set_rack_session(user_id: user.id)
+    user2 = create(:user, username: "David", role: 2)
+    page.set_rack_session(user_id: user2.id)
 
     visit dashboard_path
 
@@ -40,8 +40,8 @@ RSpec.describe 'Platform admin can approve or decline pending businsses', type: 
     fill_in 'business[image_url]', with: 'http://people.turing.io/assets/students/dj_greenfield-572acd74ca15fcc9eff531f092d5e234.jpg'
     click_button 'Submit New Business Application'
 
-    user = create(:user, username: "David", role: 2)
-    page.set_rack_session(user_id: user.id)
+    user2 = create(:user, username: "David", role: 2)
+    page.set_rack_session(user_id: user2.id)
 
     visit dashboard_path
 
@@ -55,7 +55,7 @@ RSpec.describe 'Platform admin can approve or decline pending businsses', type: 
 
     expect(Business.count).to eq 0
     expect(current_path).to eq businesses_pending_path
-    expect(page).to have_content "Business successfully denied and deleted."
+    expect(page).to have_content "Business successfully deleted."
     expect(page).to have_content "There are no pending businesses."
   end
 end

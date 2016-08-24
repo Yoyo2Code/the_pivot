@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   get '/businesses/pending', to: "businesses#pending"
 
-  post '/business/:id/activate', to: "businesses#activate", as: 'activate_business'
+  get '/businesses/manage', to: "businesses#manage"
+
+  post '/businesses/:id/activate', to: "businesses#activate", as: 'activate_business'
+
+  post '/businesses/:id/deactivate', to: "businesses#deactivate", as: 'deactive_business'
 
   delete "/cart_items", to: 'cart_items#destroy'
 

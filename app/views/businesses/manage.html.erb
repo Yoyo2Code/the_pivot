@@ -1,4 +1,4 @@
-<h1 class="well text-center">Pending Businesses</h1>
+<h1 class="well text-center">Manage All Businesses</h1>
 
 <div class="text-center">
 <% if @businesses.any? %>
@@ -7,14 +7,17 @@
   <%= image_tag business.image_url %>
   <br>
   <br>
-    <%= form_for :business, url: activate_business_path(business) do |f| %>
-      <%= f.submit "Approve" %>
+    <% if business.inactive? %>
+      <%= form_for :business, url: activate_business_path(business) do |f| %>
+        <%= f.submit "Activate" %>
+      <% end %>
+      <br>
+    <% elsif business.active? %>
+      <%= form_for :business, url: deactivate_business_path(business) do |f| %>
+        <%= f.submit "Deactivate" %>
+      <% end %>
+      <br>
     <% end %>
-    <br>
-    <%= form_for :business, url: business_path(business), method: :delete do |f| %>
-      <%= f.submit "Deny" %>
-    <% end %>
-    <br>
   <% end %>
 <% else %>
   <h3>There are no pending businesses.</h3>
