@@ -32,6 +32,12 @@ class Admin::PropertiesController < Admin::BaseController
     end
   end
 
+  def delete
+    current_user.business.properties.delete(params[:id])
+    flash[:success] = "Property Successfully Deleted!"
+    redirect_to properties_path(current_user.business.slug)
+  end
+
   private
 
   def property_params

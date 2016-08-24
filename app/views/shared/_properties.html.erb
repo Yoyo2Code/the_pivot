@@ -23,6 +23,7 @@
         <% if current_admin? && owns_property?(property) %>
           <button type="button" id="edit-property" class="btn btn-default">
             <%= link_to "Edit Property", admin_edit_property_path(property, business_name: property.business.slug) %>
+            <%= link_to "Delete Property", admin_delete_property_path(property.id), method: :delete %>
           </button>
         <% end %>
       </div>

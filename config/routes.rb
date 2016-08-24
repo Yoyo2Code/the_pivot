@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     get '/:business_name/properties/new', to: "properties#new", as: "new_property"
     post '/:business_name/properties', to: "properties#create", as: "create_property"
     patch '/:business_name/:id', to: "properties#update", as: "update_property"
+    delete '/business_name/:id', to: "properties#delete", as: "delete_property"
   end
 
 
