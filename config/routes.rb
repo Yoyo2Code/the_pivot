@@ -6,11 +6,11 @@ Rails.application.routes.draw do
 
   resources :cart_items, only: [:create]
 
-  resources :businesses, only: [:new, :create, :edit, :update]
+  resources :businesses, only: [:new, :create, :edit, :update, :destroy]
 
   get '/businesses/pending', to: "businesses#pending"
 
-  post '/business/:id/status', to: "businesses#approve", as: 'approve_business'
+  post '/business/:id/approve', to: "businesses#approve", as: 'approve_business'
 
   delete "/cart_items", to: 'cart_items#destroy'
 

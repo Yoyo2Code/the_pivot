@@ -19,6 +19,13 @@ class BusinessesController < ApplicationController
     @business = Business.find_by(slug: params[:id])
   end
 
+  def destroy
+    business = Business.find(params[:id])
+    business.destroy
+    flash[:success] = "Business successfully denied and deleted."
+    redirect_to businesses_pending_path
+  end
+
   def pending
     @businesses = Business.where(status: 'pending')
   end

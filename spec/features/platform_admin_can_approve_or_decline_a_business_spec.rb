@@ -27,6 +27,7 @@ RSpec.describe 'Platform admin can approve or decline pending businsses', type: 
     expect(Business.first.status).to eq "active"
     expect(current_path).to eq businesses_pending_path
     expect(page).to have_content "Business successfully approved!"
+    expect(page).to have_content "There are no pending businesses."
   end
 
   scenario 'they click deny and the business is deleted from the database' do
@@ -46,9 +47,15 @@ RSpec.describe 'Platform admin can approve or decline pending businsses', type: 
 
     click_on "View Pending Businesses"
 
+    expect(Business.count).to eq 1
     expect(page).to have_content 'Yoseph & Co.'
     expect(page).to have_css("img[src*='http://people.turing.io/assets/students/dj_greenfield-572acd74ca15fcc9eff531f092d5e234.jpg']")
 
     click_on "Deny"
+
+    expect(Business.count).to eq 0
+    expect(current_path).to eq businesses_pending_path
+    expect(page).to have_content "Business successfully denied and deleted."
+    expect(page).to have_content "There are no pending businesses."
   end
 end
