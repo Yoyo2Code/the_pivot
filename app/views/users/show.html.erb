@@ -1,12 +1,14 @@
 <h1 class="well text-center" id='user-dashboard'>Welcome, <%= current_user.username %></h1>
 
-<%= link_to 'Open a Business', new_business_path %>
+<%= link_to 'Open a Business', new_business_path if current_user.business.nil? %>
 <br>
 <%= link_to "Edit My Business", edit_admin_business_path(current_user.business) if current_admin? && current_user.business %>
 <br>
 <%= link_to "My Properties", properties_path(business_name: current_user.business.slug) if current_admin? && current_user.business %>
 <br>
 <%= link_to "View Pending Businesses", businesses_pending_path if current_platform_admin? %>
+<br>
+<%= link_to "Manage All Businesses", businesses_manage_path if current_platform_admin? %>
 <br>
 <%= link_to 'Edit Account Information', edit_user_path(current_user) %>
 <br>
