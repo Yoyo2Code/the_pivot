@@ -2,9 +2,7 @@
   <div class='col-md-2 sidebar'>
     <%= render partial: 'layouts/navbar-side' %>
   </div>
-  <% unless params[:city] %>
-    <h1 class='text-center'><%= name %></h1>
-  <% end %>
+  <h1 class='text-center'><%= name %></h1>
   <div class='col-md-9 properties'>
     <% @properties.each do |property| %>
       <div class="well col-md-4 item">
@@ -18,8 +16,11 @@
         <%= related_location_or_business(property) %>
         <img src=" <%=property.image_path %> " class='room-image'/><br><br>
         <!-- <%#= button_to "Add to Cart", cart_items_path({item_id:property.id}) %> -->
-        <%# if current_admin? %>
-          <!-- <button type="button" class="btn btn-default"><%#= link_to "Edit", edit_item_path(item) %></button> -->
+        <% if current_admin? && owns_property?(property) %>
+          <button type="button" id="edit-property" class="btn btn-default">
+            <%= link_to "Edit Property", admin_edit_property_path(property, business_name: property.business.slug) %>
+          </button>
+        <% end %>
       </div>
     <% end %>
   </div>

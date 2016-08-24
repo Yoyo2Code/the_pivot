@@ -15,11 +15,9 @@ class Property < ApplicationRecord
   has_many :booked_dates
   has_many :nights, through: :booked_dates
 
-  def bookings
-    reservations.map do |r|
-      Night.where(
-        date: r.starting_date...r.end_date
-      ).map{ |d| d.date.strftime('%-m/%-d/%Y') }
+  def formatted_nights
+    nights.map do |n|
+      n.date.strftime('%-m/%-d/%Y')
     end.flatten
   end
 end
