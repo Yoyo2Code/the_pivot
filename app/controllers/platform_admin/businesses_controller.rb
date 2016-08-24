@@ -1,14 +1,15 @@
 class PlatformAdmin::BusinessesController < PlatformAdmin::BaseController
   def index
-    @businesses = Business.all
+    @pending_businesses = Business.pending?
+    @live_businesses = Business.active_or_inactive?
   end
 
-  def pending
-    @businesses = Business.where(status: 'pending')
+  # def pending
+  #   @businesses = Business.where(status: 'pending')
     # params[:filter] # 'pending'
     # @partial = "#{params[:filter]}_businesses"
     # # /businesses?status=inactive&status=active
-  end
+  # end
 
   # def manage
   #   @businesses = Business.where(status: ['active', 'inactive'])
@@ -23,7 +24,7 @@ class PlatformAdmin::BusinessesController < PlatformAdmin::BaseController
     #   business.update(status: 'inactive')
     # end
     flash[:success] = "Business has been #{params[:action]}d!"
-    redirect_to businesses_pending_path
+    redirect_to platform_admin_businesses_path
   end
   #
   # def destroy
@@ -33,11 +34,12 @@ class PlatformAdmin::BusinessesController < PlatformAdmin::BaseController
   #   redirect_to businesses_pending_path
   # end
 
-  # def statuses
-  #   {
-  #     "activate" => "active",
-  #     "deactivate" => 'inactive'
-  #   }
-  # end
+private
 
+  def statuses
+    {
+      "activate" => "active",
+      "deactivate" => 'inactive'
+    }
+  end
 end

@@ -1,13 +1,13 @@
 <div id="pending-businesses">
   <h1 class="well text-center">Pending Businesses</h1>
   <div class="text-center">
-  <% if @businesses %>
-    <% @businesses.each do |business| %>
+  <% if @pending_businesses %>
+    <% @pending_businesses.each do |business| %>
     <%= business.name %>
     <%= image_tag business.image_url %>
     <br>
     <br>
-      <%= form_for :business, url: platform_admin_business_path(business, action: "activate") do |f| %>
+      <%= form_for :business, url: platform_admin_business_path(business, action: "activate"), method: :put do |f| %>
         <%= f.submit "Approve" %>
       <% end %>
       <br>
@@ -25,8 +25,8 @@
 <div id='manage-all-businesses'>
   <h1 class="well text-center">All Businesses</h1>
   <div class="text-center">
-    <% if @businesses %>
-      <% @businesses.each do |business| %>
+    <% if @live_businesses %>
+      <% @live_businesses.each do |business| %>
       <%= business.name %>
       <%= image_tag business.image_url %>
       <br>

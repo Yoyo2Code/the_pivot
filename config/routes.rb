@@ -11,25 +11,7 @@ Rails.application.routes.draw do
 
   namespace :platform_admin do
     resources :businesses, only: [:index, :update]
-    get '/businesses/pending', to: 'platform_admin/businesses#pending'
   end
-  # get '/businesses/pending', to: "businesses#pending"
-  #
-  # get '/businesses/manage', to: "businesses#manage"
-  #
-  # put '/businesses/:id/status', to: "businesses#status", as: 'business_status'
-  #
-  # get '/businesses/pending', to: "businesses#pending"
-
-  get '/businesses/manage', to: "businesses#manage"
-
-  post '/businesses/:id/activate', to: "businesses#activate", as: 'activate_business'
-
-  post '/businesses/:id/deactivate', to: "businesses#deactivate", as: 'deactive_business'
-
-  get '/businesses/pending', to: "businesses#pending"
-
-  delete "/cart_items", to: 'cart_items#destroy'
 
   delete "/cart_items", to: 'cart_items#destroy'
 
