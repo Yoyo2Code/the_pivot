@@ -18,11 +18,14 @@ RSpec.describe 'Platform admin can approve or decline pending businesses', type:
 
     click_on "Manage All Businesses"
 
-    expect(Business.first.status).to eq "pending"
-    expect(page).to have_content 'Yoseph & Co.'
-    expect(page).to have_css("img[src*='http://people.turing.io/assets/students/dj_greenfield-572acd74ca15fcc9eff531f092d5e234.jpg']")
+    within('#pending-businesses') do
+      expect(Business.first.status).to eq "pending"
+      expect(page).to have_content 'Yoseph & Co.'
+      expect(page).to have_css("img[src*='http://people.turing.io/assets/students/dj_greenfield-572acd74ca15fcc9eff531f092d5e234.jpg']")
 
-    click_on "Approve"
+      click_on "Approve"
+    end
+
 
     expect(Business.first.status).to eq "active"
     expect(current_path).to eq platform_admin_businesses_path

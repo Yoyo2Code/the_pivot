@@ -38,7 +38,7 @@ class PlatformAdmin::BusinessesController < PlatformAdmin::BaseController
     business = Business.find(params[:id])
     business.destroy
     flash[:success] = "Business successfully deleted."
-    redirect_to businesses_pending_path
+    redirect_to platform_admin_businesses_path
   end
 
 private

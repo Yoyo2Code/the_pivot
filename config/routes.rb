@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :businesses, only: [:new, :create, :edit, :update, :destroy]
 
   namespace :platform_admin do
-    resources :businesses, only: [:index, :update, :delete]
+    resources :businesses, only: [:index, :update, :destroy]
   end
 
   delete "/cart_items", to: 'cart_items#destroy'
