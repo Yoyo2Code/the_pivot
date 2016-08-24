@@ -15,10 +15,10 @@ $(document).ready(function() {
   });
 
   let $items = $('.item')
-  let slug = window.location.pathname
+  let slug = window.location.pathname.split('/').slice(-1).toString();
   let _items
   let _values
-  $.getJSON(`/api/v1${slug}.json`, 
+  $.getJSON(`/api/v1/${slug}.json`, 
     (response) => { start(response) })
 
   function start(response) {

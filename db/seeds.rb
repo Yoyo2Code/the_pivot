@@ -3,6 +3,7 @@ class Seed
     Property.destroy_all
     Location.destroy_all
     Business.destroy_all
+    User.destroy_all
     create_businesses
   end
 
@@ -43,8 +44,8 @@ class Seed
   end
 
   def add_nights
-    from = Time.now
-    to = Time.new('2017/1/1')
+    from = Time.new(2016, 8, 27)
+    to = Time.new(2017, 4, 1)
     until from >= to
       Night.create!(date: (from += 1.day))
     end
@@ -59,10 +60,13 @@ class Seed
 
   def seed_bookings
     seed_orders
-    Property.all.each do |prop|
+    count = 1
+    Property.all.shuffle.each do |prop|
       5.times do 
-        book_property(prop)
+        book_property(prop, count)
+        count += rand(10..20)
       end
+      count = 1
     end
   end
 
@@ -72,16 +76,12 @@ class Seed
     end
   end
 
-  def book_property(prop)
-    night = rand(125)
-    duration = rand(2..6)
-    prop.reservations.create!(
-      starting_date: Night.all[night].date,
-      end_date: Night.all[night + duration].date,
-      number_of_guests: 1,
-      price: prop.price_per_guest,
-      order: Order.all.sample
-    )
+  def book_property(prop, count)
+    duration = rand(2..4)
+    night_id = Random.new.rand(count..(count + rand(10..20)))
+    duration.times do |i|
+      prop.nights << Night.find(night_id + i)
+    end
   end
 end
 seeder = Seed.new

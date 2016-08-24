@@ -23,15 +23,16 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :edit, :update]
 
-  namespace :location do
+  namespace :locations do
     get '/:city', to: 'properties#index'
   end
 
   namespace :api do
     namespace :v1 do
-      get '/:business_name', to: 'properties#index', as: "properties"
-      get '/location/:city', to: 'location/properties#index', as: "city"
+      get '/locations/:slug', to: 'locations/properties#index', as: "city"
+      get '/businesses/:slug', to: 'businesses/properties#index', as: "name"
       get '/properties/:property_id', to: 'properties#show'
+      get '/:property_scope', to: 'properties#index', as: "properties"
     end
   end
 

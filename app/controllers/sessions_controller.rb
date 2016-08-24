@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
       redirect_to cart_path if @cart.contents.any?
       redirect_to dashboard_path if @cart.contents.empty?
     else
+      flash[:danger] = "Invalid login details"
       render :new
     end
   end
