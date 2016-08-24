@@ -1,18 +1,28 @@
-<h1>Pending Businesses</h1>
+<h1 class="well text-center">Pending Businesses</h1>
 
-<% @businesses.each do |business| %>
-<%= business.name %>
-<%= image_tag business.image_url %>
-
-  <%= form_for :business do |f| %>
-    <%= f.hidden_field :name, status: "active" %>
-    <%= f.submit "Approve" %>
+<div class="text-center">
+<% if @businesses.any? %>
+  <% @businesses.each do |business| %>
+  <%= business.name %>
+  <%= image_tag business.image_url %>
+  <br>
+  <br>
+    <%= form_for :business do |f| %>
+      <%= f.hidden_field :name, status: "active" %>
+      <%= f.submit "Approve" %>
+    <% end %>
+    <br>
+    <%= form_for :business, url: business_path(business), method: :delete do |f| %>
+      <%= f.submit "Deny" %>
+    <% end %>
   <% end %>
-
-  <%= form_for :business, url: business_path(business), method: :delete do |f| %>
-    <%= f.submit "Deny" %>
-  <% end %>
+<% else %>
+  <h3>There are no pending businesses.</h3>
 <% end %>
+</div>
 
-<!-- <button type="button" class="btn btn-success"><%#= link_to "Approve", approve_business_path(business) %></button>
-<button type="button" class="btn btn-danger"><%#= link_to "Deny", business_path(business), method: :delete %></button> -->
+<div class="well text-center">
+  <button type="button" class="btn btn-info return-to-dashboard">
+    <%= link_to "Return to My Dashboard", dashboard_path %>
+  </button>
+</div>
