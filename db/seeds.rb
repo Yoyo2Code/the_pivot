@@ -25,6 +25,10 @@ class Seed
     Location.create!(city: 'Los Angeles')
     Location.create!(city: 'Chicago')
     Location.create!(city: 'Dallas')
+    Location.create!(city: 'Boston')
+    Location.create!(city: 'London')
+    Location.create!(city: 'Dubai')
+    Location.create!(city: 'Philly')
     add_properties_to_businesses
   end
 
@@ -35,7 +39,7 @@ class Seed
   end
 
   def add_properties(business)
-    6.times do |t|
+    10.times do |t|
       business.properties.create!(
         title: Faker::Book.title + "##{rand(1000)}",
         description: Faker::Lorem.paragraph(4),
