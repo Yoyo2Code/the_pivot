@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821223035) do
+ActiveRecord::Schema.define(version: 20160823000527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,19 +22,15 @@ ActiveRecord::Schema.define(version: 20160821223035) do
     t.index ["property_id"], name: "index_booked_dates_on_property_id", using: :btree
   end
 
-  create_table "business_roles", force: :cascade do |t|
-    t.integer "business_id"
-    t.integer "role_id"
-    t.index ["business_id"], name: "index_business_roles_on_business_id", using: :btree
-    t.index ["role_id"], name: "index_business_roles_on_role_id", using: :btree
-  end
-
   create_table "businesses", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "slug"
     t.text     "image_url"
+    t.integer  "status",     default: 0
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_businesses_on_user_id", using: :btree
   end
 
   create_table "locations", force: :cascade do |t|
@@ -84,10 +80,6 @@ ActiveRecord::Schema.define(version: 20160821223035) do
     t.index ["property_id"], name: "index_reservations_on_property_id", using: :btree
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string  "username"
     t.string  "password_digest"
@@ -99,8 +91,7 @@ ActiveRecord::Schema.define(version: 20160821223035) do
 
   add_foreign_key "booked_dates", "nights"
   add_foreign_key "booked_dates", "properties"
-  add_foreign_key "business_roles", "businesses"
-  add_foreign_key "business_roles", "roles"
+  add_foreign_key "businesses", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "properties", "businesses"
   add_foreign_key "properties", "locations"

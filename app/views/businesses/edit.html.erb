@@ -1,0 +1,12 @@
+<h1 class="well text-center">Edit <%= @business.name %></h1>
+
+<div class="form-group">
+<%= form_for @business do |f| %>
+<%= f.label "Name" %>
+<%= f.text_field :name, placeholder: "Name" %>
+<%= f.label "Image" %>
+<%= f.text_field :image_url, placeholder: "Image" %>
+<%= f.submit "Save Changes" %>
+<% end %>
+<%= link_to "Cancel", dashboard_path %>
+</div>

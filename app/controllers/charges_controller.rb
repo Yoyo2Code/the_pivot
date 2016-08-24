@@ -1,5 +1,5 @@
 class ChargesController < ApplicationController
-  skip_before_action :require_admin
+  # skip_before_action :require_admin
 
   def new
   end

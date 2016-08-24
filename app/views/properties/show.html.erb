@@ -7,14 +7,16 @@
   </div>
 
   <div class='col-md-5 property-details'>
-    <h4>Location: 
-      <a href='/location/<%= @property.location.slug %>'>
+    
+    <h4><span class="glyphicon glyphicon-map-marker"></span>
+      Location: 
+      <a href='/locations/<%= @property.location.slug %>'>
         <%= @property.location.city %>
       </a>
     </h4>
     <h4>Price Per Guest: <%= number_to_currency(@property.price_per_guest) %></h4><br>
-    <h4>Max Occupancy: <%= @property.max_occupancy %> </h4>
-    <h4>Business: 
+    <h4><span class="glyphicon glyphicon-user"></span> Max Occupancy: <%= @property.max_occupancy %> </h4>
+    <h4><span class="glyphicon glyphicon-briefcase"></span> Business: 
       <a href='/<%= @property.business.slug %>'>
         <%= @property.business.name %>
       </a>
@@ -24,37 +26,26 @@
   </div>
 </div>
 
-  <div class='jumbotron book-property-form'>
-    <div id='property-input' class='row'>
-      <%= form_tag("/cart_items", method: "post") do %>
-      <%= hidden_field_tag :property_id, @property.id %>
-      <p>Guests</p>
-      <div id='max_occupancy' class='col-md-2'>
-        <%= select_tag :occupancy, options_for_select([*1..@property.max_occupancy]), class: 'form-control'%>
-      </div>
-      <!-- <%#= f.text_field :starting_date, :class => 'datepicker', placeholder: "Check-In" %>
-      <%#= f.text_field :end_date, "data-provide" => 'datepicker' %> -->
-    <!-- <div id="dates"> -->
-      <div class='col-md-8' id='datepickers'>
-        <%= text_field_tag :starting_date, Time.now.strftime("%m/%d/%Y"), id: "datepicker1", readonly: true %>
-        <%= text_field_tag :end_date, Time.now.tomorrow.strftime("%m/%d/%Y"), id: "datepicker2", readonly: true %>
-      </div>
+<div class='jumbotron book-property-form'>
+  <p style='text-align:center;'>Select your arrival and departure dates! <span class="glyphicon glyphicon-plane"></span></p>
+  <div id='property-input' class='row'>
+    <%= form_tag("/cart_items", method: "post") do %>
+    <%= hidden_field_tag :property_id, @property.id %>
+    <p>Guests</p>
+    <div id='max_occupancy' class='col-md-2'>
+      <%= select_tag :occupancy, options_for_select([*1..@property.max_occupancy]), class: 'form-control'%>
     </div>
-  <!-- </div> -->
+    <!-- <%#= f.text_field :starting_date, :class => 'datepicker', placeholder: "Check-In" %>
+    <%#= f.text_field :end_date, "data-provide" => 'datepicker' %> -->
+  <!-- <div id="dates"> -->
+    <div class='col-md-8' id='datepickers'>
+      <%= text_field_tag :starting_date, Time.now.strftime("%m/%d/%Y"), id: "datepicker1" %>
+      <%= text_field_tag :end_date, Time.now.tomorrow.strftime("%m/%d/%Y"), id: "datepicker2" %>
+    </div>
     <div id='book-me-btn' >
-      <%= submit_tag "Book Me", class: 'btn btn-success' %>
+      <%= submit_tag "Book Me", class: 'btn btn-success', 'data-disable-with': false %>
     </div>
-    <% end %>
   </div>
-
-
-
-
-  <!-- <%# #if @property.status == "retired" %>
-    <p>Item Retired</p>
-  <%# #else %>
-    <%#= #button_to "Add to Cart", cart_items_path({item_id: @property.id}) %>
-  <%# #end %>
-  <%# #if current_admin? %>
-    <button type="button" class="btn btn-default"><%#= #link_to "Edit", edit_item_path(@property) %></button>
-  <%# #end %> -->
+<!-- </div> -->
+  <% end %>
+</div>

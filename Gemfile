@@ -34,8 +34,10 @@ gem 'aws-sdk', '~> 2.3'
 gem 'responders'
 gem 'faker'
 gem 'rack_session_access', group: :test
-gem 'selenium-webdriver'
-
+# gem 'selenium-webdriver'
+# gem 'browserify-rails'
+gem 'sprockets', '>= 3.0.0'
+gem 'sprockets-es6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -61,6 +63,7 @@ group :development do
 end
 
 gem 'rails_12factor', group: :production
+gem "codeclimate-test-reporter", group: :test, require: nil
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
