@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Platform admin can take a business online or offline', type: :feature do
-  xscenario 'they can view all non-pending businesses and see their status' do
+  scenario 'they can view all non-pending businesses and see their status' do
     user = create(:user)
     user2 = create(:user, username: "David", role: 2)
     business1 = create(

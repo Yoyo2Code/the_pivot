@@ -16,12 +16,14 @@ RSpec.describe 'Platform admin can view pending businesses', type: :feature do
 
     visit dashboard_path
 
-    click_on "View Pending Businesses"
+    click_on "Manage All Businesses"
 
-    expect(page).to have_content 'Yoseph & Co.'
-    expect(page).to have_css("img[src*='http://people.turing.io/assets/students/dj_greenfield-572acd74ca15fcc9eff531f092d5e234.jpg']")
-    expect(page).to have_button "Approve"
-    expect(page).to have_button "Deny"
+    within('#pending-businesses') do
+      expect(page).to have_content 'Yoseph & Co.'
+      expect(page).to have_css("img[src*='http://people.turing.io/assets/students/dj_greenfield-572acd74ca15fcc9eff531f092d5e234.jpg']")
+      expect(page).to have_button "Approve"
+      expect(page).to have_button "Deny"
+    end
   end
 
   scenario "there are no pending businesses and they see a message" do
@@ -30,9 +32,11 @@ RSpec.describe 'Platform admin can view pending businesses', type: :feature do
 
     visit dashboard_path
 
-    click_on "View Pending Businesses"
+    click_on "Manage All Businesses"
 
-    expect(page).to have_content 'There are no pending businesses.'
+    within('#pending-businesses') do
+      expect(page).to have_content 'There are no pending businesses.'
+    end
 
     within('.return-to-dashboard') do
       click_on "Return to My Dashboard"

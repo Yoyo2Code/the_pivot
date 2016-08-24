@@ -16,7 +16,7 @@ RSpec.describe 'Platform admin can approve or decline pending businesses', type:
 
     visit dashboard_path
 
-    click_on "View Pending Businesses"
+    click_on "Manage All Businesses"
 
     expect(Business.first.status).to eq "pending"
     expect(page).to have_content 'Yoseph & Co.'
@@ -45,7 +45,7 @@ RSpec.describe 'Platform admin can approve or decline pending businesses', type:
 
     visit dashboard_path
 
-    click_on "View Pending Businesses"
+    click_on "Manage All Businesses"
 
     expect(Business.count).to eq 1
     expect(page).to have_content 'Yoseph & Co.'

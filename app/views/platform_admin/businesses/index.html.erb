@@ -1,0 +1,51 @@
+<div id="pending-businesses">
+  <h1 class="well text-center">Pending Businesses</h1>
+  <div class="text-center">
+  <% if @businesses %>
+    <% @businesses.each do |business| %>
+    <%= business.name %>
+    <%= image_tag business.image_url %>
+    <br>
+    <br>
+      <%= form_for :business, url: platform_admin_business_path(business, action: "activate") do |f| %>
+        <%= f.submit "Approve" %>
+      <% end %>
+      <br>
+      <%= form_for :business, url: platform_admin_business_path(business), method: :delete do |f| %>
+        <%= f.submit "Deny" %>
+      <% end %>
+      <br>
+    <% end %>
+  <% else %>
+    <h3>There are no pending businesses.</h3>
+  <% end %>
+  </div>
+</div>
+
+<div id='manage-all-businesses'>
+  <h1 class="well text-center">All Businesses</h1>
+  <div class="text-center">
+    <% if @businesses %>
+      <% @businesses.each do |business| %>
+      <%= business.name %>
+      <%= image_tag business.image_url %>
+      <br>
+      <br>
+      <% if business.inactive? %>
+        <button><%= link_to "Activate", platform_admin_business_path(business, action: "activate"), method: :put, class: "btn btn-md"%></button>
+        <br>
+      <% elsif business.active? %>
+        <button><%= link_to "Deactivate", platform_admin_business_path(business, action: "deactivate"), method: :put, class: "btn btn-md"%></button>
+      <% end %>
+        <br>
+    <% end %>
+  <% else %>
+    <h3>There are no live businesses.</h3>
+  <% end %>
+  </div>
+</div>
+<div class="well text-center">
+  <button type="button" class="btn btn-info return-to-dashboard">
+    <%= link_to "Return to My Dashboard", dashboard_path %>
+  </button>
+</div>

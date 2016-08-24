@@ -26,21 +26,6 @@ class BusinessesController < ApplicationController
     redirect_to businesses_pending_path
   end
 
-  def pending
-    @businesses = Business.where(status: 'pending')
-  end
-
-  def manage
-    @businesses = Business.where(status: ['active', 'inactive'])
-  end
-
-  def activate
-    business = Business.find(params[:id])
-    business.update(status: 'active')
-    flash[:success] = "Business successfully activated!"
-    redirect_to businesses_pending_path
-  end
-
   #
   # def edit
   #   @business = Business.find(params[:id])
