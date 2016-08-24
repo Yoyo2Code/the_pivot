@@ -1,0 +1,18 @@
+<h1>Pending Businesses</h1>
+
+<% @businesses.each do |business| %>
+<%= business.name %>
+<%= image_tag business.image_url %>
+
+  <%= form_for :business do |f| %>
+    <%= f.hidden_field :name, status: "active" %>
+    <%= f.submit "Approve" %>
+  <% end %>
+
+  <%= form_for :business, url: business_path(business), method: :delete do |f| %>
+    <%= f.submit "Deny" %>
+  <% end %>
+<% end %>
+
+<!-- <button type="button" class="btn btn-success"><%#= link_to "Approve", approve_business_path(business) %></button>
+<button type="button" class="btn btn-danger"><%#= link_to "Deny", business_path(business), method: :delete %></button> -->

@@ -6,6 +6,8 @@
 <br>
 <%= link_to "My Properties", properties_path(business_name: current_user.business.slug) if current_admin? && current_user.business %>
 <br>
+<%= link_to "View Pending Businesses", businesses_pending_path if current_platform_admin? %>
+<br>
 <%= link_to 'Edit Account Information', edit_user_path(current_user) %>
 <br>
 <%= link_to "View Past Orders", orders_path %>

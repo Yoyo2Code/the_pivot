@@ -18,6 +18,10 @@ class BusinessesController < ApplicationController
   def show
     @business = Business.find_by(slug: params[:id])
   end
+
+  def pending
+    @businesses = Business.where(status: 'pending')
+  end
   #
   # def edit
   #   @business = Business.find(params[:id])
