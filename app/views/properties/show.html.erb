@@ -30,14 +30,14 @@
   <p style='text-align:center;'>Select your arrival and departure dates! <span class="glyphicon glyphicon-plane"></span></p>
   <div id='property-input' class='row'>
     <%= form_tag("/cart_items", method: "post") do %>
-    <%= hidden_field_tag :property_id, @property.id %>
+    <%= hidden_field_tag "booking[property_id]", @property.id %>
     <p>Guests</p>
     <div id='max_occupancy' class='col-md-2'>
-      <%= select_tag :occupancy, options_for_select([*1..@property.max_occupancy]), class: 'form-control'%>
+      <%= select_tag "booking[occupancy]", options_for_select([*1..@property.max_occupancy]), class: 'form-control'%>
     </div>
     <div class='col-md-8' id='datepickers'>
-      <%= text_field_tag :starting_date, Time.now.strftime("%m/%d/%Y"), id: "datepicker1" %>
-      <%= text_field_tag :end_date, Time.now.tomorrow.strftime("%m/%d/%Y"), id: "datepicker2" %>
+      <%= text_field_tag "booking[starting_date]", Time.now.strftime("%m/%d/%Y"), id: "datepicker1" %>
+      <%= text_field_tag "booking[end_date]", Time.now.tomorrow.strftime("%m/%d/%Y"), id: "datepicker2" %>
     </div>
     <div id='book-me-btn' >
       <%= submit_tag "Book Me", class: 'btn btn-success', 'data-disable-with': false %>
