@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:create]
   resources :businesses, only: [:new, :create, :edit, :update]
 
+  get '/businesses/pending', to: "businesses#pending"
+
   delete "/cart_items", to: 'cart_items#destroy'
 
   get '/login', to: 'sessions#new', as: 'login'
