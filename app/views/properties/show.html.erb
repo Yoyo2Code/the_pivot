@@ -5,11 +5,11 @@
   <div class='col-md-4 col-md-offset-1 well property-image'>
     <img src=" <%= @property.image_path %>"  /><br><br>
   </div>
-
   <div class='col-md-5 property-details'>
 
     <h4><span class="glyphicon glyphicon-map-marker"></span>
       Location:
+
       <a href='/locations/<%= @property.location.slug %>'>
         <%= @property.location.city %>
       </a>

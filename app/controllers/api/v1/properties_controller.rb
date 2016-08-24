@@ -11,6 +11,7 @@ class Api::V1::PropertiesController < Api::V1::BaseController
   end
 
   private
+
   def find_property_scope
     business = Business.find_by(slug: params[:property_scope])
     if business

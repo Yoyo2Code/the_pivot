@@ -63,12 +63,35 @@ class Seed
 
   def seed_users
     u1 = User.create!(username: 'Yoseph', password: 'password')
-    u2 = User.create!(username: 'Pat', password: 'password', role: 1)
-    u3 = User.create!(username: 'David', password: 'password', role: 2)
-    u1.orders.create!
-    u2.orders.create!
-    u1.orders.first.reservations.create!(starting_date: Night.all[1].date, end_date: Night.all[5].date, number_of_guests: 2, price: 1500, property_id: Property.first.id)
-    u2.orders.first.reservations.create!(starting_date: Night.all[10].date, end_date: Night.all[13].date, number_of_guests: 2, price: 1500, property_id: Property.first.id)
+    u2 = User.create!(username: 'Pat', password: 'password')
+    u3 = User.create!(username: 'David', password: 'password')
+    u4 = User.create!(username: 'Jason', password: 'password')
+  end
+
+  def seed_bookings
+    seed_orders
+    count = 1
+    Property.all.shuffle.each do |prop|
+      5.times do 
+        book_property(prop, count)
+        count += rand(10..20)
+      end
+      count = 1
+    end
+  end
+
+  def seed_orders
+    User.all.each do |u|
+      u.orders.create!
+    end
+  end
+
+  def book_property(prop, count)
+    duration = rand(2..4)
+    night_id = Random.new.rand(count..(count + rand(10..20)))
+    duration.times do |i|
+      prop.nights << Night.find(night_id + i)
+    end
   end
 
   def seed_bookings
