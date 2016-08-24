@@ -93,32 +93,6 @@ class Seed
       prop.nights << Night.find(night_id + i)
     end
   end
-
-  def seed_bookings
-    seed_orders
-    count = 1
-    Property.all.shuffle.each do |prop|
-      5.times do
-        book_property(prop, count)
-        count += rand(10..20)
-      end
-      count = 1
-    end
-  end
-
-  def seed_orders
-    User.all.each do |u|
-      u.orders.create!
-    end
-  end
-
-  def book_property(prop, count)
-    duration = rand(2..4)
-    night_id = Random.new.rand(count..(count + rand(10..20)))
-    duration.times do |i|
-      prop.nights << Night.find(night_id + i)
-    end
-  end
 end
 seeder = Seed.new
 seeder.seed

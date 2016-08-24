@@ -1,0 +1,31 @@
+<h1 class="well text-center">Manage All Businesses</h1>
+
+<div class="text-center">
+<% if @businesses.any? %>
+  <% @businesses.each do |business| %>
+  <%= business.name %>
+  <%= image_tag business.image_url %>
+  <br>
+  <br>
+    <% if business.inactive? %>
+      <%= form_for :business, url: activate_business_path(business) do |f| %>
+        <%= f.submit "Activate" %>
+      <% end %>
+      <br>
+    <% elsif business.active? %>
+      <%= form_for :business, url: deactivate_business_path(business) do |f| %>
+        <%= f.submit "Deactivate" %>
+      <% end %>
+      <br>
+    <% end %>
+  <% end %>
+<% else %>
+  <h3>There are no pending businesses.</h3>
+<% end %>
+</div>
+
+<div class="well text-center">
+  <button type="button" class="btn btn-info return-to-dashboard">
+    <%= link_to "Return to My Dashboard", dashboard_path %>
+  </button>
+</div>

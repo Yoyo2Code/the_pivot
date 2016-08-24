@@ -13,7 +13,7 @@ RSpec.feature 'Visitor can edit items in cart' do
                           {
                             Property.first.id.to_s =>
                             {
-                              starting_date: "08/15/2016",
+                              starting_date: "08/25/2016",
                               end_date: "09/01/2016",
                               occupancy: 2
                             }
@@ -24,7 +24,7 @@ RSpec.feature 'Visitor can edit items in cart' do
 
     expect(page).to have_content("Cart Items: 1")
     within("#cart-item-#{property.id}") do
-      expect(page).to have_content("Check-In: 08/15/2016")
+      expect(page).to have_content("Check-In: 08/25/2016")
       expect(page).to have_content("Check-Out: 09/01/2016")
       expect(page).to have_content("Total Guests: 2")
     end

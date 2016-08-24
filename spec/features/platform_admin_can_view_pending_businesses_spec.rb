@@ -16,14 +16,12 @@ RSpec.describe 'Platform admin can view pending businesses', type: :feature do
 
     visit dashboard_path
 
-    click_on "Manage All Businesses"
+    click_on "View Pending Businesses"
 
-    within('#pending-businesses') do
-      expect(page).to have_content 'Yoseph & Co.'
-      expect(page).to have_css("img[src*='http://people.turing.io/assets/students/dj_greenfield-572acd74ca15fcc9eff531f092d5e234.jpg']")
-      expect(page).to have_link "Approve"
-      expect(page).to have_link "Deny"
-    end
+    expect(page).to have_content 'Yoseph & Co.'
+    expect(page).to have_css("img[src*='http://people.turing.io/assets/students/dj_greenfield-572acd74ca15fcc9eff531f092d5e234.jpg']")
+    expect(page).to have_button "Approve"
+    expect(page).to have_button "Deny"
   end
 
   scenario "there are no pending businesses and they see a message" do
@@ -32,28 +30,9 @@ RSpec.describe 'Platform admin can view pending businesses', type: :feature do
 
     visit dashboard_path
 
-    click_on "Manage All Businesses"
+    click_on "View Pending Businesses"
 
-    within('#pending-businesses') do
-      expect(page).to have_content 'There are no pending businesses'
-    end
-
-    within('.return-to-dashboard') do
-      click_on "Return to My Dashboard"
-    end
-
-    expect(current_path).to eq dashboard_path
-  end
-
-  scenario "there are no pending businesses and they see a message" do
-    user = create(:user, username: "David", role: 2)
-    page.set_rack_session(user_id: user.id)
-
-    visit dashboard_path
-
-    click_on "Manage All Businesses"
-
-    expect(page).to have_content 'There are no pending businesses'
+    expect(page).to have_content 'There are no pending businesses.'
 
     within('.return-to-dashboard') do
       click_on "Return to My Dashboard"
