@@ -17,13 +17,13 @@ class PlatformAdmin::BusinessesController < PlatformAdmin::BaseController
 
   def update
     business = Business.find(params[:id])
-    business.update(status: statuses[params[:action]])
-    # if params[:action] == "activate"
+    business.update(status: statuses[params[:filter]])
+    # if params[:filter] == "activate"
     #   business.update(status: 'active')
-    # elsif params[:action] == "deactivate"
+    # elsif params[:filter] == "deactivate"
     #   business.update(status: 'inactive')
     # end
-    flash[:success] = "Business has been #{params[:action]}d!"
+    flash[:success] = "Business has been #{params[:filter]}d!"
     redirect_to platform_admin_businesses_path
   end
   #
@@ -33,6 +33,13 @@ class PlatformAdmin::BusinessesController < PlatformAdmin::BaseController
   #   flash[:success] = "Business successfully deleted."
   #   redirect_to businesses_pending_path
   # end
+
+  def destroy
+    business = Business.find(params[:id])
+    business.destroy
+    flash[:success] = "Business successfully deleted."
+    redirect_to businesses_pending_path
+  end
 
 private
 

@@ -25,9 +25,15 @@ RSpec.describe 'Platform admin can approve or decline pending businesses', type:
     click_on "Approve"
 
     expect(Business.first.status).to eq "active"
-    expect(current_path).to eq businesses_pending_path
-    expect(page).to have_content "Business successfully activated!"
-    expect(page).to have_content "There are no pending businesses."
+    expect(current_path).to eq platform_admin_businesses_path
+
+    within('.flash-success') do
+      expect(page).to have_content "Business has been activated!"
+    end
+
+    within('#pending-businesses') do
+      expect(page).to have_content "There are no pending businesses"
+    end
   end
 
   scenario 'they click deny and the business is deleted from the database' do
@@ -55,8 +61,14 @@ RSpec.describe 'Platform admin can approve or decline pending businesses', type:
     click_on "Deny"
 
     expect(Business.count).to eq 0
-    expect(current_path).to eq businesses_pending_path
-    expect(page).to have_content "Business successfully deleted."
-    expect(page).to have_content "There are no pending businesses."
+    expect(current_path).to eq platform_admin_businesses_path
+
+    within('.flash-success') do
+      expect(page).to have_content "Business successfully deleted."
+    end
+
+    within('#pending-businesses') do
+      expect(page).to have_content "There are no pending businesses"
+    end
   end
 end

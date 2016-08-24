@@ -33,9 +33,9 @@ RSpec.describe 'Platform admin can view pending businesses', type: :feature do
     visit dashboard_path
 
     click_on "Manage All Businesses"
-save_and_open_page
+
     within('#pending-businesses') do
-      expect(page).to have_content 'There are no pending businesses.'
+      expect(page).to have_content 'There are no pending businesses'
     end
 
     within('.return-to-dashboard') do
@@ -53,7 +53,7 @@ save_and_open_page
 
     click_on "Manage All Businesses"
 
-    expect(page).to have_content 'There are no pending businesses.'
+    expect(page).to have_content 'There are no pending businesses'
 
     within('.return-to-dashboard') do
       click_on "Return to My Dashboard"

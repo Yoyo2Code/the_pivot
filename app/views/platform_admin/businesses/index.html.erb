@@ -1,23 +1,19 @@
 <div id="pending-businesses">
   <h1 class="well text-center">Pending Businesses</h1>
   <div class="text-center">
-  <% if @pending_businesses %>
+  <% if @pending_businesses.present? %>
     <% @pending_businesses.each do |business| %>
     <%= business.name %>
     <%= image_tag business.image_url %>
     <br>
     <br>
-      <%= form_for :business, url: platform_admin_business_path(business, action: "activate"), method: :put do |f| %>
-        <%= f.submit "Approve" %>
-      <% end %>
+    <%= link_to "Approve", platform_admin_business_path(business, filter: "activate"), method: :put, class: "btn btn-md btn-info"%>
       <br>
-      <%= form_for :business, url: platform_admin_business_path(business), method: :delete do |f| %>
-        <%= f.submit "Deny" %>
-      <% end %>
+    <%= link_to "Deny", platform_admin_business_path(business, filter: "deactivate"), method: :delete, class: "btn btn-md btn-danger"%>
       <br>
     <% end %>
   <% else %>
-    <h3>There are no pending businesses.</h3>
+    <h3>There are no pending businesses</h3>
   <% end %>
   </div>
 </div>
@@ -25,22 +21,22 @@
 <div id='manage-all-businesses'>
   <h1 class="well text-center">All Businesses</h1>
   <div class="text-center">
-    <% if @live_businesses %>
+    <% if @live_businesses.present? %>
       <% @live_businesses.each do |business| %>
       <%= business.name %>
       <%= image_tag business.image_url %>
       <br>
       <br>
       <% if business.inactive? %>
-        <button><%= link_to "Activate", platform_admin_business_path(business, action: "activate"), method: :put, class: "btn btn-md"%></button>
+        <%= link_to "Activate", platform_admin_business_path(business, filter: "activate"), method: :put, class: "btn btn-md btn-success"%>
         <br>
       <% elsif business.active? %>
-        <button><%= link_to "Deactivate", platform_admin_business_path(business, action: "deactivate"), method: :put, class: "btn btn-md"%></button>
+        <%= link_to "Deactivate", platform_admin_business_path(business, filter: "deactivate"), method: :put, class: "btn btn-md btn-danger"%>
       <% end %>
         <br>
     <% end %>
   <% else %>
-    <h3>There are no live businesses.</h3>
+    <h3>There are no live businesses</h3>
   <% end %>
   </div>
 </div>
