@@ -44,4 +44,21 @@ RSpec.describe 'Platform admin can view pending businesses', type: :feature do
 
     expect(current_path).to eq dashboard_path
   end
+
+  scenario "there are no pending businesses and they see a message" do
+    user = create(:user, username: "David", role: 2)
+    page.set_rack_session(user_id: user.id)
+
+    visit dashboard_path
+
+    click_on "View Pending Businesses"
+
+    expect(page).to have_content 'There are no pending businesses.'
+
+    within('.return-to-dashboard') do
+      click_on "Return to My Dashboard"
+    end
+
+    expect(current_path).to eq dashboard_path
+  end
 end

@@ -47,6 +47,7 @@ RSpec.describe 'Platform admin can approve or decline pending businesses', type:
 
     click_on "Manage All Businesses"
 
+
     expect(Business.count).to eq 1
     expect(page).to have_content 'Yoseph & Co.'
     expect(page).to have_css("img[src*='http://people.turing.io/assets/students/dj_greenfield-572acd74ca15fcc9eff531f092d5e234.jpg']")

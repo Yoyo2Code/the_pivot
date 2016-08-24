@@ -1,4 +1,9 @@
 $(document).ready(function() {
+
+  // function saveResponse(response) {
+  //   bookings = response
+  // }
+
   $( function() {
     $('#datepicker1').datepicker({
       beforeShowDay: checkAvailability,
