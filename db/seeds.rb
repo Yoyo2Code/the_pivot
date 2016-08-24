@@ -9,7 +9,7 @@ class Seed
     create_businesses
   end
 
-  def create_businesses(user)
+  def create_businesses
     12.times do
       Business.create!(name: Faker::Company.name,
                        image_url: "https://robohash.org/#{rand(10)}",
@@ -63,7 +63,8 @@ class Seed
 
   def seed_users
     u1 = User.create!(username: 'Yoseph', password: 'password')
-    u2 = User.create!(username: 'Pat', password: 'password')
+    u2 = User.create!(username: 'Pat', password: 'password', role: 1)
+    u3 = User.create!(username: 'David', password: 'password', role: 2)
     u1.orders.create!
     u2.orders.create!
     u1.orders.first.reservations.create!(starting_date: Night.all[1].date, end_date: Night.all[5].date, number_of_guests: 2, price: 1500, property_id: Property.first.id)
