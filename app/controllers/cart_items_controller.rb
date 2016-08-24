@@ -6,14 +6,15 @@ class CartItemsController < ApplicationController
     @cart.add_item(params)
     session[:cart] = @cart.contents
     flash[:success] = "Successfully added booking to cart!"
-    redirect_to cart_index_path
+    redirect_to cart_path
   end
 
   def destroy
-    property  = Property.find(params[:item_id])
-    @cart.delete_item(property.id)
-    flash[:notice] = "Successfully removed #{view_context.link_to(property.title,
-    cart_items_path({item_id: property.id}))}"
-    redirect_to cart_index_path
+    # property  = Property.find(params[:id])
+    @cart.delete_item(params[:id])
+    flash[:success] = "Successfully removed"
+    # flash[:notice] = "Successfully removed #{view_context.link_to(property.title,
+    # cart_items_path({item_id: property.id}))}"
+    redirect_to cart_path
   end
 end

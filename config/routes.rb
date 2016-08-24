@@ -1,28 +1,44 @@
 Rails.application.routes.draw do
 
   root 'root#index'
-  resources :cart, only: [:index]
+
+  get '/cart', to: "cart#index", as: 'cart'
+
   resources :cart_items, only: [:create]
+  resources :businesses, only: [:new, :create, :edit, :update]
+
+  delete "/cart_items", to: 'cart_items#destroy'
 
   get '/login', to: 'sessions#new', as: 'login'
+
   post '/login', to: 'sessions#create'
+
+  resources :orders, only: [:create, :index, :show, :destroy]
 
   get '/dashboard', to: 'users#show', as: 'dashboard'
 
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
+
   namespace :location do
     get '/:city', to: 'properties#index'
   end
-
 
   namespace :api do
     namespace :v1 do
       get '/:business_name', to: 'properties#index', as: "properties"
       get '/location/:city', to: 'location/properties#index', as: "city"
+      get '/properties/:property_id', to: 'properties#show'
     end
   end
+
+  namespace :admin do
+    resources :businesses, only: [:edit, :update]
+    get '/:business_name/edit/:id', to: "properties#edit", as: "edit_property"
+    patch '/:business_name/:id', to: "properties#update", as: "update_property"
+  end
+
 
   get '/:business_name/:id', to: "properties#show", as: "property"
 
@@ -31,7 +47,6 @@ Rails.application.routes.draw do
   #   # resources :items
   #   resources :users, only: [:new, :create, :show]
   #
-  #   resources :orders, only: [:create, :index, :show, :destroy]
   #
   #   namespace :admin do
   #     resources :users, only: [:show, :edit, :update]
@@ -39,12 +54,6 @@ Rails.application.routes.draw do
   #   end
   #
   #   # delete "/orders", to: 'orders#destroy'
-  #   delete "/cart_items", to: 'cart_items#destroy'
-  #   get "/cart_items", to: 'cart_items#create'
-  #   post "/login", to: 'sessions#create'
-  #   get "/login", to: 'sessions#new'
-  #   get '/logout', to: 'sessions#destroy'
-  #
   #   get '/dashboard', to: 'users#show'
   #
   #

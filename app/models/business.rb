@@ -3,10 +3,14 @@ class Business < ApplicationRecord
   has_many :properties
   validates :name, presence: true, uniqueness: true
   validates :slug, presence: true
+  validates :status, presence: true
+  validates :user, presence: true, uniqueness: true
+  belongs_to :user
+  enum status: %w[pending active inactive]
 
   private
 
-  def make_slug
-    self.slug = name.parameterize if name
-  end
+    def make_slug
+      self.slug = name.parameterize if name
+    end
 end

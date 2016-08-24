@@ -1,15 +1,46 @@
-<% @cart_items.each do |cart_item| %>
-  <div class="well col-md-3">
-    Thank you for staying and playing with <%= cart_item.business.name %>!
-    <%= cart_item.title %><br>
-    <%= cart_item.description %><br>
-    Subtotal: <%= number_to_currency(cart_item.subtotal) %><br>
-    Total Guests: <%= cart_item.occupancy %><br>
-    Check-In: <%= cart_item.starting_date %><br>
-    Check-Out: <%= cart_item.end_date %><br>
-    <img src="<%= cart_item.image_path %>" style="width:220px;height:175px;"/><br><br>
-    <%#= button_to "Add", cart_items_path({item_id: property.id}) %>
-    <%#= button_to "Remove", cart_items_path({item_id: property.id}), method: :delete %>
+<% if @cart_items.empty? %>
+  <div class="well">
+    <h3>Your Cart is Empty</h3>
   </div>
+<% else %>
+  <% @cart_items.each do |cart_item| %>
+    <div class="well col-md-3" id=cart-item-<%= cart_item.id.to_s %>>
+      <p>
+        Thank you for staying and playing with <%= cart_item.business.name %>!
+          <br>
+        Title: <%= cart_item.title %>
+          <br>
+        Description: <%= cart_item.description %>
+          <br>
+        Subtotal: <%= number_to_currency(cart_item.subtotal) %>
+          <br>
+        Total Guests: <%= cart_item.occupancy %>
+          <br>
+        Check-In: <%= cart_item.starting_date %>
+          <br>
+        Check-Out: <%= cart_item.end_date %>
+          <br>
+        <img src="<%= cart_item.image_path %>" style="width:220px;height:175px;"/>
+          <br>
+          <br>
+        <%= button_to "Edit", property_path(id: cart_item.id, business_name: cart_item.business.slug), method: :get %>
+        <%= button_to "Remove", cart_items_path(id: cart_item.id), method: :delete %>
+      </p>
+    </div>
+    <% end %>
+    <p>
+      Total: <%= number_to_currency(@cart.total_price) %>
+    </p>
+    <br>
+    <% if current_user %>
+      <button id='complete-booking' type="button" class="btn btn-default">
+        <%= button_to "Complete My Booking", orders_path %>
+      </button>
+    <% else %>
+      <span>
+        <button id ="login-or-create-account" type="button" class="btn btn-default">
+          <%= link_to "Login or Create Account to Checkout", login_path %>
+        </button>
+      </span>
+    <% end %>
 <% end %>
-Total: <%= number_to_currency(@cart.total_price) %>

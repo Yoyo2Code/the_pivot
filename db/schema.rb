@@ -10,16 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818011342) do
+ActiveRecord::Schema.define(version: 20160823000527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "booked_dates", force: :cascade do |t|
+    t.integer "night_id"
+    t.integer "property_id"
+    t.index ["night_id"], name: "index_booked_dates_on_night_id", using: :btree
+    t.index ["property_id"], name: "index_booked_dates_on_property_id", using: :btree
+  end
+
   create_table "businesses", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "slug"
+    t.text     "image_url"
+    t.integer  "status",     default: 0
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_businesses_on_user_id", using: :btree
   end
 
   create_table "locations", force: :cascade do |t|
@@ -29,9 +40,15 @@ ActiveRecord::Schema.define(version: 20160818011342) do
     t.string   "slug"
   end
 
+  create_table "nights", force: :cascade do |t|
+    t.datetime "date"
+  end
+
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "status",  default: 0
+    t.integer  "user_id"
+    t.integer  "status",     default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
@@ -72,6 +89,9 @@ ActiveRecord::Schema.define(version: 20160818011342) do
     t.string  "email"
   end
 
+  add_foreign_key "booked_dates", "nights"
+  add_foreign_key "booked_dates", "properties"
+  add_foreign_key "businesses", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "properties", "businesses"
   add_foreign_key "properties", "locations"

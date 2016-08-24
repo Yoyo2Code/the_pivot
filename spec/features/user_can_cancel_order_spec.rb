@@ -1,39 +1,39 @@
-# require 'rails_helper'
-#
-# RSpec.feature "UserCancelTest" do
-#   scenario "user can cancel order" do
-#     cat1 = Category.create!(title: "arms")
-#     cat1.items.create!(title: "Robot Arm", description: "Cool ass arm",
-#     price: 10000.0, image_path: 'http://img09.deviantart.net/588b/i/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
-#
-#
-#     visit items_path
-#     cart = Cart.new(nil)
-#     first(:button, "Add to Cart").click
-#     first(:button, "Add to Cart").click
-#     first(:button, "Add to Cart").click
-#     visit cart_index_path
-#     first(:link, "Create Account").click
-#     fill_in "First Name", with: "Penelope"
-#     fill_in "Last Name", with: "Jones"
-#     fill_in "Username", with: "Penelope"
-#     fill_in "Password", with: "password"
-#     fill_in "Email Address", with: "penelope@gmail.com"
-#     first(:button, "Create Account").click
-#     visit cart_index_path
-#
-#     # When I visit "/orders"
-#     page.execute_script("$('.stripe-button').show()")
-#     first(:button, "Pay with Card").click
-#     expect(page).to have_content("Order #")
-#
-#     click_on "1"
-#     expect(page).to have_content("Cancel Order")
-#
-#     first(:button, "Cancel Order").click
-#
-#     expect(page).to have_content("Order Status")
-#     expect(page).to have_content("Canceled")
-#
-#   end
-# end
+require 'rails_helper'
+
+RSpec.feature "User can cancel an order" do
+  scenario "they click cancel and see that the order is cancelled" do
+    user = create(:user)
+    business = create(:business, user: user)
+    location = create(:location) do |loc|
+      loc.properties.create(attributes_for(:property, business_id: business.id))
+    end
+    property = location.properties.first
+
+    visit login_path
+
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: user.password
+
+    within('.login-form') do
+      click_on "Login"
+    end
+
+    visit property_path(property, business_name: property.business.slug)
+
+    find('#occupancy').find(:xpath, 'option[2]').select_option
+    fill_in :starting_date, with: "08/30/2016"
+    fill_in :end_date, with: "09/05/2016"
+
+    click_on "Book Me"
+    click_button 'Complete My Booking'
+
+    order = Order.last
+
+    within('#cancel-order') do
+      click_on "Cancel Order"
+    end
+
+    expect(current_path).to eq order_path(order)
+    expect(page).to have_content("cancelled")
+  end
+end
