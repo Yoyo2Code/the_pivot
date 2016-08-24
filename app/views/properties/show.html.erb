@@ -35,9 +35,6 @@
     <div id='max_occupancy' class='col-md-2'>
       <%= select_tag :occupancy, options_for_select([*1..@property.max_occupancy]), class: 'form-control'%>
     </div>
-    <!-- <%#= f.text_field :starting_date, :class => 'datepicker', placeholder: "Check-In" %>
-    <%#= f.text_field :end_date, "data-provide" => 'datepicker' %> -->
-  <!-- <div id="dates"> -->
     <div class='col-md-8' id='datepickers'>
       <%= text_field_tag :starting_date, Time.now.strftime("%m/%d/%Y"), id: "datepicker1" %>
       <%= text_field_tag :end_date, Time.now.tomorrow.strftime("%m/%d/%Y"), id: "datepicker2" %>
