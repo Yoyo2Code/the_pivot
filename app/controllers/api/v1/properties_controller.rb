@@ -11,14 +11,13 @@ class Api::V1::PropertiesController < Api::V1::BaseController
   end
 
   private
-
-  def find_property_scope
-    business = Business.find_by(slug: params[:property_scope])
-    if business
-      business.properties.all
-    else
-      location = Location.find_by(slug: params[:property_scope])
-      location.properties.all
+    def find_property_scope
+      business = Business.find_by(slug: params[:property_scope])
+      if business
+        business.properties.all
+      else
+        location = Location.find_by(slug: params[:property_scope])
+        location.properties.all
+      end
     end
-  end
 end

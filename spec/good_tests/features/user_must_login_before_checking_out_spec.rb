@@ -19,7 +19,9 @@ RSpec.describe 'User must login before checking out', type: :feature do
 
     click_on "Book Me"
 
-    expect(page).to have_content("Cart Items: 1")
+    within('.navbar') do
+      expect(page).to have_content("Cart Items: 1")
+    end
     expect(page).to have_no_content("Book Reservations")
 
     within('#login-or-create-account') do

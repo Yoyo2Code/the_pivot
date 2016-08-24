@@ -8,14 +8,6 @@ class Business < ApplicationRecord
   belongs_to :user
   enum status: %w[pending active inactive]
 
-   def self.pending?
-     where(status: 'pending')
-   end
-
-   def self.active_or_inactive?
-     where(status: ['active', 'inactive'])
-   end
-
   private
 
     def make_slug

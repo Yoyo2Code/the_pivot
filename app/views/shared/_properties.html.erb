@@ -18,11 +18,6 @@
         <%= related_location_or_business(property) %>
         <img src=" <%=property.image_path %> " class='room-image'/><br><br>
         <!-- <%#= button_to "Add to Cart", cart_items_path({item_id:property.id}) %> -->
-        <% if current_admin? %>
-          <button type="button" class="btn btn-default" id="edit-property">
-            <%= link_to "Edit Property", admin_edit_property_path(property, business_name: property.business.slug) %>
-          </button>
-        <% end %>
         <%# if current_admin? %>
           <!-- <button type="button" class="btn btn-default"><%#= link_to "Edit", edit_item_path(item) %></button> -->
       </div>

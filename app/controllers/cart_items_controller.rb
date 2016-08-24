@@ -3,7 +3,7 @@ class CartItemsController < ApplicationController
   # skip_before_action :require_admin
 
   def create
-    @cart.add_item(params[:booking])
+    @cart.add_item(params)
     session[:cart] = @cart.contents
     flash[:success] = "Successfully added booking to cart!"
     redirect_to cart_path
