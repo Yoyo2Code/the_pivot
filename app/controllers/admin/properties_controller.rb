@@ -1,4 +1,23 @@
 class Admin::PropertiesController < Admin::BaseController
+
+  def new
+    @property = current_user.business.properties.new
+    @locations = Location.all
+  end
+
+  def create
+    location = Location.find(params[:location])
+    property = current_user.business.properties.new(property_params)
+    property.location = location
+    if property.save
+      flash[:success] = "Property Created!"
+      redirect_to property_path(current_user.business, property)
+    else
+      flash[:danger] = "Invalid Property"
+      render :new
+    end
+  end
+
   def edit
     @property = current_user.business.properties.find(params[:id])
   end

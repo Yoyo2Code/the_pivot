@@ -1,0 +1,23 @@
+<h1>New Property</h1>
+<div class="form-group">
+  <%= form_for @property, url: admin_create_property_path do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title, placeholder: "Title" %><br>
+    <br>
+    <%= f.label :description %><br>
+    <%= f.text_area :description, placeholder: "Description" %><br>
+    <br>
+    <%= f.label :price_per_guest %><br>
+    <%= f.number_field :price_per_guest, placeholder: "Price Per Guest" %><br>
+    <br>
+    <%= f.label :image_path %><br>
+    <%= f.text_field :image_path, placeholder: "Image Url" %><br>
+    <br>
+    <%= f.label :location %><br>
+    <%= select_tag "location", options_from_collection_for_select(@locations, "id", "city") %><br>
+    <%= f.label :max_occupancy %><br>
+    <%= f.number_field :max_occupancy, placeholder: "Max Occupancy" %><br>
+    <br>
+    <%= f.submit "Create Property" %><br>
+  <% end %>
+</div>
