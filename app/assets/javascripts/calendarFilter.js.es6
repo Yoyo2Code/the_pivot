@@ -9,6 +9,7 @@ $(document).ready(function() {
   let $properties = $('.item')
   let startDate;
   let endDate;
+  let _names
 
   function getPath() {
     let name = slug.slice(-1).toString();
@@ -31,7 +32,8 @@ $(document).ready(function() {
                   endDate: parseDate(
                     $.datepicker.formatDate('mm/dd/yy', endingDate)) },
           success: (response) => {
-            console.log(response)
+            _properties = response.map(fetchPropertyNames)
+            hideProperties()
           }
         })
       }
@@ -49,12 +51,29 @@ $(document).ready(function() {
             $.datepicker.formatDate('mm/dd/yy', startDate)), 
                   endDate: parseDate(dateText) },
           success: (response) => {
-            console.log(response)
+            _properties = response.map(fetchPropertyNames)
+            hideProperties()
           }
         })
       }
     })
   });
+
+  function hideProperties() {
+    $properties.each(( index, property ) => {
+      let $divTitle = $(property).find('a').text().split('#')[0]
+      if (_properties.indexOf($divTitle) !== -1) {
+        $(property).slideUp(200)
+      }
+      else {
+        $(property).slideDown(200)
+      }
+    })
+  }
+
+  function fetchPropertyNames(property) {
+    return property.title.split('#')[0]
+  }
 
   function parseDate(dateText) {
     let splitDate = dateText.split('/')
