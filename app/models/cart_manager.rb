@@ -6,14 +6,19 @@ class CartManager
 
   def process_order
     order = @user.orders.create
-      @cart.find_items.each do |property|
-        order.reservations.create(
-                                  property_id: property.id,
-                                  price: property.subtotal,
-                                  number_of_guests: property.occupancy,
-                                  starting_date: DateTime.strptime(property.starting_date, "%m/%d/%Y"),
-                                  end_date: DateTime.strptime(property.end_date, "%m/%d/%Y")
-                                 )
-      end
+    @cart.find_items.each do |property|
+      order.reservations.create(
+      property_id: property.id,
+      price: property.subtotal,
+      number_of_guests: property.occupancy,
+      starting_date: format_date(property.starting_date),
+      end_date: format_date(property.end_date)
+      )
+    end
+    order
+  end
+
+  def format_date(date)
+    DateTime.strptime(date, "%m/%d/%Y")
   end
 end
