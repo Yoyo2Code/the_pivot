@@ -18,13 +18,14 @@
   </div>
 </div>
 
-<div id='manage-all-businesses'>
-  <h1 class="well text-center">All Businesses</h1>
+<div id='existing-businesses'>
+  <h1 class="well text-center">Existing Businesses</h1>
   <div class="text-center">
     <% if @live_businesses.present? %>
       <% @live_businesses.each do |business| %>
       <%= business.name %>
       <%= image_tag business.image_url %>
+      Status: <%= business.status.capitalize %>
       <br>
       <br>
       <% if business.inactive? %>
@@ -36,7 +37,7 @@
         <br>
     <% end %>
   <% else %>
-    <h3>There are no live businesses</h3>
+    <h3>There are no existing businesses</h3>
   <% end %>
   </div>
 </div>

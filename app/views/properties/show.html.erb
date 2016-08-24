@@ -7,16 +7,16 @@
   </div>
 
   <div class='col-md-5 property-details'>
-    
+
     <h4><span class="glyphicon glyphicon-map-marker"></span>
-      Location: 
+      Location:
       <a href='/locations/<%= @property.location.slug %>'>
         <%= @property.location.city %>
       </a>
     </h4>
     <h4>Price Per Guest: <%= number_to_currency(@property.price_per_guest) %></h4><br>
     <h4><span class="glyphicon glyphicon-user"></span> Max Occupancy: <%= @property.max_occupancy %> </h4>
-    <h4><span class="glyphicon glyphicon-briefcase"></span> Business: 
+    <h4><span class="glyphicon glyphicon-briefcase"></span> Business:
       <a href='/<%= @property.business.slug %>'>
         <%= @property.business.name %>
       </a>
