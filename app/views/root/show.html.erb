@@ -1,13 +1,15 @@
-<div class='row'>
-  <div class='col-md-2 sidebar'>
-    <%= render partial: 'layouts/navbar-side' %>
+<div class='page-header location-header' id='homepage-header'>
+  <div class='col-xs-5 line'><hr></div>
+  <div class='col-xs-2 line city-header'>
+    <p>Come Stay with Us!</p>
   </div>
-  <% unless params[:city] %>
-    <h1 class='text-center'><%= name %></h1>
-  <% end %>
-  <div class='col-md-9 properties'>
+  <div class='col-xs-5 line'><hr></div>
+</div>
+<%= render partial: 'layouts/fuzzy-search', locals: { properties: @properties } %>
+<div class='row jumbotron'>
+  <div id='property-container'>
     <% @properties.each do |property| %>
-      <div class="well col-md-4 item">
+      <div class="well col-md-3 item" data-title="<%= property.title %>">
         <div class='property-index-header'>
           <%= link_to property.title, property_path(property, business_name: property.business.slug) %><br>
           <%= property.description %><br>
@@ -17,9 +19,6 @@
         Max Occupancy: <%= property.max_occupancy %><br>
         <%= related_location_or_business(property) %>
         <img src=" <%=property.image_path %> " class='room-image'/><br><br>
-        <!-- <%#= button_to "Add to Cart", cart_items_path({item_id:property.id}) %> -->
-        <%# if current_admin? %>
-          <!-- <button type="button" class="btn btn-default"><%#= link_to "Edit", edit_item_path(item) %></button> -->
       </div>
     <% end %>
   </div>
