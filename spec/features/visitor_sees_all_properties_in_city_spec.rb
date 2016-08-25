@@ -13,8 +13,8 @@ RSpec.feature "visitor can see all properties in a city" do
                       max_occupancy: 2,
                       location: location,
                       business: business)
-
-    visit '/location/new-york'
+                      
+    visit '/locations/new-york'
 
     expect(page).to have_content("New York")
     expect(page).to have_content("Trump Tower")

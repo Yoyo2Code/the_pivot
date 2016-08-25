@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'root#index'
+  get '/home', to: "root#show", as: 'home'
 
   get '/cart', to: "cart#index", as: 'cart'
 
@@ -8,15 +9,11 @@ Rails.application.routes.draw do
 
   resources :businesses, only: [:new, :create, :edit, :update, :destroy]
 
-  get '/businesses/pending', to: "businesses#pending"
+  namespace :platform_admin do
+    resources :businesses, only: [:index, :update, :destroy]
+  end
 
-  get '/businesses/manage', to: "businesses#manage"
-
-  post '/businesses/:id/activate', to: "businesses#activate", as: 'activate_business'
-
-  post '/businesses/:id/deactivate', to: "businesses#deactivate", as: 'deactive_business'
-
-  get '/businesses/pending', to: "businesses#pending"
+  delete "/cart_items", to: 'cart_items#destroy'
 
   delete "/cart_items", to: 'cart_items#destroy'
 
@@ -32,15 +29,16 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :edit, :update]
 
-  namespace :location do
+  namespace :locations do
     get '/:city', to: 'properties#index'
   end
 
   namespace :api do
     namespace :v1 do
-      get '/:business_name', to: 'properties#index', as: "properties"
-      get '/location/:city', to: 'location/properties#index', as: "city"
+      get '/locations/:slug', to: 'locations/properties#index', as: "city"
+      get '/businesses/:slug', to: 'businesses/properties#index', as: "name"
       get '/properties/:property_id', to: 'properties#show'
+      get '/:property_scope', to: 'properties#index', as: "properties"
     end
   end
 
@@ -53,10 +51,10 @@ Rails.application.routes.draw do
     delete '/business_name/:id', to: "properties#delete", as: "delete_property"
   end
 
-
   get '/:business_name/:id', to: "properties#show", as: "property"
 
   get '/:business_name', to: 'properties#index', as: "properties"
+
 
   #   # resources :items
   #   resources :users, only: [:new, :create, :show]

@@ -12,9 +12,8 @@
     </li>
     <li>
       <div class='row' id='dates'>
-        <input type='text' id='datepicker1' name='start-date' placeholder='Start Date'>
-        <br>
-        <input type='text' id='datepicker2' name='end-date' placeholder='End Date'>
+        <%= text_field_tag :starting_date, Time.now.strftime("%m/%d/%Y"), id: "start-filter", readonly: true %>
+        <%= text_field_tag :end_date, Time.now.tomorrow.strftime("%m/%d/%Y"), id: "end-filter", readonly: true %>
       </div>
     </li>
   </ul>

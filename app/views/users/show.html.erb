@@ -6,12 +6,10 @@
 <br>
 <%= link_to "My Properties", properties_path(business_name: current_user.business.slug) if current_admin? && current_user.business %>
 <br>
-<%= link_to "View Pending Businesses", businesses_pending_path if current_platform_admin? %>
-<br>
-<%= link_to "Manage All Businesses", businesses_manage_path if current_platform_admin? %>
+<%= link_to "Manage All Businesses", platform_admin_businesses_path if current_platform_admin? %>
 <br>
 <%= link_to 'Edit Account Information', edit_user_path(current_user) %>
 <br>
 <%= link_to "View Past Orders", orders_path %>
 <br>
-<%= link_to "Create My Property", admin_new_property_path(business_name: current_user.business.slug) if current_admin? %>
+<%= link_to "Create My Property", admin_new_property_path(business_name: current_user.business.slug) if current_business_admin? %>

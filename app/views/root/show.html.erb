@@ -1,0 +1,25 @@
+<div class='page-header location-header' id='homepage-header'>
+  <div class='col-xs-5 line'><hr></div>
+  <div class='col-xs-2 line city-header'>
+    <p>Come Stay with Us!</p>
+  </div>
+  <div class='col-xs-5 line'><hr></div>
+</div>
+<%= render partial: 'layouts/fuzzy-search', locals: { properties: @properties } %>
+<div class='row jumbotron'>
+  <div id='property-container'>
+    <% @properties.each do |property| %>
+      <div class="well col-md-3 item" data-title="<%= property.title %>">
+        <div class='property-index-header'>
+          <%= link_to property.title, property_path(property, business_name: property.business.slug) %><br>
+          <%= property.description %><br>
+        </div>
+        <hr>
+        Price Per Guest: <%= number_to_currency(property.price_per_guest) %><br>
+        Max Occupancy: <%= property.max_occupancy %><br>
+        <%= related_location_or_business(property) %>
+        <img src=" <%=property.image_path %> " class='room-image'/><br><br>
+      </div>
+    <% end %>
+  </div>
+</div>
