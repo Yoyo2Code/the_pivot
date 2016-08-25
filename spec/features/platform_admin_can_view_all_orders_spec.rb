@@ -20,8 +20,10 @@ RSpec.feature "Platform admin can view all orders" do
 
     click_on "View All Orders"
 
-    expect(current_path).to eq admin_orders_path
-    expect(page).to have_content("Acme")
-    expect(page).to have_content("Turing")
+    expect(current_path).to eq platform_admin_orders_path
+    expect(page).to have_content(order1.id)
+    expect(page).to have_content(order2.id)
+    expect(page).to have_content(user1.username)
+    expect(page).to have_content(user2.username)
   end
 end

@@ -16,8 +16,6 @@
 
 <br><%= link_to "View My Past Orders", orders_path %>
 
-<br><%= link_to "View Business Orders", admin_orders_path if business_owner? %>
-
 <br><%= link_to "View All Orders", platform_admin_orders_path if current_platform_admin? %>
 
 <br><%= link_to "Create New Property", admin_new_property_path(business_name: current_user.business.slug) if current_business_admin? %>

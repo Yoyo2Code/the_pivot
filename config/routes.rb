@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   namespace :platform_admin do
     resources :businesses, only: [:index, :update, :destroy]
-    resources :orders, only: [:index]
+    resources :orders, only: [:index, :show]
   end
 
   delete "/cart_items", to: 'cart_items#destroy'
@@ -46,7 +46,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :businesses, only: [:edit, :update]
-    resources :orders, only: [:index]
     get '/:business_name/edit/:id', to: "properties#edit", as: "edit_property"
     get '/:business_name/properties/new', to: "properties#new", as: "new_property"
     post '/:business_name/properties', to: "properties#create", as: "create_property"
