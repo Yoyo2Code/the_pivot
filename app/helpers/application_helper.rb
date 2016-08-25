@@ -19,4 +19,8 @@ module ApplicationHelper
   def get_location(properties)
     properties.first.location
   end
+
+  def get_business_name
+    Business.find_by(slug: params[:business_name]).name
+  end
 end

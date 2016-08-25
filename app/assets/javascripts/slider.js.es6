@@ -1,4 +1,9 @@
 $(document).ready(function() {
+  let $items = $('.item')
+  let slug = window.location.pathname.split('/').slice(-1).toString();
+  let _items
+  let _values
+
   $(function() {
     $( '#slider-range' ).slider({
       range: true,
@@ -7,19 +12,14 @@ $(document).ready(function() {
       values: [ 15, 75 ],
       slide: function( event, ui ) {
         $('#amount').val("$" + ui.values[0] + " - $" + ui.values[ 1 ] );
-        showAvailable(ui.values);
+        $.getJSON(`/api/v1/${slug}.json`, 
+                  (response) => { start(response) });
+                  showAvailable(ui.values);
       }
     });
     $('#amount').val("$" + $('#slider-range').slider( 'values', 0 ) + 
       " - $" + $('#slider-range').slider( 'values', 1 ) );
   });
-
-  let $items = $('.item')
-  let slug = window.location.pathname.split('/').slice(-1).toString();
-  let _items
-  let _values
-  $.getJSON(`/api/v1/${slug}.json`, 
-    (response) => { start(response) })
 
   function start(response) {
     _items = response

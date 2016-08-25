@@ -23,6 +23,7 @@ $(document).ready(function() {
 
   $(function() {
     $('#start-filter').datepicker({
+      minDate: 0,
       onSelect: function(dateText, inst) {
         let endingDate = $('#end-filter').datepicker('getDate')
         $.ajax({
@@ -42,6 +43,7 @@ $(document).ready(function() {
 
   $( function() {
     $('#end-filter').datepicker({
+      minDate: 0,
       onSelect: function(dateText, inst) {
         let startDate = $('#start-filter').datepicker('getDate')
         $.ajax({
