@@ -2,6 +2,14 @@
 <html>
   <head>
     <title>Stay and Play</title>
+      <%= csrf_meta_tags %>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -11,76 +19,12 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+
   </head>
 
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <navbar class="navbar-nav navbar-right">
-          <span><%= link_to "Cart Items", cart_path %>: <%= @cart.total %><br></span>
-          <!--<%# if current_user %>
-            <%#= form_tag orders_path do %>
-              <article>
-                <%# if flash[:error].present? %>
-                  <div id="error_explanation">
-                    <p><%#= flash[:error] %></p>
-                  </div>
-                <%# end %>
-                <label class="amount">
-                  <span>Total: <%#= number_to_currency(@cart.total_price) %></span>
-                </label>
-              </article> -->
-
-              <!-- <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                      data-key="<%#= Rails.configuration.stripe[:publishable_key] %>"
-                      data-description="Your Cyborg Parts"
-                      data-amount=<%#= number_to_currency(@cart.total_price) %>
-                      data-locale="auto"></script>
-            <%# end %>
-          <%# else %>
-            <%#= link_to "Login", login_path %> or <%#= link_to "Create Account", new_user_path %> to Checkout<br>
-          <%# end %> -->
-        </navbar>
-
-
-
-        <!-- <div class="btn-group">
-          <button type="button" class="btn btn-default"><%#= link_to "Home", root_path %></button>
-            <%# if current_user && current_admin? == false %>
-              <button type="button" class="btn btn-default"><%#= link_to "Logout", logout_path %></button>
-              <button type="button" class="btn btn-default"><%#= link_to "My Account", dashboard_path %></button>
-              <%# unless current_user.orders.empty? %>
-                <button type="button" class="btn btn-default"><%#= link_to "Past Orders", orders_path %></button>
-              <%# end %>
-            <%# elsif current_admin? %>
-            <button type="button" class="btn btn-default"><%#= link_to "Logout", logout_path %></button>
-            <button type="button" class="btn btn-default"><%#= link_to "My Account", admin_dashboard_path %></button>
-            <button type="button" class="btn btn-default"><%#= link_to "Create New Item", new_item_path %></button>
-              <%# unless current_user.orders.empty? %>
-                <button type="button" class="btn btn-default"><%#= link_to "Past Orders", orders_path %></button>
-              <%# end %>
-            <%# else %>
-              <button type="button" class="btn btn-default"><%#= link_to "Login", login_path %></button>
-            <%# end %>
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Locations <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-right">
-            <%# Location.all.each do |location| %>
-              <li><%#=link_to location.title.capitalize, "/#{location.title}"%></li>
-            <%# end %>
-          </ul>
-        </div>
-      </div> -->
-      <% if current_user %>
-        <%= link_to "Logout", logout_path, method: :delete %>
-        <% else %>
-        <%= link_to "Login", login_path %>
-      <% end %>
-    </nav>
-  <% flash.each do |type, message| %>
-    <%= content_tag :div, sanitize(message), class: "flash-#{type}" %>
-  <% end %>
+    <%= render 'layouts/navbar' %>
+    <%= render 'layouts/flash' %>
     <%= yield %>
 
   </body>
