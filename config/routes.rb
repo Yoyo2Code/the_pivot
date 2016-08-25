@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'root#index'
-
-  get '/home', to: "root#show", as: 'home'
+  root 'root#show'
+  get '/more-options', to: "root#index", as: 'more_options'
 
   get '/cart', to: "cart#index", as: 'cart'
 

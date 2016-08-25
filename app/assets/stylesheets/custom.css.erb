@@ -95,9 +95,38 @@ ol, ul {
   height: 150px;
   float: right;
 }
-
+#sydney {
+  background-image: url( <%= asset_path 'sydney_thumbnail.jpg' %> );
+  background-position: center;
+  background-size: center;
+}
+#philly {
+  background-image: url( <%= asset_path 'philly_thumbnail.jpg' %> );
+  background-position: center;
+  background-size: center;
+}
+#houston {
+  background-image: url( <%= asset_path 'houston_thumbnail.jpg' %> );
+  background-position: center;
+  background-size: center;
+}
 #denver {
   background-image: url( <%= asset_path 'denver_thumbnail.jpg' %> );
+  background-position: center;
+  background-size: center;
+}
+#dubai {
+  background-image: url( <%= asset_path 'dubai_thumbnail.jpg' %> );
+  background-position: center;
+  background-size: center;
+}
+#london {
+  background-image: url( <%= asset_path 'london_thumbnail.jpg' %> );
+  background-position: center;
+  background-size: center;
+}
+#boston {
+  background-image: url( <%= asset_path 'boston_thumbnail.jpg' %> );
   background-position: center;
   background-size: center;
 }
@@ -129,7 +158,6 @@ ol, ul {
 .room-image {
   width: 100%;
   height: 150px;
-
 }
 .properties {
   margin-left: 60px;
@@ -137,11 +165,182 @@ ol, ul {
 .item {
   width: 100%;
   height: 450px;
+  vertical-align: bottom;
+  display: table-cell;
+}
+.item img {
+  vertical-align: bottom;
 }
 .property-index-header {
   text-align: center;
 }
-
+.property-details {
+  margin-left: 20px;
+}
+.property-header {
+  margin: 0 auto;
+  width: 350px;
+  text-align: center;
+}
+.property-container {
+  margin-top: 20px;
+}
+.property-image img {
+  margin: 0 auto;
+  width: 100%;
+  height: 300px;
+}
+.book-property-form {
+  margin: 0 auto;
+  width: 450px;
+  border-radius: 8px 8px 8px 8px
+}
+#property-input p {
+  font-size: 14px;
+  margin-left: 13px;
+}
+#book-me-btn {
+  margin: 0 auto;
+  width: 100px;
+  padding-top: 20px;
+}
+#book-me-btn input {
+  margin-top: 15px;
+}
+#datepicker1 {
+  width: 100px;
+}
+#datepicker2 {
+  width: 100px;
+}
+#datepickers {
+  margin-left: 45px;
+}
+.location-header {
+  height: 300px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.location-header div {
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+}
+.location-header .city-header {
+  width: 100%
+}
+.city-header {
+  color: #fff;
+  font-weight: 400;
+  font-size: 80px;
+  padding: 25px;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+}
+#sydney-header {
+  background-image: url('sydney-header.jpg');
+  background-position: center;
+  background-size: center;
+}
+#houston-header {
+  background-image: url('houston-header.jpg');
+  background-position: center;
+  background-size: center;
+}
+#philly-header {
+  background-image: url('philly-header.jpg');
+  background-position: center;
+  background-size: center;
+}
+#dubai-header {
+  background-image: url('dubai-header.jpg');
+  background-position: center;
+  background-size: center;
+}
+#toronto-header{
+  background-image: url('toronto-header.jpg');
+  background-position: center;
+  background-size: center;
+}
+#dallas-header{
+  background-image: url('dallas-header.jpg');
+  background-position: center;
+  background-size: center;
+}
+#los-angeles-header{
+  background-image: url('los-angeles-header.jpg');
+  background-position: center;
+  background-size: center;
+}
+#chicago-header{
+  background-image: url('chicago-header.jpg');
+  background-position: center;
+  background-size: center;
+}
+#denver-header{
+  background-image: url('denver-header.jpg');
+  background-position: center;
+  background-size: center;
+}
+#london-header {
+  background-image: url('london-header.jpg');
+  background-position: center;
+  background-size: center;
+}
+#new-york-header{
+  background-image: url('new-york-header.jpg');
+  background-position: center;
+  background-size: center;
+}
+#boston-header {
+  background-image: url('boston-header.jpg');
+  background-position: center;
+  background-size: center;
+}
+.filter {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.filter input {
+  margin-bottom: 15px;
+}
+#property-container {
+  width: 1300px;
+  margin: 0 auto;
+}
+#property-container .item {
+  margin: 0 auto;
+  border-radius: 15px 15px 15px 15px;
+}
+#options-button {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+#homepage-header {
+  background-image: url('home-header.jpg');
+  background-position: center;
+  background-size: center;
+  height: 500px;
+}
+#homepage-header .city-header {
+  width: 100%;
+}
+#business-header {
+  background-image: url('http://www.siwallpaperhd.com/wp-content/uploads/2015/06/black_and_white_new_york_skyline_wallpaper_hd_16.jpg');
+  background-position: center;
+  background-size: center;
+}
+#business-header .city-header {
+  width: 100%;
+}
 body {
   background-color: rgb(239, 239, 245);
   background-position: center;
@@ -152,8 +351,19 @@ body {
   background-position: center;
   background-size: center;
 }
-/*body nav {
-  background-image: url( <%= asset_path 'mountains.jpg' %> );
-  background-position: center;
-  background-size: center;
-}*/
+.dashboard-form {
+  width: 450px;
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.dashboard-form input {
+  margin-bottom: 10px;
+}
+.application-btn {
+  margin-top: 20px;
+}
+.header-text {
+  text-align: center;
+}
