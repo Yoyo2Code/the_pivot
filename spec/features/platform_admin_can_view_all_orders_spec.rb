@@ -12,8 +12,8 @@ RSpec.feature "Platform admin can view all orders" do
     property2 = create(:property, title: "Turing", business: business2, location: location)
     order1 = create(:order, user: user1)
     order2 = create(:order, user: user2)
-    create(:reservation, order: order1, property: property1)
-    create(:reservation, order: order2, property: property2)
+    create(:reservation, order: order1, property: property1, business: business1)
+    create(:reservation, order: order2, property: property2, business: business2)
     page.set_rack_session(user_id: user3.id)
 
     visit dashboard_path

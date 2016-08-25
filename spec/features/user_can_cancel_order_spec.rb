@@ -27,11 +27,11 @@ RSpec.feature "User can cancel an order" do
     click_on "Book Me"
     click_button 'Complete My Booking'
 
-    order = Order.last
-
     within('#cancel-order') do
       click_on "Cancel Order"
     end
+
+    order = Order.last
 
     expect(current_path).to eq order_path(order)
     expect(page).to have_content("cancelled")

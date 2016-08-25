@@ -12,7 +12,8 @@ class CartManager
       price: property.subtotal,
       number_of_guests: property.occupancy,
       starting_date: format_date(property.starting_date),
-      end_date: format_date(property.end_date)
+      end_date: format_date(property.end_date),
+      business_id: property.business
       )
     end
     order

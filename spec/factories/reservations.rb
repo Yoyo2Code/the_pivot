@@ -6,5 +6,6 @@ FactoryGirl.define do
     end_date Time.now.tomorrow
     property
     order
+    business
   end
 end
