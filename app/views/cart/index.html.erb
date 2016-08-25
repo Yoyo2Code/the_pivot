@@ -3,44 +3,63 @@
     <h3>Your Cart is Empty</h3>
   </div>
 <% else %>
-  <% @cart_items.each do |cart_item| %>
-    <div class="well col-md-3" id=cart-item-<%= cart_item.id.to_s %>>
-      <p>
-        Thank you for staying and playing with <%= cart_item.business.name %>!
-          <br>
-        Title: <%= cart_item.title %>
-          <br>
-        Description: <%= cart_item.description %>
-          <br>
-        Subtotal: <%= number_to_currency(cart_item.subtotal) %>
-          <br>
-        Total Guests: <%= cart_item.occupancy %>
-          <br>
-        Check-In: <%= cart_item.starting_date %>
-          <br>
-        Check-Out: <%= cart_item.end_date %>
-          <br>
-        <img src="<%= cart_item.image_path %>" style="width:220px;height:175px;"/>
-          <br>
-          <br>
-        <%= button_to "Edit", property_path(id: cart_item.id, business_name: cart_item.business.slug), method: :get %>
-        <%= button_to "Remove", cart_items_path(id: cart_item.id), method: :delete %>
-      </p>
-    </div>
-    <% end %>
-    <p>
-      Total: <%= number_to_currency(@cart.total_price) %>
-    </p>
-    <br>
-    <% if current_user %>
-      <button id='complete-booking' type="button" class="btn btn-default">
-        <%= button_to "Complete My Booking", orders_path %>
-      </button>
-    <% else %>
-      <span>
-        <button id ="login-or-create-account" type="button" class="btn btn-default">
-          <%= link_to "Login or Create Account to Checkout", login_path %>
-        </button>
-      </span>
-    <% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<div class="row">
+							<div class="col-xs-6">
+								<h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+							</div>
+							<div class="col-xs-6">
+								<a href="/" type="button" class="btn btn-primary btn-sm btn-block">
+									<span class="glyphicon glyphicon-share-alt"></span> Continue shopping
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+            <% @cart_items.each do |cart_item| %>
+						<div class="col-xs-2"><img class="img-responsive" src="<%= cart_item.image_path %>">
+						</div>
+						<div class="col-xs-4">
+							<h4 class="product-name"><strong> <%= cart_item.title %></strong></h4><h4><small> <%= cart_item.description %></small></h4><br>
+            </div>
+						<div class="col-xs-6">
+							<div class="col-xs-6 text-right">
+                <p class="occupancy"><strong> Total Guests: <%= cart_item.occupancy %></strong></p>
+								<h6><strong><%= number_to_currency(cart_item.subtotal) %> <span class="text-muted"></span></strong></h6>
+							</div>
+							<div class="col-xs-2">
+                <%= button_to "Edit Booking", property_path(id: cart_item.id, business_name: cart_item.business.slug), method: :get %>
+                <%= button_to "Remove ", cart_items_path(id: cart_item.id), method: :delete %>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="text-center">
+							<div class="col-xs-3">
+							</div>
+						</div>
+					</div><br>
+          <% end %>
+				</div>
+				<div class="panel-footer">
+					<div class="row text-center">
+						<div class="col-xs-9">
+							<h4 class="text-right">Total <strong><%= number_to_currency(@cart.total_price) %></strong></h4>
+						</div>
+						<div class="col-xs-3">
+							<%= button_to "Complete My Booking", orders_path %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <% end %>
