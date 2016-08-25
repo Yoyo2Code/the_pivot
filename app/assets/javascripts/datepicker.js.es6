@@ -28,7 +28,6 @@ $(document).ready(function() {
     })
   }
 
-
   function checkAvailability(date) {
     fetchDates();
     let y = date.getFullYear();
@@ -42,7 +41,6 @@ $(document).ready(function() {
       return [false, "", "Booked"]
     }
   }
-
 
   function getID() {
     return window.location.pathname.split('/').slice(-1).toString();
