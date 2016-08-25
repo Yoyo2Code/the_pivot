@@ -14,15 +14,13 @@
         Max Occupancy: <%= property.max_occupancy %><br>
         <%= related_location_or_business(property) %>
         <img src=" <%=property.image_path %> " class='room-image'/><br><br>
-        <!-- <%#= button_to "Add to Cart", cart_items_path({item_id:property.id}) %> -->
-        <% if current_admin? %>
-          <button type="button" class="btn btn-default" id="edit-property">
-            <%= link_to "Edit Property", admin_edit_property_path(property, business_name: property.business.slug) %>
-            <%= link_to "Delete Property", admin_delete_property_path(property.id), method: :delete %>
-          </button>
+        <% if my_property?(property) %>
+          <div id='property-admin-btns'>
+            <%= link_to "Edit Property", admin_edit_property_path(property, business_name: property.business.slug), class: 'btn btn-warning btn-xs'%>
+            <br>
+            <%= link_to "Delete Property", admin_delete_property_path(property.id), method: :delete, class: 'btn btn-danger btn-xs' %>
+          </div>
         <% end %>
-        <%# if current_admin? %>
-          <!-- <button type="button" class="btn btn-default"><%#= link_to "Edit", edit_item_path(item) %></button> -->
       </div>
     <% end %>
   </div>

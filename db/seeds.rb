@@ -10,10 +10,11 @@ class Seed
   end
 
   def create_businesses
-    19.times do
-      Business.create!(name: Faker::Company.name,
+    19.times do |i|
+      b = Business.create!(name: Faker::Company.name,
                        image_url: "https://robohash.org/#{rand(10)}",
-                       user: create_user)
+                       user: create_user(i))
+      puts "Created #{b.name}"
     end
     Business.create!(name: Faker::Company.name,
                      image_url: "https://robohash.org/#{rand(10)}",
@@ -24,10 +25,11 @@ class Seed
     create_locations
   end
 
-  def create_user
-    User.create!(username: Faker::Name.first_name,
-                 password: 'password',
-                 role: 1)
+  def create_user(i)
+    u = User.create!(username: Faker::Internet.user_name + " ##{i}#{rand(10000)}",
+                   password: 'password')
+    puts "Created #{u.username}"
+    u
   end
 
   def create_locations
@@ -50,7 +52,7 @@ class Seed
     b = Business.all.to_a
     Location.all.each do |location|
       50.times do |i|
-        location.properties.create!(
+        l = location.properties.create!(
           title: Faker::Book.title + " ##{i}#{rand(10000)}",
           description: Faker::Lorem.paragraph(4),
           price_per_guest: Faker::Commerce.price,
@@ -58,15 +60,18 @@ class Seed
           image_path: 'http://i.dailymail.co.uk/i/pix/2015/07/09/14/2A6072FF00000578-3154851-image-a-1_1436449347511.jpg',
           business: b.rotate!.first
         )
+        puts "Created #{l.title}" 
       end
     end
+    Property.last.business = Business.all.sample
   end
 
   def add_nights
     from = Time.new(2016, 8, 27)
     to = Time.new(2017, 4, 1)
     until from >= to
-      Night.create!(date: (from += 1.day))
+      n = Night.create!(date: (from += 1.day))
+      puts "Created night #{n.date}"
     end
   end
 
@@ -75,6 +80,7 @@ class Seed
     99.times do |i|
       user = User.create!(username: Faker::Internet.user_name + " ##{i}#{rand(10000)}",
                    password: 'password')
+      puts "Created #{user.username}"
       user_orders(user)
     end
     user_orders(User.create!(username: 'jmejia@turing.io', password: 'password'))
@@ -83,6 +89,7 @@ class Seed
   def user_orders(user)
     10.times do 
       user.orders << Order.create!
+      puts "Created order for #{user.username}"
     end
   end
 
@@ -102,6 +109,7 @@ class Seed
     night_id = Random.new.rand(count..(count + rand(10..20)))
     duration.times do |i|
       prop.nights << Night.find(night_id + i)
+      puts "Created #{prop.title} booking for #{prop.nights.last.date}"
     end
   end
 end
