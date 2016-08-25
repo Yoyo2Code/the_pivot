@@ -85,8 +85,6 @@ RSpec.feature 'Visitor can delete items from cart' do
       click_on "Remove"
     end
 
-    # page.find(:xpath, '/html/body/div/div/div/div[1]/div[2]/div[1]/div[3]/div[2]/form[2]/input[2]').click_button("Remove")
-
     expect(page).to have_content("Disneyland")
     expect(page).to have_no_content("Trump Tower")
     expect(page).to have_content("Cart Items: 1")

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       redirect_to cart_path if @cart.contents.any?
       redirect_to dashboard_path if @cart.contents.empty?
     else
-      flash.now[:notice] = "Invalid Username or Password"
+      #ActiveRecord
       render :new
     end
   end

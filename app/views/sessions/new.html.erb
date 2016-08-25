@@ -1,9 +1,13 @@
-<div class="container-fluid login-form">
-  <%= form_for :session, url: login_path do |f|%>
-    <%= f.text_field :username, placeholder: "Username" %>
-    <%= f.password_field :password, placeholder: "Password" %>
-    <%= f.submit "Login" %>
-  <% end %>
-    <hr>
-  <%= link_to 'Create Account', new_user_path %>
+<div class="container-fluid login-form dashboard-form">
+  <div class='jumbotron'>
+    <%= form_for :session, url: login_path do |f|%>
+      <%= f.text_field :username, placeholder: "Username" %>
+      <br>
+      <%= f.password_field :password, placeholder: "Password" %>
+      <br>
+      <%= f.submit "Login", class: 'form-btn btn-block btn-success' %>
+    <% end %>
+      <hr>
+    <%= link_to 'Create Account', new_user_path %>
+  </div>
 </div>

@@ -55,19 +55,4 @@ Rails.application.routes.draw do
   get '/:business_name/:id', to: "properties#show", as: "property"
 
   get '/:business_name', to: 'properties#index', as: "properties"
-
-
-  #   # resources :items
-  #   resources :users, only: [:new, :create, :show]
-  #
-  #
-  #   namespace :admin do
-  #     resources :users, only: [:show, :edit, :update]
-  #     get '/dashboard', to: 'users#show'
-  #   end
-  #
-  #   # delete "/orders", to: 'orders#destroy'
-  #   get '/dashboard', to: 'users#show'
-  #
-  #
 end

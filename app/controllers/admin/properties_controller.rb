@@ -1,4 +1,4 @@
-class Admin::PropertiesController < Admin::BaseController
+class Admin::PropertiesController < ApplicationController
 
   def new
     @property = current_user.business.properties.new

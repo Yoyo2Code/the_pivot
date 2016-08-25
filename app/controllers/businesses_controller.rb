@@ -20,28 +20,6 @@ class BusinessesController < ApplicationController
     @business = Business.find_by(slug: params[:id])
   end
 
-  # def destroy
-  #   business = Business.find(params[:id])
-  #   business.destroy
-  #   flash[:success] = "Business successfully deleted."
-  #   redirect_to businesses_pending_path
-  # end
-  #
-  # def edit
-  #   @business = Business.find(params[:id])
-  # end
-  #
-  # def update
-  #   business = Business.find(params[:id])
-  #   if business.update(business_params)
-  #     flash[:success] = "Business Successfully Updated!"
-  #     redirect_to dashboard_path
-  #   else
-  #     flash[:failure] = "Something went wrong! Please try again."
-  #     render :edit
-  #   end
-  # end
-
   private
 
   def business_params

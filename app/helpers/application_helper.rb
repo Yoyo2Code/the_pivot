@@ -4,6 +4,10 @@ module ApplicationHelper
     current_user && current_user.business_admin?
   end
 
+  def my_property?(property)
+    business_owner? && owns_property?(property)
+  end
+
   def current_platform_admin?
     current_user && current_user.platform_admin?
   end
@@ -14,11 +18,6 @@ module ApplicationHelper
 
   def business_owner?
     current_admin? && current_user.business
-  end
-
-  def items_index?
-    # params[:controller] == 'items' &&
-    #   params[:action] == 'index'
   end
 
   def related_location_or_business(property)
