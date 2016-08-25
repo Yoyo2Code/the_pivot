@@ -12,4 +12,10 @@ class CartItem < SimpleDelegator
   def subtotal
     price_per_guest * occupancy.to_i
   end
+
+  def night_count
+    d1 = Date.strptime(@starting_date, '%m/%d/%Y')
+    d2 = Date.strptime(@end_date, '%m/%d/%Y')
+    (d2 - d1).to_i
+  end
 end
