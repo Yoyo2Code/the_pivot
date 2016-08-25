@@ -2,12 +2,12 @@
 <div class="container-fluid">
 <!-- Brand and toggle get grouped for better mobile display -->
 <div class="navbar-header">
-  <a class="navbar-brand" href="/">Home</a>
+  <a class="navbar-brand" href="/">Stay and Play</a>
 </div>
   <ul class="nav navbar-nav navbar-right">
     <li><a href="/cart"> <%= "Cart Items: #{@cart.total}" %> </a></li>
     <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
       <ul class="dropdown-menu">
         <% if current_user %>
         <%= link_to "Logout", logout_path, method: :delete %>
@@ -15,10 +15,8 @@
         <%= link_to "Login", login_path %>
         <% end %>
         <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
+        <li><a href="/orders">Order History</a></li>
         <li role="separator" class="divider"></li>
-        <li><a href="#">Separated link</a></li>
       </ul>
     </li>
   </ul>
