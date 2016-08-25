@@ -29,6 +29,8 @@ class Seed
     Location.create!(city: 'London')
     Location.create!(city: 'Dubai')
     Location.create!(city: 'Philly')
+    Location.create!(city: 'Houston')
+    Location.create!(city: 'Sydney')
     add_properties_to_businesses
   end
 
@@ -39,12 +41,12 @@ class Seed
   end
 
   def add_properties(business)
-    10.times do |t|
+    12.times do |t|
       business.properties.create!(
         title: Faker::Book.title + "##{rand(1000)}",
         description: Faker::Lorem.paragraph(4),
         price_per_guest: Faker::Commerce.price,
-        max_occupancy: rand(10),
+        max_occupancy: rand(1..10),
         image_path: 'http://i.dailymail.co.uk/i/pix/2015/07/09/14/2A6072FF00000578-3154851-image-a-1_1436449347511.jpg',
         location: Location.all[t]
       )
