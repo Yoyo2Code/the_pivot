@@ -26,7 +26,6 @@ class Permission
   def platform_admin_permissions
     return true if controller == "admin/properties"
     return true if controller == "admin/businesses"
-    return true if controller == "admin/orders"
     return true if controller == "locations/properties"
     return true if controller == "platform_admin/businesses"
     return true if controller == "platform_admin/orders"
@@ -45,9 +44,7 @@ class Permission
   def store_admin_permissions
     return true if controller == "admin/businesses"
     return true if controller == "admin/properties"
-    return true if controller == "admin/orders"
     return true if controller == "locations/properties"
-    return true if controller == "platform_admin/businesses"
     return true if controller == "businesses"
     return true if controller == "cart"
     return true if controller == "cart_items"

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "User sees items" do
-  scenario "a visitor can add an item to their cart" do
+RSpec.feature "Visitor can add items to cart" do
+  scenario "they see the items in their cart" do
 
     Cart.new(nil)
     business = create(:business)
@@ -28,7 +28,7 @@ RSpec.feature "User sees items" do
     expect(page).to have_content(business.name)
     expect(page).to have_content(property.title)
     expect(page).to have_content(property.description)
-    expect(page).to have_content("$20,000.00")
+    expect(page).to have_content("$120,000.00")
     expect(page).to have_content("Total Guests: 2")
     expect(page).to have_content("Check-In: 08/30/2016")
     expect(page).to have_content("Check-Out: 09/05/2016")
@@ -72,22 +72,22 @@ RSpec.feature "User sees items" do
     expect(current_path).to eq('/cart')
     expect(page).to have_content(property.title)
     expect(page).to have_content(property.description)
-    expect(page).to have_content("$20,000.00")
+    expect(page).to have_content("$120,000.00")
     expect(page).to have_content("Total Guests: 2")
     expect(page).to have_content("Check-In: 08/30/2016")
     expect(page).to have_content("Check-Out: 09/05/2016")
     expect(page).to have_css("img[src*='http://img09.deviantart.net']")
     expect(page).to have_content(property2.title)
     expect(page).to have_content(property2.description)
-    expect(page).to have_content("$6,000.00")
+    expect(page).to have_content("$18,000.00")
     expect(page).to have_content("Total Guests: 2")
     expect(page).to have_content("Check-In: 09/06/2016")
     expect(page).to have_content("Check-Out: 09/09/2016")
     expect(page).to have_css("img[src*='http://img09.deviantart.net']")
-    expect(page).to have_content("$26,000.00")
+    expect(page).to have_content("$138,000.00")
   end
 
-  scenario "a visitor can add multiple items to their cart from different businesses" do
+  scenario "they can add multiple items to their cart from different businesses" do
     Cart.new(nil)
     user = create(:user)
     user2 = create(:user, username: "Jason")
@@ -128,7 +128,7 @@ RSpec.feature "User sees items" do
     expect(page).to have_content(business.name)
     expect(page).to have_content(property.title)
     expect(page).to have_content(property.description)
-    expect(page).to have_content("$20,000.00")
+    expect(page).to have_content("$120,000.00")
     expect(page).to have_content("Total Guests: 2")
     expect(page).to have_content("Check-In: 08/30/2016")
     expect(page).to have_content("Check-Out: 09/05/2016")
@@ -136,15 +136,15 @@ RSpec.feature "User sees items" do
     expect(page).to have_content(business2.name)
     expect(page).to have_content(property2.title)
     expect(page).to have_content(property2.description)
-    expect(page).to have_content("$6,000.00")
+    expect(page).to have_content("$18,000.00")
     expect(page).to have_content("Total Guests: 2")
     expect(page).to have_content("Check-In: 09/06/2016")
     expect(page).to have_content("Check-Out: 09/09/2016")
     expect(page).to have_css("img[src*='http://img09.deviantart.net']")
-    expect(page).to have_content("$26,000.00")
+    expect(page).to have_content("$138,000.00")
   end
 
-  scenario "visitor sees flash notice when adding item to cart" do
+  scenario "they see a flash notice when adding item to cart" do
     Cart.new(nil)
     business = create(:business)
     location = create(:location) do |loc|
