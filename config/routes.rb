@@ -9,15 +9,9 @@ Rails.application.routes.draw do
 
   resources :businesses, only: [:new, :create, :edit, :update, :destroy]
 
-  get '/businesses/pending', to: "businesses#pending"
-
-  get '/businesses/manage', to: "businesses#manage"
-
-  post '/businesses/:id/activate', to: "businesses#activate", as: 'activate_business'
-
-  post '/businesses/:id/deactivate', to: "businesses#deactivate", as: 'deactive_business'
-
-  get '/businesses/pending', to: "businesses#pending"
+  namespace :platform_admin do
+    resources :businesses, only: [:index, :update, :destroy]
+  end
 
   delete "/cart_items", to: 'cart_items#destroy'
 
@@ -53,7 +47,6 @@ Rails.application.routes.draw do
     get '/:business_name/edit/:id', to: "properties#edit", as: "edit_property"
     patch '/:business_name/:id', to: "properties#update", as: "update_property"
   end
-
 
   get '/:business_name/:id', to: "properties#show", as: "property"
 
