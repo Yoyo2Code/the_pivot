@@ -1,12 +1,4 @@
 require 'rails_helper'
-# As a user
-# When I click on my dashboard
-# And I click on 'edit account information'
-# Then I should be able to edit my account information
-# And when I click 'Save Changes' I expect a notice confirmation
-# and I expect to be redirected to my dashboard
-# and I expect to see my updated user information
-
 RSpec.describe 'User can manage account information', type: :feature do
   scenario 'they can access edit page from dashboard' do
     user = create(:user)

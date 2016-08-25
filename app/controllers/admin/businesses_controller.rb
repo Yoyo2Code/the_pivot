@@ -1,4 +1,4 @@
-class Admin::BusinessesController < Admin::BaseController
+class Admin::BusinessesController < ApplicationController
 
   def edit
     @business = current_user.business

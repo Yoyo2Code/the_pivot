@@ -72,53 +72,28 @@ RSpec.describe "Cart" do
     expect(cart.total).to eq(2)
   end
 
-  xit "should give count of specific item" do
-    cart = Cart.new("1" => 2)
+  it "delete an item" do
+    user = create(:user)
+    location = create(:location)
+    business = create(:business, user: user)
+    property = location.properties.create!(
+      title: "Tiny House",
+      description: "It's really small",
+      price_per_guest: 10_000.0,
+      image_path: 'https://upload.wikimedia.org/wikipedia/commons/5/56'\
+                  '/Hotel-room-renaissance-columbus-ohio.jpg',
+      business_id: business.id,
+      max_occupancy: 3
+    )
+    cart = Cart.new(
+      property.id.to_s => {
+        starting_date: "08/15/2016",
+        end_date: "09/01/2016",
+        occupancy: 2
+      })
 
-    expect(cart.count_of(1)).to eq(2)
-  end
+    cart.delete_item(property.id)
 
-  xit "should be able to find items" do
-    cat1 = Location.create!(title: "arms")
-    item = cat1.items.create!(
-      title: "Robot Arm",
-      description: "Cool ass arm",
-      price: 10_000.0,
-      image_path: 'http://img09.deviantart.net/588b/i/2004'\
-      '/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
-
-    cart = Cart.new(item.id => 3)
-
-    expect(cart.find_items.first).to eq(Item.first)
-  end
-
-  xit "should be able to compute total price" do
-    cat1 = Location.create!(title: "arms")
-    item = cat1.items.create!(
-      title: "Robot Arm",
-      description: "Cool ass arm",
-      price: 10_000.0,
-      image_path: 'http://img09.deviantart.net/588b/i/'\
-      '2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
-
-    cart = Cart.new(item.id => 3)
-
-    expect(cart.total_price).to eq(30_000.0)
-  end
-
-  xit "delete an item" do
-    cat1 = Location.create!(title: "arms")
-    item = cat1.items.create!(
-      title: "Robot Arm",
-      description: "Cool ass arm",
-      price: 10_000.0,
-      image_path: 'http://img09.deviantart.net/588b/i'\
-      '/2004/272/7/2/i__robot_arm_by_chainsawdeathriot.jpg')
-
-    cart = Cart.new(item.id => 3)
-
-    cart.delete_item(item.id)
-
-    expect(cart.contents[item.id.to_s]).to eq(2)
+    expect(cart.contents[property.id.to_s]).to eq(nil)
   end
 end

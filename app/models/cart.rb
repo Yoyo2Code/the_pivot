@@ -12,10 +12,6 @@ class Cart
                                             occupancy: params[:occupancy] }
   end
 
-  # def count_of(item_id)
-  #   contents[item_id.to_s]
-  # end
-
   def total
     contents.keys.count
   end
@@ -40,8 +36,4 @@ class Cart
   def delete_item(item_id)
     contents.delete_if { |id, quantity| id == item_id.to_s }
   end
-
-  # def increment_quantity_by
-  #   content[item_id.to_s] += update
-  # end
 end

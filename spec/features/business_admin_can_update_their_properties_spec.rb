@@ -16,7 +16,7 @@ RSpec.feature "Business admin can update their properties" do
 
     expect(page).to have_content "Acme"
 
-    within('#edit-property') do
+    within('#property-admin-btns') do
       click_on "Edit Property"
     end
 
@@ -35,7 +35,7 @@ RSpec.feature "Business admin can update their properties" do
 
     click_on "My Properties"
 
-    within('#edit-property') do
+    within('#property-admin-btns') do
       click_on "Edit Property"
     end
 

@@ -10,12 +10,26 @@ class Seed
   end
 
   def create_businesses
-    12.times do
-      Business.create!(name: Faker::Company.name,
+    19.times do |i|
+      b = Business.create!(name: Faker::Company.name,
                        image_url: "https://robohash.org/#{rand(10)}",
-                       user: create_user)
+                       user: create_user(i))
+      puts "Created #{b.name}"
     end
+    Business.create!(name: Faker::Company.name,
+                     image_url: "https://robohash.org/#{rand(10)}",
+                     user: User.create!(username: 'nate@turing.io',
+                                        password: 'password',
+                                        role: 1)
+                     )
     create_locations
+  end
+
+  def create_user(i)
+    u = User.create!(username: Faker::Internet.user_name + " ##{i}#{rand(10000)}",
+                   password: 'password')
+    puts "Created #{u.username}"
+    u
   end
 
   def create_locations
@@ -31,51 +45,55 @@ class Seed
     Location.create!(city: 'Philly')
     Location.create!(city: 'Houston')
     Location.create!(city: 'Sydney')
-    add_properties_to_businesses
+    add_properties_to_locations
   end
 
-  def add_properties_to_businesses
-    Business.all.each do |business|
-      add_properties(business)
+  def add_properties_to_locations
+    b = Business.all.to_a
+    Location.all.each do |location|
+      50.times do |i|
+        l = location.properties.create!(
+          title: Faker::Book.title + " ##{i}#{rand(10000)}",
+          description: Faker::Lorem.paragraph(4),
+          price_per_guest: Faker::Commerce.price,
+          max_occupancy: rand(1..10),
+          image_path: 'http://i.dailymail.co.uk/i/pix/2015/07/09/14/2A6072FF00000578-3154851-image-a-1_1436449347511.jpg',
+          business: b.rotate!.first
+        )
+        puts "Created #{l.title}" 
+      end
     end
-  end
-
-  def add_properties(business)
-    12.times do |t|
-      business.properties.create!(
-        title: Faker::Book.title + "##{rand(1000)}",
-        description: Faker::Lorem.paragraph(4),
-        price_per_guest: Faker::Commerce.price,
-        max_occupancy: rand(1..10),
-        image_path: 'http://i.dailymail.co.uk/i/pix/2015/07/09/14/2A6072FF00000578-3154851-image-a-1_1436449347511.jpg',
-        location: Location.all[t]
-      )
-    end
+    Property.last.business = Business.all.sample
   end
 
   def add_nights
     from = Time.new(2016, 8, 27)
     to = Time.new(2017, 4, 1)
     until from >= to
-      Night.create!(date: (from += 1.day))
+      n = Night.create!(date: (from += 1.day))
+      puts "Created night #{n.date}"
     end
   end
 
-  def create_user
-    User.create!(username: Faker::Name.first_name,
-                 password: 'password',
-                 role: rand(3))
+  def seed_users
+    User.create!(username: 'jorge@turing.io', password: 'password', role: 2)
+    99.times do |i|
+      user = User.create!(username: Faker::Internet.user_name + " ##{i}#{rand(10000)}",
+                   password: 'password')
+      puts "Created #{user.username}"
+      user_orders(user)
+    end
+    user_orders(User.create!(username: 'jmejia@turing.io', password: 'password'))
   end
 
-  def seed_users
-    u1 = User.create!(username: 'Yoseph', password: 'password')
-    u2 = User.create!(username: 'Pat', password: 'password')
-    u3 = User.create!(username: 'David', password: 'password')
-    u4 = User.create!(username: 'Jason', password: 'password')
+  def user_orders(user)
+    10.times do 
+      user.orders << Order.create!
+      puts "Created order for #{user.username}"
+    end
   end
 
   def seed_bookings
-    seed_orders
     count = 1
     Property.all.shuffle.each do |prop|
       5.times do 
@@ -86,43 +104,12 @@ class Seed
     end
   end
 
-  def seed_orders
-    User.all.each do |u|
-      u.orders.create!
-    end
-  end
-
   def book_property(prop, count)
     duration = rand(2..4)
     night_id = Random.new.rand(count..(count + rand(10..20)))
     duration.times do |i|
       prop.nights << Night.find(night_id + i)
-    end
-  end
-
-  def seed_bookings
-    seed_orders
-    count = 1
-    Property.all.shuffle.each do |prop|
-      5.times do
-        book_property(prop, count)
-        count += rand(10..20)
-      end
-      count = 1
-    end
-  end
-
-  def seed_orders
-    User.all.each do |u|
-      u.orders.create!
-    end
-  end
-
-  def book_property(prop, count)
-    duration = rand(2..4)
-    night_id = Random.new.rand(count..(count + rand(10..20)))
-    duration.times do |i|
-      prop.nights << Night.find(night_id + i)
+      puts "Created #{prop.title} booking for #{prop.nights.last.date}"
     end
   end
 end
