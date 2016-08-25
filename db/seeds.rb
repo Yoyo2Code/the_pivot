@@ -60,7 +60,7 @@ class Seed
           image_path: 'http://i.dailymail.co.uk/i/pix/2015/07/09/14/2A6072FF00000578-3154851-image-a-1_1436449347511.jpg',
           business: b.rotate!.first
         )
-        puts "Created #{l.title}" 
+        puts "Created #{l.title}"
       end
     end
     Property.last.business = Business.all.sample
@@ -87,8 +87,8 @@ class Seed
   end
 
   def user_orders(user)
-    10.times do 
-      user.orders << Order.create!
+    10.times do
+      user.orders.create!
       puts "Created order for #{user.username}"
     end
   end
@@ -96,7 +96,7 @@ class Seed
   def seed_bookings
     count = 1
     Property.all.shuffle.each do |prop|
-      5.times do 
+      5.times do
         book_property(prop, count)
         count += rand(10..20)
       end
