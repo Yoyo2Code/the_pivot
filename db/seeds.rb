@@ -60,7 +60,11 @@ class Seed
           image_path: 'http://i.dailymail.co.uk/i/pix/2015/07/09/14/2A6072FF00000578-3154851-image-a-1_1436449347511.jpg',
           business: b.rotate!.first
         )
+<<<<<<< HEAD
         puts "Created #{l.title}"
+=======
+        puts "Created #{l.title}"
+>>>>>>> master
       end
     end
     Property.last.business = Business.all.sample
