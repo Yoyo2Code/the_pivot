@@ -3,7 +3,7 @@ class CartItemsController < ApplicationController
   # skip_before_action :require_admin
 
   def create
-    @cart.add_item(params)
+    @cart.add_item(params[:booking])
     session[:cart] = @cart.contents
     flash[:success] = "Successfully added booking to cart!"
     redirect_to cart_path
@@ -11,7 +11,6 @@ class CartItemsController < ApplicationController
 
   def destroy
     # property  = Property.find(params[:id])
-    # require 'pry'; binding.pry
     @cart.delete_item(params[:id])
     flash[:success] = "Successfully removed"
     # flash[:notice] = "Successfully removed #{view_context.link_to(property.title,

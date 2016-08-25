@@ -2,19 +2,23 @@ class Api::V1::PropertiesController < Api::V1::BaseController
   # skip_before_action :require_user, :require_admin
 
   def index
-    @properties = find_properties
-    respond_with @properties
+    respond_with find_property_scope
   end
 
   def show
     property = Property.find_by(id: params[:property_id])
-    respond_with property.bookings
+    respond_with property.formatted_nights
   end
 
   private
 
-  def find_properties
-    business = Business.find_by(slug: params[:business_name])
-    business.properties.all
+  def find_property_scope
+    business = Business.find_by(slug: params[:property_scope])
+    if business
+      business.properties.all
+    else
+      location = Location.find_by(slug: params[:property_scope])
+      location.properties.all
+    end
   end
 end

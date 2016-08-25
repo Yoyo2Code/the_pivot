@@ -24,8 +24,9 @@ RSpec.describe "Cart" do
   end
 
   it "should be able to add an item" do
-    location = Location.create!(city: "Denver")
-    business = Business.create!(name: "Acme")
+    user = create(:user)
+    location = create(:location)
+    business = create(:business, user: user)
     property = location.properties.create!(
       title: "Tiny House",
       description: "It's really small",

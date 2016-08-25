@@ -1,6 +1,9 @@
 <h5>Open a Business with Stay & Play!</h5>
 
 <%= form_for @business do |f| %>
+  <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= f.label :image_url %>
+  <%= f.text_field :image_url %>
   <%= f.submit 'Submit New Business Application' %>
 <% end %>

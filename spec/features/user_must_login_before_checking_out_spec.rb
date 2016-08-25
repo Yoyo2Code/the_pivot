@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'User must login before checking out', type: :feature do
   scenario 'they cannot checkout in the cart until they are logged in' do
     user = create(:user)
-    business = create(:business)
+    business = create(:business, user: user)
     location = create(:location) do |loc|
       loc.properties.create(attributes_for(:property, business_id: business.id))
     end
@@ -13,9 +13,9 @@ RSpec.describe 'User must login before checking out', type: :feature do
 
     expect(page).to have_content("Cart Items: 0")
 
-    find('#occupancy').find(:xpath, 'option[1]').select_option
-    fill_in :starting_date, with: "08/30/2016"
-    fill_in :end_date, with: "09/05/2016"
+    find('#booking_occupancy').find(:xpath, 'option[1]').select_option
+    fill_in 'booking[starting_date]', with: "08/30/2016"
+    fill_in 'booking[end_date]', with: "09/05/2016"
 
     click_on "Book Me"
 

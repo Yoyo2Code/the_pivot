@@ -44,7 +44,7 @@ RSpec.describe 'User can manage account information', type: :feature do
     click_button 'Save Changes'
 
     within('#user-dashboard') do
-      expect(page).to have_content('Username: Megatron')
+      expect(page).to have_content('Welcome, Megatron')
     end
   end
 end

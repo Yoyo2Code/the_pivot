@@ -1,14 +1,19 @@
 class Seed
   def seed
+    Reservation.destroy_all
+    Order.destroy_all
     Property.destroy_all
     Location.destroy_all
     Business.destroy_all
+    User.destroy_all
     create_businesses
   end
 
   def create_businesses
     12.times do
-      Business.create!(name: Faker::Company.name, image_url: "https://robohash.org/#{rand(10)}")
+      Business.create!(name: Faker::Company.name,
+                       image_url: "https://robohash.org/#{rand(10)}",
+                       user: create_user)
     end
     create_locations
   end
@@ -43,23 +48,80 @@ class Seed
   end
 
   def add_nights
-    from = Time.now
-    to = Time.new('2017/1/1')
+    from = Time.new(2016, 8, 27)
+    to = Time.new(2017, 4, 1)
     until from >= to
       Night.create!(date: (from += 1.day))
     end
   end
 
+  def create_user
+    User.create!(username: Faker::Name.first_name,
+                 password: 'password',
+                 role: rand(3))
+  end
+
   def seed_users
     u1 = User.create!(username: 'Yoseph', password: 'password')
     u2 = User.create!(username: 'Pat', password: 'password')
-    u1.orders.create!
-    u2.orders.create!
-    u1.orders.first.reservations.create!(starting_date: Night.all[1].date, end_date: Night.all[5].date, number_of_guests: 2, price: 1500, property_id: Property.first.id)
-    u2.orders.first.reservations.create!(starting_date: Night.all[10].date, end_date: Night.all[13].date, number_of_guests: 2, price: 1500, property_id: Property.first.id)
+    u3 = User.create!(username: 'David', password: 'password')
+    u4 = User.create!(username: 'Jason', password: 'password')
+  end
+
+  def seed_bookings
+    seed_orders
+    count = 1
+    Property.all.shuffle.each do |prop|
+      5.times do 
+        book_property(prop, count)
+        count += rand(10..20)
+      end
+      count = 1
+    end
+  end
+
+  def seed_orders
+    User.all.each do |u|
+      u.orders.create!
+    end
+  end
+
+  def book_property(prop, count)
+    duration = rand(2..4)
+    night_id = Random.new.rand(count..(count + rand(10..20)))
+    duration.times do |i|
+      prop.nights << Night.find(night_id + i)
+    end
+  end
+
+  def seed_bookings
+    seed_orders
+    count = 1
+    Property.all.shuffle.each do |prop|
+      5.times do
+        book_property(prop, count)
+        count += rand(10..20)
+      end
+      count = 1
+    end
+  end
+
+  def seed_orders
+    User.all.each do |u|
+      u.orders.create!
+    end
+  end
+
+  def book_property(prop, count)
+    duration = rand(2..4)
+    night_id = Random.new.rand(count..(count + rand(10..20)))
+    duration.times do |i|
+      prop.nights << Night.find(night_id + i)
+    end
   end
 end
 seeder = Seed.new
 seeder.seed
 seeder.add_nights
 seeder.seed_users
+seeder.seed_bookings
