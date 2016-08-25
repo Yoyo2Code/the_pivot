@@ -10,7 +10,8 @@ class BusinessesController < ApplicationController
       'We will be getting back to you shortly.'
       redirect_to dashboard_path
     else
-      #Apply ActiveRecord Validation Error
+      flash[:error] = 'You are not eligible to apply for a business or your application was invalid.\
+      Please contact your system administrator.'
       render :new
     end
   end

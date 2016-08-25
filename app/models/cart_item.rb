@@ -6,11 +6,12 @@ class CartItem < SimpleDelegator
     @occupancy = occupancy
     @starting_date = starting_date
     @end_date = end_date
+    @night_count = night_count
     super(@property)
   end
 
   def subtotal
-    price_per_guest * occupancy.to_i
+    price_per_guest * occupancy.to_i * night_count
   end
 
   def night_count

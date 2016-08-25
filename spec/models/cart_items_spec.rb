@@ -52,7 +52,7 @@ RSpec.describe "CartItem" do
                              params[:end_date] )
     subtotal = cart_item.subtotal
 
-    expect(subtotal).to eq(20_000.0)
+    expect(subtotal).to eq(340_000.0)
   end
 
   it "can calculate the number of nights" do

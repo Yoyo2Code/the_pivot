@@ -1,15 +1,25 @@
 <h1 class="well text-center" id='user-dashboard'>Welcome, <%= current_user.username %></h1>
 
-<%= link_to 'Open a Business', new_business_path if current_user.business.nil? %>
-<br>
-<%= link_to "Edit My Business", edit_admin_business_path(current_user.business) if current_admin? && current_user.business %>
-<br>
-<%= link_to "My Properties", properties_path(business_name: current_user.business.slug) if current_admin? && current_user.business %>
-<br>
-<%= link_to "Manage All Businesses", platform_admin_businesses_path if current_platform_admin? %>
-<br>
-<%= link_to 'Edit Account Information', edit_user_path(current_user) %>
-<br>
-<%= link_to "View Past Orders", orders_path %>
-<br>
-<%= link_to "Create My Property", admin_new_property_path(business_name: current_user.business.slug) if current_business_admin? %>
+<div class='container dashboard-form'>
+  <div class='jumbotron'>
+    <% if current_user.business && current_user.business.pending? %>
+    <p>Your Business Application is Pending</p>
+    <% end %>
+
+    <p><%= link_to 'Open a Business', new_business_path if current_user.business.nil? %></p>
+
+    <p><%= link_to "Edit My Business", edit_admin_business_path(current_user.business) if business_owner? %></p>
+
+    <p><%= link_to "My Properties", properties_path(business_name: current_user.business.slug) if business_owner? %></p>
+
+    <p><%= link_to "Manage All Businesses", platform_admin_businesses_path if current_platform_admin? %></p>
+
+    <p><%= link_to 'Edit Account Information', edit_user_path(current_user) %></p>
+
+    <p><%= link_to "View My Past Orders", orders_path %></p>
+
+    <p><%= link_to "View All Orders", platform_admin_orders_path if current_platform_admin? %></p>
+
+    <p><%= link_to "Create New Property", admin_new_property_path(business_name: current_user.business.slug) if current_business_admin? %></p>
+  </div>
+</div>
