@@ -51,7 +51,7 @@ class Seed
     Location.all.each do |location|
       50.times do |i|
         location.properties.create!(
-          title: Faker::Book.title + " ##{i + rand(10000)}",
+          title: Faker::Book.title + " ##{i}#{rand(10000)}",
           description: Faker::Lorem.paragraph(4),
           price_per_guest: Faker::Commerce.price,
           max_occupancy: rand(1..10),
@@ -73,7 +73,7 @@ class Seed
   def seed_users
     User.create!(username: 'jorge@turing.io', password: 'password', role: 2)
     99.times do |i|
-      user = User.create!(username: Faker::Internet.user_name + " ##{i + rand(100)}",
+      user = User.create!(username: Faker::Internet.user_name + " ##{i}#{rand(10000)}",
                    password: 'password')
       user_orders(user)
     end
