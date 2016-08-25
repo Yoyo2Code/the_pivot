@@ -1,5 +1,9 @@
 class Admin::OrdersController < Admin::BaseController
   def index
-    @orders = current_user.business.orders
+    @orders = Order.
+  end
+
+  def show
+    @order = Order.find(params[:id])
   end
 end

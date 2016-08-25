@@ -1,0 +1,36 @@
+<h1>Order #<%= order.id %> Details</h1>
+
+<% unless order.status == "cancelled" %>
+  <button id='cancel-order' class"btn btn-default"><%= link_to "Cancel Order", order_path(order), method: :delete %></button><br>
+<% end %>
+
+  <% order.reservations.each do |reservation| %>
+  <table class="table table-bordered">
+    <h5>Status: <%= order.status %></h5>
+    <h5>Order Submitted On: <%= order.created_at.strftime("%A, %d %b %Y %l:%M") %></h5>
+    <h5>Order Updated On: <%= order.updated_at.strftime("%A, %d %b %Y %l:%M") %></h5>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Total Guests</th>
+      <th>Check-In</th>
+      <th>Check-Out</th>
+      <th>Total Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"> <%= reservation.property.title %></th>
+      <td><%= reservation.property.description %></td>
+      <td><%= reservation.number_of_guests %></td>
+      <td><%= reservation.starting_date.strftime("%m/%d/%Y") %></td>
+      <td><%= reservation.end_date.strftime("%m/%d/%Y") %></td>
+      <td><%= number_to_currency(reservation.price) %></td>
+    </tr>
+  </tbody>
+</table><br><br>
+</div>
+  <% end %>
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+  </nav>
