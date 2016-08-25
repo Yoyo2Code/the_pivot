@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823000527) do
+ActiveRecord::Schema.define(version: 20160825175103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 20160823000527) do
     t.datetime "end_date"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "business_id"
+    t.index ["business_id"], name: "index_reservations_on_business_id", using: :btree
     t.index ["order_id"], name: "index_reservations_on_order_id", using: :btree
     t.index ["property_id"], name: "index_reservations_on_property_id", using: :btree
   end
@@ -95,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160823000527) do
   add_foreign_key "orders", "users"
   add_foreign_key "properties", "businesses"
   add_foreign_key "properties", "locations"
+  add_foreign_key "reservations", "businesses"
   add_foreign_key "reservations", "orders"
   add_foreign_key "reservations", "properties"
 end

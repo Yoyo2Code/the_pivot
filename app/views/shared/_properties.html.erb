@@ -2,13 +2,6 @@
   <div class='col-md-2 sidebar'>
     <%= render partial: 'layouts/navbar-side' %>
   </div>
-
-  <h1 class='text-center'>
-    <% if @properties.empty? == false %>
-    <%= @properties.first.business.name %>
-    <% end %>
-  </h1>
-
   <div class='col-md-9 properties'>
     <% @properties.each do |property| %>
       <div class="well col-md-4 item">

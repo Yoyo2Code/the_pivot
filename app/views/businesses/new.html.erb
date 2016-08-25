@@ -1,9 +1,14 @@
-<h5>Open a Business with Stay & Play!</h5>
-
-<%= form_for @business do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :image_url %>
-  <%= f.text_field :image_url %>
-  <%= f.submit 'Submit New Business Application' %>
-<% end %>
+<h5 class='header-text'>Open a Business with Stay & Play!</h5>
+<div class='container dashboard-form'>
+  <div class='jumbotron'>
+    <%= form_for @business do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <br>
+      <%= f.label :image_url %>
+      <%= f.text_field :image_url %>
+      <br>
+      <%= f.submit 'Submit New Business Application', class: 'business-application-btn btn btn-success' %>
+    <% end %>
+  </div>
+</div>

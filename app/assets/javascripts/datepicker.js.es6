@@ -1,8 +1,6 @@
 $(document).ready(function() {
-
-  // function saveResponse(response) {
-  //   bookings = response
-  // }
+  let bookings;
+  fetchDates()
 
   $( function() {
     $('#datepicker1').datepicker({
@@ -22,10 +20,16 @@ $(document).ready(function() {
     })
   });
 
-  let prop_id = window.location.pathname.slice(-1)
-  let bookings 
-  $.getJSON(`/api/v1/properties/${prop_id}`,
-            (response) => { bookings = response })
+  function fetchDates() {
+    $.ajax({
+      url: `/api/v1/properties/${getID()}`,
+      type: 'GET',
+      success: (response) => {
+        bookings = response
+      }
+    })
+  }
+
 
   function checkAvailability(date) {
     let y = date.getFullYear();
@@ -40,4 +44,7 @@ $(document).ready(function() {
     }
   }
 
+  function getID() {
+    return window.location.pathname.split('/').slice(-1).toString();
+  }
 })

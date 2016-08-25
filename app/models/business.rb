@@ -6,6 +6,7 @@ class Business < ApplicationRecord
   validates :status, presence: true
   validates :user, presence: true, uniqueness: true
   belongs_to :user
+  has_many :reservations
   enum status: %w[pending active inactive]
 
    def self.pending?

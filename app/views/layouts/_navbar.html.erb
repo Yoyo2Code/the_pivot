@@ -8,15 +8,15 @@
     <li><a href="/cart"> <%= "Cart Items: #{@cart.total}" %> </a></li>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu text-center" >
         <% if current_user %>
-        <%= link_to "Logout", logout_path, method: :delete %>
+          <li><%= link_to "Logout", logout_path, method: :delete %></li>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/orders">Order History</a></li>
+          <li role="separator" class="divider"></li>
         <% else %>
-        <%= link_to "Login", login_path %>
+          <li><%= link_to "Login", login_path %></li>
         <% end %>
-        <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/orders">Order History</a></li>
-        <li role="separator" class="divider"></li>
       </ul>
     </li>
   </ul>

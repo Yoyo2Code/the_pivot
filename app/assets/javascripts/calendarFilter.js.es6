@@ -23,41 +23,51 @@ $(document).ready(function() {
 
   $(function() {
     $('#start-filter').datepicker({
+      minDate: 0,
       onSelect: function(dateText, inst) {
-        let endingDate = $('#end-filter').datepicker('getDate')
-        $.ajax({
-          url: _path,
-          type: 'GET',
-          data: { startDate: parseDate(dateText), 
-                  endDate: parseDate(
-                    $.datepicker.formatDate('mm/dd/yy', endingDate)) },
-          success: (response) => {
-            _properties = response.map(fetchPropertyNames)
-            hideProperties()
-          }
-        })
+        getPropertiesEnd(dateText)
       }
     })
   });
 
   $( function() {
     $('#end-filter').datepicker({
+      minDate: 0,
       onSelect: function(dateText, inst) {
-        let startDate = $('#start-filter').datepicker('getDate')
-        $.ajax({
-          url: _path,
-          type: 'GET',
-          data: { startDate: parseDate(
-            $.datepicker.formatDate('mm/dd/yy', startDate)), 
-                  endDate: parseDate(dateText) },
-          success: (response) => {
-            _properties = response.map(fetchPropertyNames)
-            hideProperties()
-          }
-        })
+        getPropertiesStart(dateText);
       }
     })
   });
+
+  function getPropertiesEnd(dateText) {
+    let endingDate = $('#end-filter').datepicker('getDate')
+    $.ajax({
+      url: _path,
+      type: 'GET',
+      data: { startDate: parseDate(dateText), 
+        endDate: parseDate(
+        $.datepicker.formatDate('mm/dd/yy', endingDate)) },
+        success: (response) => {
+          _properties = response.map(fetchPropertyNames)
+          hideProperties()
+        }
+    })
+  }
+
+  function getPropertiesStart(dateText) {
+    let startDate = $('#start-filter').datepicker('getDate')
+    $.ajax({
+      url: _path,
+      type: 'GET',
+      data: { startDate: parseDate(
+        $.datepicker.formatDate('mm/dd/yy', startDate)), 
+        endDate: parseDate(dateText) },
+        success: (response) => {
+          _properties = response.map(fetchPropertyNames)
+          hideProperties()
+        }
+    })
+  }
 
   function hideProperties() {
     $properties.each(( index, property ) => {
@@ -78,7 +88,7 @@ $(document).ready(function() {
   function parseDate(dateText) {
     let splitDate = dateText.split('/')
     return { year: splitDate[2],
-             month: splitDate[0],
-             day: splitDate[1] }
+      month: splitDate[0],
+      day: splitDate[1] }
   }
 })
