@@ -10,6 +10,8 @@
 <br>
 <%= link_to 'Edit Account Information', edit_user_path(current_user) %>
 <br>
-<%= link_to "View Past Orders", orders_path %>
+<%= link_to "View My Past Orders", orders_path %>
+<br>
+<%= link_to "View Business Orders", admin_orders_path %>
 <br>
 <%= link_to "Create My Property", admin_new_property_path(business_name: current_user.business.slug) if current_business_admin? %>

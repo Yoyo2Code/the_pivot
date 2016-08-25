@@ -15,9 +15,9 @@ RSpec.describe "User can see view past orders", type: :feature do
       click_on "Login"
     end
 
-    expect(page).to have_link "View Past Orders"
+    expect(page).to have_link "View My Past Orders"
 
-    click_on "View Past Orders"
+    click_on "View My Past Orders"
 
     expect(current_path).to eq orders_path
   end
