@@ -24,19 +24,22 @@
 				<div class="panel-body">
 					<div class="row">
             <% @cart_items.each do |cart_item| %>
-						<div class="col-xs-2"><img class="img-responsive" src="<%= cart_item.image_path %>">
+						<div class="col-xs-2" %> ><img class="img-responsive" src="<%= cart_item.image_path %>">
 						</div>
 						<div class="col-xs-4">
-							<h4 class="product-name"><strong> <%= cart_item.title %></strong></h4><h4><small> <%= cart_item.description %></small></h4><br>
+							<h4 class="product-name"><strong> <%= cart_item.title %></strong></h4><h4><small> <%= cart_item.description %></small></h4>
+                  <h4><%= cart_item.business.name %></h4>
+              <h4> Check-In: <%= cart_item.starting_date %> </h4> Check-Out: <h4> <%= cart_item.end_date %> </h4>
+              <br>
             </div>
 						<div class="col-xs-6">
 							<div class="col-xs-6 text-right">
                 <p class="occupancy"><strong> Total Guests: <%= cart_item.occupancy %></strong></p>
 								<h6><strong><%= number_to_currency(cart_item.subtotal) %> <span class="text-muted"></span></strong></h6>
 							</div>
-							<div class="col-xs-2">
-                <%= button_to "Edit Booking", property_path(id: cart_item.id, business_name: cart_item.business.slug), method: :get %>
-                <%= button_to "Remove ", cart_items_path(id: cart_item.id), method: :delete %>
+							<div class="col-xs-2" id="cart-item-<%= cart_item.id %>" >
+                <%= link_to "Edit Booking", property_path(id: cart_item.id, business_name: cart_item.business.slug), method: :get, class: "btn" %>
+                <%= link_to "Remove", cart_items_path(id: cart_item.id), method: :delete, class: "btn" %>
 							</div>
 						</div>
 					</div>
@@ -54,7 +57,13 @@
 							<h4 class="text-right">Total <strong><%= number_to_currency(@cart.total_price) %></strong></h4>
 						</div>
 						<div class="col-xs-3">
-							<%= button_to "Complete My Booking", orders_path %>
+              <% if current_user %>
+							  <%= button_to "Complete My Booking", orders_path %>
+              <% else %>
+                <div id="login-or-create-account">
+                  <%= link_to "Login or Create Account to Checkout", login_path %>
+                </div>
+              <% end %>
 						</div>
 					</div>
 				</div>
