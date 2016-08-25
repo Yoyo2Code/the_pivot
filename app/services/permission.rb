@@ -81,9 +81,5 @@ class Permission
     return true if controller == "root"
     return true if controller == "sessions"
     return true if controller == "users" && action.in?(%w(new create))
-    # return true if controller == "sessions"
-    # return true if controller == "root"
-    # return true if controller == "items"  && action.in?(%w(index show))
-    # return true if controller == "stores" && action.in?(%w(index))
   end
 end
