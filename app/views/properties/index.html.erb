@@ -5,4 +5,6 @@
   </div>
   <div class='col-xs-5 line'><hr></div>
 </div>
-<%= render partial: 'shared/properties', locals: { name: @properties.first.business.name } %>
+<% unless @properties.empty? %>
+  <%= render partial: 'shared/properties', locals: { name: @properties.first.business.name } %>
+<% end %>

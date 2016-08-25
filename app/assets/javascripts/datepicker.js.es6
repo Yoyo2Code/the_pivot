@@ -1,5 +1,7 @@
 $(document).ready(function() {
   let bookings;
+  fetchDates()
+
   $( function() {
     $('#datepicker1').datepicker({
       beforeShowDay: checkAvailability,
@@ -28,8 +30,8 @@ $(document).ready(function() {
     })
   }
 
+
   function checkAvailability(date) {
-    fetchDates();
     let y = date.getFullYear();
     let m = date.getMonth();
     let d = date.getDate();

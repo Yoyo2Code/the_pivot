@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root 'root#show'
-  get '/more-options', to: "root#index", as: 'home'
+  get '/more-options', to: "root#index", as: 'more_options'
 
   get '/cart', to: "cart#index", as: 'cart'
 

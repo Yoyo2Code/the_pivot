@@ -4,7 +4,7 @@ RSpec.describe 'Visitor can see all businesses', type: :feature do
   scenario 'they can access businesses from root by clicking pill' do
     business = create(:business)
 
-    visit root_path
+    visit more_options_path
 
     click_link 'Businesses'
 
