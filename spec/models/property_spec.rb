@@ -19,6 +19,6 @@ RSpec.describe Property, type: :model do
     it { should have_many(:reservations) }
     it { should have_many(:orders).through(:reservations) }
     it { should have_many(:booked_dates) }
-    it { should have_many(:booked_dates).through(:nights) }
+    it { should have_many(:nights).through(:booked_dates) }
   end
 end
