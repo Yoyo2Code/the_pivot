@@ -11,7 +11,9 @@
     <% @properties.each do |property| %>
       <div class="well col-md-3 item" data-title="<%= property.title %>">
         <div class='property-index-header'>
-          <%= link_to property.title, property_path(property, business_name: property.business.slug) %><br>
+          <% if property.business %>
+            <%= link_to property.title, property_path(property, business_name: property.business.slug) %><br>
+          <% end %>
           <%= property.description %><br>
         </div>
         <hr>
