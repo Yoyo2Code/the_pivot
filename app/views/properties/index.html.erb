@@ -1,1 +1,10 @@
-<%= render partial: 'shared/properties', locals: { name: @properties.first.business.name } %>
+<div class='page-header location-header' id='business-header'>
+  <div class='col-xs-5 line'><hr></div>
+  <div class='col-xs-2 line city-header'>
+    <p><%= get_business_name %></p>
+  </div>
+  <div class='col-xs-5 line'><hr></div>
+</div>
+<% unless @properties.empty? %>
+  <%= render partial: 'shared/properties', locals: { name: @properties.first.business.name } %>
+<% end %>

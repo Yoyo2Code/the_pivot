@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'root#index'
-  get '/home', to: "root#show", as: 'home'
+  root 'root#show'
+  get '/more-options', to: "root#index", as: 'more_options'
 
   get '/cart', to: "cart#index", as: 'cart'
 
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :platform_admin do
     resources :businesses, only: [:index, :update, :destroy]
+    resources :orders, only: [:index, :show]
   end
 
   delete "/cart_items", to: 'cart_items#destroy'
@@ -45,7 +46,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :businesses, only: [:edit, :update]
     get '/:business_name/edit/:id', to: "properties#edit", as: "edit_property"
+    get '/:business_name/properties/new', to: "properties#new", as: "new_property"
+    post '/:business_name/properties', to: "properties#create", as: "create_property"
     patch '/:business_name/:id', to: "properties#update", as: "update_property"
+    delete '/business_name/:id', to: "properties#delete", as: "delete_property"
   end
 
   get '/:business_name/:id', to: "properties#show", as: "property"

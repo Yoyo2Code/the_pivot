@@ -1,12 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user,
-                :current_business_admin?,
-                :current_platform_admin?,
-                :current_admin?
+  helper_method :current_user
 
-  before_action :set_cart
+  add_flash_types :success,
+                  :info,
+                  :warning,
+                  :danger
+
+  before_action :set_cart, :authorize!
 
   # before_action :require_user
 
@@ -28,15 +30,17 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def current_business_admin?
-    current_user && current_user.business_admin?
+  def current_permission
+    @current_permission ||= Permission.new(current_user)
   end
 
-  def current_platform_admin?
-    current_user && current_user.platform_admin?
+  def authorize!
+    unless authorized?
+      redirect_to root_url, danger: "You are not authorized to visit this page"
+    end
   end
 
-  def current_admin?
-    current_user && (current_user.business_admin? || current_user.platform_admin?)
+  def authorized?
+    current_permission.allow?(params[:controller], params[:action])
   end
 end

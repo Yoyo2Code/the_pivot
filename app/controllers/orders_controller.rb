@@ -3,8 +3,7 @@ class OrdersController < ApplicationController
   # skip_before_action :require_user, only: [:show, :destroy]
 
   def index
-    # @orders = current_user.orders
-    @orders = Order.all
+    @orders = current_user.orders
   end
 
   def create
@@ -15,9 +14,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    # @order_number = @_request.env["PATH_INFO"].split("/").last
     @order = current_user.orders.find(params[:id])
-    # @order_total = order_total(@order)
   end
 
   # def order_total(order)

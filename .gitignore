@@ -18,3 +18,4 @@
 
 # Ignore all Coverage Files
 /coverage/*
+/coverage

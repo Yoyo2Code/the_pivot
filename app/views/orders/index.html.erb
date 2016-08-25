@@ -1,15 +1,1 @@
-<h3>Order History</h3>
-    <thead>
-      <td>Order Number</td>
-      <td>Date Created</td>
-      <td>Status</td>
-      <td>Details</td>
-    </thead>
-      <% @orders.each do |order| %>
-    <tbody>
-      <td><%= order.id %></td>
-      <td><%= order.status %></td>
-      <td><%= order.created_at %></td>
-      <td><%= link_to "View Order Details", order_path(order) %></td>
-    </tbody>
-      <% end %>
+<%= render partial: "shared/orders_index", locals: {orders: @orders} %>

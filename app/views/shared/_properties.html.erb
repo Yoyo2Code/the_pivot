@@ -2,9 +2,6 @@
   <div class='col-md-2 sidebar'>
     <%= render partial: 'layouts/navbar-side' %>
   </div>
-  <% unless params[:city] %>
-    <h1 class='text-center'><%= name %></h1>
-  <% end %>
   <div class='col-md-9 properties'>
     <% @properties.each do |property| %>
       <div class="well col-md-4 item">
@@ -21,6 +18,7 @@
         <% if current_admin? %>
           <button type="button" class="btn btn-default" id="edit-property">
             <%= link_to "Edit Property", admin_edit_property_path(property, business_name: property.business.slug) %>
+            <%= link_to "Delete Property", admin_delete_property_path(property.id), method: :delete %>
           </button>
         <% end %>
         <%# if current_admin? %>

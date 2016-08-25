@@ -1,0 +1,19 @@
+<h3>Order History</h3>
+<table class="table table-striped table-bordered">
+  <thead>
+    <td>Order Number</td>
+    <td>Date Created</td>
+    <td>Status</td>
+    <td>Username</td>
+    <td>Details</td>
+  </thead>
+  <% orders.each do |order| %>
+  <tbody>
+    <td><%= order.id %></td>
+    <td><%= order.status %></td>
+    <td><%= order.created_at %></td>
+    <td><%= order.user.username %></td>
+    <td><%= link_to "View Order Details", order_path(order) %></td>
+  </tbody>
+  <% end %>
+</table>

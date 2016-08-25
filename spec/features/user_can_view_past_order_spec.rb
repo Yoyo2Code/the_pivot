@@ -1,52 +1,50 @@
-# require 'rails_helper'
-#
-# RSpec.feature "user can view past orders" do
-#
-#   scenario "user can see past orders" do
-#     category = create(:category) do |category|
-#       category.items.create(attributes_for(:item))
-#     end
-#
-#
-#     visit items_path
-#     cart = Cart.new(nil)
-#     click_on("Add to Cart")
-#     visit cart_path
-#     first(:link, "Create Account").click
-#     fill_in "First Name", with: "Penelope"
-#     fill_in "Last Name", with: "Jones"
-#     fill_in "Username", with: "Penelope"
-#     fill_in "Password", with: "password"
-#     fill_in "Email Address", with: "penelope@gmail.com"
-#     first(:button, "Create Account").click
-#     visit cart_path
-#
-#     # When I visit "/orders"
-#     first(:button, "Checkout").click
-#     expect(page).to have_content("Order #")
-#     #  And I should see a link to view that order
-#     click_on "1"
-#     expect(page).to have_content("Quantity")
-#     expect(page).to have_content("Price")
-#     expect(page).to have_content("Name")
-#   #   And I should see links to each item's show page
-#     expect(page).to have_content("Robot Arm")
-#   # And I should see the current status of the order (ordered, paid, cancelled, completed)
-#   # And I should see the total price for the order
-#     expect(page).to have_content("Order Total")
-#   # And I should see the date/time that the order was submitted
-#     expect(page).to have_content("Time Order Was Submitted")
-#   # If the order was completed or cancelled
-#     expect(page).to have_content("Order Status")
-#     expect(page).to have_content("Completed")
-#   # Then I should see a timestamp when the action took place
-#     expect(page).to have_content("Time Completed or Canceled")
-#
-#
-# end
-#
-#   scenario "user can click a link and see order quantity and subtotal" do
-#
-#   end
-#
-# end
+require 'rails_helper'
+
+RSpec.feature "User can view a past order" do
+  scenario "they can see an individual past order" do
+    user = create(:user)
+    business = create(:business, user: user)
+    location = create(:location) do |loc|
+      loc.properties.create(attributes_for(:property, business_id: business.id))
+    end
+    property = location.properties.first
+
+    visit login_path
+
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: user.password
+
+    within('.login-form') do
+      click_on "Login"
+    end
+
+    visit property_path(property, business_name: property.business.slug)
+
+    find('#booking_occupancy').find(:xpath, 'option[2]').select_option
+    fill_in 'booking[starting_date]', with: "08/30/2016"
+    fill_in 'booking[end_date]', with: "09/05/2016"
+
+    click_on "Book Me"
+    click_button 'Complete My Booking'
+
+    order = Order.last
+
+    expect(page).to have_content "Order ##{order.id} Details"
+    expect(page).to have_content "Name"
+    expect(page).to have_content "Trump Tower"
+    expect(page).to have_content "Description"
+    expect(page).to have_content "Small rooms"
+    expect(page).to have_content "Total Guests"
+    expect(page).to have_content "2"
+    expect(page).to have_content "Check-In"
+    expect(page).to have_content "08/30/2016"
+    expect(page).to have_content "Check-Out"
+    expect(page).to have_content "09/05/2016"
+    expect(page).to have_content "Total Cost"
+    expect(page).to have_content "$120,000.00"
+    expect(page).to have_content "Status"
+    expect(page).to have_content "ordered"
+    expect(page).to have_content "Order Submitted On:"
+    expect(page).to have_content "Order Updated On:"
+  end
+end
