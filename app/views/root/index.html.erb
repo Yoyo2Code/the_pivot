@@ -1,4 +1,4 @@
-<h1 id='header'> Welcome to Stay and Play </h1>
+<div><img src="<%= asset_path 'header2.jpg' %>" style="width:1260px;height:228px;"></div>
 <hr>
 <div class='row' id='pill-options'>
   <ul class='nav nav-pills'>
@@ -24,9 +24,8 @@
 
   <div class='row text-center' id='locations'>
     <% @locations.each do |location| %>
-      <a href="/locations/<%= location.slug %>">
+      <a href="/location/<%= location.slug %>">
         <div class='well col-md-4 location' id='<%= location.slug %>'>
-          <%= location.city %>
         </div>
       </a>
     <% end %>
