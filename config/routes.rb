@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   namespace :platform_admin do
     resources :businesses, only: [:index, :update, :destroy]
+    resources :orders, only: [:index]
   end
 
   delete "/cart_items", to: 'cart_items#destroy'

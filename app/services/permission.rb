@@ -29,6 +29,7 @@ class Permission
     return true if controller == "admin/orders"
     return true if controller == "locations/properties"
     return true if controller == "platform_admin/businesses"
+    return true if controller == "platform_admin/orders"
     return true if controller == "businesses"
     return true if controller == "cart"
     return true if controller == "cart_items"

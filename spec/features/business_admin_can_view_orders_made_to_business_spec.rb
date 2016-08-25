@@ -10,8 +10,8 @@ RSpec.feature "Business admin can view orders made to business" do
     property1 = create(:property, business: business, location: location)
     property2 = create(:property, title: "Turing", business: business, location: location)
     order1 = create(:order, user: user1)
-    create(:reservation, order: order1, property: property1)
     order2 = create(:order, user: user2)
+    create(:reservation, order: order1, property: property1)
     create(:reservation, order: order2, property: property2)
     page.set_rack_session(user_id: user3.id)
 

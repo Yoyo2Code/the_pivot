@@ -10,7 +10,7 @@ RSpec.feature "business admin can create a business" do
 
     visit dashboard_path
 
-    click_on "Create My Property"
+    click_on "Create New Property"
 
     fill_in "Title", with: "White House"
     fill_in "Description", with: "It's a big house"

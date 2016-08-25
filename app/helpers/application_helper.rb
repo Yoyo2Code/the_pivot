@@ -12,6 +12,10 @@ module ApplicationHelper
     current_user && (current_user.business_admin? || current_user.platform_admin?)
   end
 
+  def business_owner?
+    current_admin? && current_user.business
+  end
+
   def items_index?
     # params[:controller] == 'items' &&
     #   params[:action] == 'index'

@@ -15,6 +15,7 @@
     <br>
     <%= f.label :location %><br>
     <%= select_tag "location", options_from_collection_for_select(@locations, "id", "city") %><br>
+    <br>
     <%= f.label :max_occupancy %><br>
     <%= f.number_field :max_occupancy, placeholder: "Max Occupancy" %><br>
     <br>
