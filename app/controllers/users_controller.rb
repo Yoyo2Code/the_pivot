@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def create
     @user = User.create(user_params)
     if @user.save
@@ -18,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = current_user
   end
 
   def edit

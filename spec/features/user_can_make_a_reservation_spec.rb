@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'User can make a reservation', type: :feature do
   scenario 'they click checkout in the cart and the reservation is made' do
     user = create(:user)
-    business = create(:business)
+    business = create(:business, user: user)
     location = create(:location)
     create(:property, business: business, location: location)
     property = location.properties.first
@@ -19,9 +19,9 @@ RSpec.describe 'User can make a reservation', type: :feature do
 
     visit property_path(property, business_name: property.business.slug)
 
-    find('#occupancy').find(:xpath, 'option[2]').select_option
-    fill_in :starting_date, with: "08/30/2016"
-    fill_in :end_date, with: "09/05/2016"
+    find('#booking_occupancy').find(:xpath, 'option[2]').select_option
+    fill_in 'booking[starting_date]', with: "08/30/2016"
+    fill_in 'booking[end_date]', with: "09/05/2016"
 
     click_on "Book Me"
     click_button 'Complete My Booking'
