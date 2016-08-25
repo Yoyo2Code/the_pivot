@@ -7013,62 +7013,62 @@ ol, ul {
   font-family: 'Pacifico', cursive;
 }
 #sydney-header {
-  background-image: url('sydney-header.jpg');
+  background-image: url( /assets/sydney-header-e82c84b92d1ca47937850bdb8e2fcbe458ac65042c9153d9e844db9a7d576d7d.jpg );
   background-position: center;
   background-size: center;
 }
 #houston-header {
-  background-image: url('houston-header.jpg');
+  background-image: url( /assets/houston-header-8574a0a0cb0b994bd2293f0eace9db4abb02f0dc7f1f24fb95a36437e8424592.jpg );
   background-position: center;
   background-size: center;
 }
 #philly-header {
-  background-image: url('philly-header.jpg');
+  background-image: url( /assets/philly-header-30103a20259bdb174b610aa96dbff8fa71b03b9d94c704f589af1aafa0196320.jpg );
   background-position: center;
   background-size: center;
 }
 #dubai-header {
-  background-image: url('dubai-header.jpg');
+  background-image: url( /assets/dubai-header-e2992c52ff964d2113267f010ab5a2f3564bb087ff27ac237300886bbc594fb8.jpg );
   background-position: center;
   background-size: center;
 }
 #toronto-header{
-  background-image: url('toronto-header.jpg');
+  background-image: url( /assets/toronto-header-163cd191a68f8022dfdb142be610eb48356bc7c51b0e22478dc64c68bb693268.jpg );
   background-position: center;
   background-size: center;
 }
 #dallas-header{
-  background-image: url('dallas-header.jpg');
+  background-image: url( /assets/dallas-header-768bb1783ef308162a916772a2467f9d08b945a2bf7d0457f142d8769730cc37.jpg );
   background-position: center;
   background-size: center;
 }
 #los-angeles-header{
-  background-image: url('los-angeles-header.jpg');
+  background-image: url( /assets/los-angeles-header-56dda5e7de3e63eaddc9e2bfbb85d079fdc62da109eb61eb18621c249d43f459.jpg );
   background-position: center;
   background-size: center;
 }
 #chicago-header{
-  background-image: url('chicago-header.jpg');
+  background-image: url( /assets/chicago-header-163cd191a68f8022dfdb142be610eb48356bc7c51b0e22478dc64c68bb693268.jpg );
   background-position: center;
   background-size: center;
 }
 #denver-header{
-  background-image: url('denver-header.jpg');
+  background-image: url( /assets/denver-header-370f119e603699698c1e479ea3a526b2831bfe58ed4ee02d9d36a1461e7294d3.jpg );
   background-position: center;
   background-size: center;
 }
 #london-header {
-  background-image: url('london-header.jpg');
+  background-image: url( /assets/london-header-982083b4ba6f3b5252156a0d31d2dda4b4f7f14baad37d0facedb5eba80f6d7e.jpg );
   background-position: center;
   background-size: center;
 }
 #new-york-header{
-  background-image: url('new-york-header.jpg');
+  background-image: url( /assets/new-york-header-14a27288b77bd45b22bb77f90af6200f44292aac41bab9c7f0b7c9815e894a86.jpg );
   background-position: center;
   background-size: center;
 }
 #boston-header {
-  background-image: url('boston-header.jpg');
+  background-image: url( /assets/boston-header-89f221005ed94f6f6ee161c0626c81f760b8b30bcd03983713518dca7c24cb4b.jpg );
   background-position: center;
   background-size: center;
 }
@@ -7097,7 +7097,7 @@ ol, ul {
   margin-bottom: 20px;
 }
 #homepage-header {
-  background-image: url('home-header.jpg');
+  background-image: url( /assets/home-header-ca34875063901ba49792b24f2007989bba0baad1d9319b0439da35f6497b735e.jpg );
   background-position: center;
   background-size: center;
   height: 500px;
@@ -7106,7 +7106,7 @@ ol, ul {
   width: 100%;
 }
 #business-header {
-  background-image: url('http://www.siwallpaperhd.com/wp-content/uploads/2015/06/black_and_white_new_york_skyline_wallpaper_hd_16.jpg');
+  background-image: url( http://www.siwallpaperhd.com/wp-content/uploads/2015/06/black_and_white_new_york_skyline_wallpaper_hd_16.jpg );
   background-position: center;
   background-size: center;
 }
@@ -7133,41 +7133,11 @@ body {
 .dashboard-form input {
   margin-bottom: 10px;
 }
-.form-btn {
-  width: 50px;
-  margin: 0 auto;
-}
 .application-btn {
   margin-top: 20px;
 }
 .header-text {
   text-align: center;
-}
-#property-admin-btns {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-#property-admin-btns a {
-  margin-left: 5px;
-}
-.flash-success, .flash-danger {
-  text-align: center;
-}
-.flash-success {
-  color: white;
-  background-color: green;
-  width: 350px;
-  margin: 0 auto;
-  border-radius: 8px 8px 8px 8px;
-}
-.flash-danger {
-  color: white;
-  background-color: maroon;
-  width: 350px;
-  margin: 0 auto;
-  border-radius: 8px 8px 8px 8px;
 }
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
