@@ -15,6 +15,7 @@ RSpec.describe 'Visitor can see all locations', type: :feature do
     property = create(:property)
 
     visit root_path
+
     click_link property.location.city
 
     expect(current_path).to eq("/locations/#{property.location.slug}")
