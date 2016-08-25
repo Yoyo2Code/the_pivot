@@ -1,46 +1,48 @@
-<h1 style="color:white"><%= @property.title %><br></h1>
-<img src=" <%= @property.image_path %> " style="width:220px;height:228px;"  /><br><br>
-
-  <div style="background-color:white">
-      <h2> Description: </h2>
-    <h3><%= @property.description %></h3><br>
-    <h4>Price Per Guest: <%= number_to_currency(@property.price_per_guest) %></h4><br>
-    <h4>Max Occupancy: <%= @property.max_occupancy %> </h4>
-    <h4>Business: <%= @property.business.name %></h4>
-    <h4>Location: <%= @property.location.city %></h4>
+<div class='property-header'>
+  <h3><%= @property.title %><br></h3>
+</div>
+<div class='row property-container'>
+  <div class='col-md-4 col-md-offset-1 well property-image'>
+    <img src=" <%= @property.image_path %>"  /><br><br>
   </div>
+  <div class='col-md-5 property-details'>
 
- <%#= form_for :cart_item do |f| %>
- <%# f.hidden_field :property_id, @property.id %>
- <%#= f.label :occupancy %>
- <%#= f.select :occupancy, options_for_select([*1..@property.max_occupancy]) %>
- <%#= f.label :starting_date %>
- <%#= f.text_field :starting_date, Time.now.strftime("%m/%d/%Y"), id: "datepicker1" %>
- <%#= f.label :end_date %>
- <%#= f.text_field :end_date, Time.now.tomorrow.strftime("%m/%d/%Y"), id: "datepicker2" %>
- <%#= f.submit "Book Me" %>
- <%# end %>
+    <h4><span class="glyphicon glyphicon-map-marker"></span>
+      Location:
 
-  <%= form_tag("/cart_items", method: "post") do %>
-  <%= hidden_field_tag :property_id, @property.id %>
-  <%= select_tag :occupancy, options_for_select([*1..@property.max_occupancy]) %>
-  <!-- <%#= f.text_field :starting_date, :class => 'datepicker', placeholder: "Check-In" %>
-  <%#= f.text_field :end_date, "data-provide" => 'datepicker' %> -->
-<!-- <div id="dates"> -->
-  <%= text_field_tag :starting_date, Time.now.strftime("%m/%d/%Y"), id: "datepicker1" %>
-  <%= text_field_tag :end_date, Time.now.tomorrow.strftime("%m/%d/%Y"), id: "datepicker2" %>
+      <a href='/locations/<%= @property.location.slug %>'>
+        <%= @property.location.city %>
+      </a>
+    </h4>
+    <h4>Price Per Guest: <%= number_to_currency(@property.price_per_guest) %></h4><br>
+    <h4><span class="glyphicon glyphicon-user"></span> Max Occupancy: <%= @property.max_occupancy %> </h4>
+    <h4><span class="glyphicon glyphicon-briefcase"></span> Business:
+      <a href='/<%= @property.business.slug %>'>
+        <%= @property.business.name %>
+      </a>
+    </h4>
+    <h4> Description: </h4>
+    <p><%= @property.description %></p><br>
+  </div>
+</div>
+
+<div class='jumbotron book-property-form'>
+  <p style='text-align:center;'>Select your arrival and departure dates! <span class="glyphicon glyphicon-plane"></span></p>
+  <div id='property-input' class='row'>
+    <%= form_tag("/cart_items", method: "post") do %>
+    <%= hidden_field_tag "booking[property_id]", @property.id %>
+    <p>Guests</p>
+    <div id='max_occupancy' class='col-md-2'>
+      <%= select_tag "booking[occupancy]", options_for_select([*1..@property.max_occupancy]), class: 'form-control'%>
+    </div>
+    <div class='col-md-8' id='datepickers'>
+      <%= text_field_tag "booking[starting_date]", Time.now.strftime("%m/%d/%Y"), id: "datepicker1" %>
+      <%= text_field_tag "booking[end_date]", Time.now.tomorrow.strftime("%m/%d/%Y"), id: "datepicker2" %>
+    </div>
+    <div id='book-me-btn' >
+      <%= submit_tag "Book Me", class: 'btn btn-success', 'data-disable-with': false %>
+    </div>
+  </div>
 <!-- </div> -->
-  <%= submit_tag "Book Me" %>
   <% end %>
-
-
-
-
-  <!-- <%# #if @property.status == "retired" %>
-    <p>Item Retired</p>
-  <%# #else %>
-    <%#= #button_to "Add to Cart", cart_items_path({item_id: @property.id}) %>
-  <%# #end %>
-  <%# #if current_admin? %>
-    <button type="button" class="btn btn-default"><%#= #link_to "Edit", edit_item_path(@property) %></button>
-  <%# #end %> -->
+</div>

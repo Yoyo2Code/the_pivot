@@ -14,9 +14,9 @@ RSpec.feature "User sees items" do
 
     expect(page).to have_content("Cart Items: 0")
 
-    find('#occupancy').find(:xpath, 'option[2]').select_option
-    fill_in :starting_date, with: "08/30/2016"
-    fill_in :end_date, with: "09/05/2016"
+    find('#booking_occupancy').find(:xpath, 'option[2]').select_option
+    fill_in 'booking[starting_date]', with: "08/30/2016"
+    fill_in 'booking[end_date]', with: "09/05/2016"
 
     click_on "Book Me"
 
@@ -49,9 +49,9 @@ RSpec.feature "User sees items" do
 
     expect(page).to have_content("Cart Items: 0")
 
-    find('#occupancy').find(:xpath, 'option[2]').select_option
-    fill_in :starting_date, with: "08/30/2016"
-    fill_in :end_date, with: "09/05/2016"
+    find('#booking_occupancy').find(:xpath, 'option[2]').select_option
+    fill_in 'booking[starting_date]', with: "08/30/2016"
+    fill_in 'booking[end_date]', with: "09/05/2016"
 
     click_on "Book Me"
 
@@ -59,9 +59,9 @@ RSpec.feature "User sees items" do
 
     expect(page).to have_content("Cart Items: 1")
 
-    find('#occupancy').find(:xpath, 'option[2]').select_option
-    fill_in :starting_date, with: "09/06/2016"
-    fill_in :end_date, with: "09/09/2016"
+    find('#booking_occupancy').find(:xpath, 'option[2]').select_option
+    fill_in 'booking[starting_date]', with: "09/06/2016"
+    fill_in 'booking[end_date]', with: "09/09/2016"
 
     click_on "Book Me"
 
@@ -104,9 +104,9 @@ RSpec.feature "User sees items" do
 
     expect(page).to have_content("Cart Items: 0")
 
-    find('#occupancy').find(:xpath, 'option[2]').select_option
-    fill_in :starting_date, with: "08/30/2016"
-    fill_in :end_date, with: "09/05/2016"
+    find('#booking_occupancy').find(:xpath, 'option[2]').select_option
+    fill_in 'booking[starting_date]', with: "08/30/2016"
+    fill_in 'booking[end_date]', with: "09/05/2016"
 
     click_on "Book Me"
 
@@ -114,9 +114,9 @@ RSpec.feature "User sees items" do
 
     expect(page).to have_content("Cart Items: 1")
 
-    find('#occupancy').find(:xpath, 'option[2]').select_option
-    fill_in :starting_date, with: "09/06/2016"
-    fill_in :end_date, with: "09/09/2016"
+    find('#booking_occupancy').find(:xpath, 'option[2]').select_option
+    fill_in 'booking[starting_date]', with: "09/06/2016"
+    fill_in 'booking[end_date]', with: "09/09/2016"
 
     click_on "Book Me"
 
@@ -154,9 +154,9 @@ RSpec.feature "User sees items" do
 
     visit property_path(property, business_name: property.business.slug)
 
-    find('#occupancy').find(:xpath, 'option[2]').select_option
-    fill_in :starting_date, with: "08/30/2016"
-    fill_in :end_date, with: "09/05/2016"
+    find('#booking_occupancy').find(:xpath, 'option[2]').select_option
+    fill_in 'booking[starting_date]', with: "08/30/2016"
+    fill_in 'booking[end_date]', with: "09/05/2016"
 
     click_on "Book Me"
 

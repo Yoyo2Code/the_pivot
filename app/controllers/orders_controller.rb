@@ -3,7 +3,8 @@ class OrdersController < ApplicationController
   # skip_before_action :require_user, only: [:show, :destroy]
 
   def index
-    @orders = current_user.orders
+    # @orders = current_user.orders
+    @orders = Order.all
   end
 
   def create

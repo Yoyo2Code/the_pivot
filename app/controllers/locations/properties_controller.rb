@@ -1,4 +1,4 @@
-class Location::PropertiesController < ApplicationController
+class Locations::PropertiesController < ApplicationController
 
   def index
     location = Location.find_by(slug: params[:city])
