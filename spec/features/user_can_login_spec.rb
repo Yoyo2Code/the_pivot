@@ -34,7 +34,7 @@ RSpec.feature "Visitor can login" do
       expect(page).to have_content("Invalid login details")
     end
   end
-  
+
   scenario "they see a logout link after logging in" do
     user = create(:user)
 
